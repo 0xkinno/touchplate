@@ -1,11 +1,12 @@
 "use client";
 import { detect, type Certificate, type PdqResult } from "@touchplate/core";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
 import { addrUrl, short, txUrl } from "@/lib/env";
 import { fetchImage, fingerprintOf, rasterOf } from "@/lib/image";
 import { ErrorNote, Ladder } from "./ui";
-import { LicensePanel } from "./LicensePanel";
+const LicensePanel = dynamic(() => import("./LicensePanel").then((m) => m.LicensePanel), { ssr: false });
 
 interface LookupResponse {
   certificate: Certificate;

@@ -22,6 +22,10 @@ chains:
     rpc:
       - url: https://rpc.monad.xyz
         for: sync
+        # the public endpoint caps eth_getLogs at 100 blocks
+        initial_block_interval: 100
+        interval_ceiling: 100
+        acceleration_additive: 0
     contracts:
       - name: Touchplate
         address:

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import type { ReactNode } from "react";
 import { Nav } from "@/components/Nav";
-import { Providers } from "@/components/Providers";
 import "./globals.css";
 
 const display = localFont({ src: "../fonts/Satoshi-Variable.woff2", variable: "--font-tp-display", weight: "300 900", display: "swap" });
@@ -22,10 +21,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch" /></filter>
           <rect width="100%" height="100%" filter="url(#g)" />
         </svg>
-        <Providers>
-          <Nav />
-          <main className="pt-24">{children}</main>
-        </Providers>
+        <Nav />
+        <main className="pt-24">{children}</main>
       </body>
     </html>
   );

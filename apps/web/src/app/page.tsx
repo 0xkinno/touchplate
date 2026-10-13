@@ -29,7 +29,7 @@ export default function Landing() {
           aria-hidden="true"
           className="absolute right-0 top-0 h-full w-[58%] max-md:w-full max-md:h-[40svh] max-md:top-auto max-md:bottom-0"
           style={{
-            backgroundImage: "url(/hero-plate.jpg)",
+            backgroundImage: "url(/hero-plate.webp)",
             backgroundSize: "cover",
             backgroundPosition: "60% 50%",
             maskImage: "linear-gradient(to right, transparent 0%, black 38%)",

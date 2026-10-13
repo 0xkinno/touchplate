@@ -7,6 +7,7 @@ import { useAccount, useReadContract } from "wagmi";
 import { AUSD, CHAIN_ID, short, TOUCHPLATE, txUrl, USDC } from "@/lib/env";
 import { humanError, useTx } from "@/lib/tx";
 import { ErrorNote } from "./ui";
+import { Providers } from "./Providers";
 
 const erc20 = parseAbi([
   "function allowance(address,address) view returns (uint256)",
@@ -32,7 +33,7 @@ const SUCCESS = new Set(["SUCCESS"]);
 const TERMINAL_BAD = new Set(["REFUNDED", "FAILED"]);
 
 /** License in AUSD or USDC on Monad (approve, then license: two real wallet transactions), or fund from any chain. */
-export function LicensePanel({ commitment }: { commitment: Hex }) {
+function LicensePanelInner({ commitment }: { commitment: Hex }) {
   const { address, isConnected } = useAccount();
   const { open } = useAppKit();
   const tx = useTx();
@@ -216,5 +217,13 @@ function AnyChain({ amountOut, recipient, onFunded }: { amountOut: bigint; recip
         {err && <ErrorNote message={err} />}
       </div>
     </details>
+  );
+}
+
+export function LicensePanel({ commitment }: { commitment: Hex }) {
+  return (
+    <Providers>
+      <LicensePanelInner commitment={commitment} />
+    </Providers>
   );
 }

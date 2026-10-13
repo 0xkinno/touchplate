@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { WalletButton } from "./WalletButton";
+import { WalletSlot } from "./WalletSlot";
 
 const links = [
   { href: "/lookup", label: "Look up" },
@@ -50,7 +50,7 @@ export function Nav() {
           ))}
         </div>
         <div className="ml-auto flex items-center gap-2">
-          <WalletButton />
+          <WalletSlot />
           <button
             className="md:hidden px-3 py-2 rounded-[10px] border border-line mono text-[13px]"
             aria-expanded={open}

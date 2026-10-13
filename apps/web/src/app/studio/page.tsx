@@ -16,6 +16,7 @@ import {
 } from "@/lib/passkey";
 import { getSession, startSession, subscribeSession } from "@/lib/session";
 import { humanError, useTx } from "@/lib/tx";
+import { Providers } from "@/components/Providers";
 
 interface Item {
   id: string;
@@ -70,7 +71,7 @@ function Step({ n, title, children, done }: { n: number; title: string; children
   );
 }
 
-export default function StudioPage() {
+function StudioInner() {
   const { address, isConnected } = useAccount();
   const { open } = useAppKit();
   const pub = usePublicClient({ chainId: CHAIN_ID });
@@ -326,5 +327,13 @@ function BeforeAfter({ before, after, alt }: { before: string; after: string; al
       </div>
       <input type="range" min={0} max={100} value={pos} onChange={(e) => setPos(Number(e.target.value))} aria-label="Before and after" className="absolute bottom-2 left-2 right-2" />
     </div>
+  );
+}
+
+export default function StudioPage() {
+  return (
+    <Providers>
+      <StudioInner />
+    </Providers>
   );
 }
