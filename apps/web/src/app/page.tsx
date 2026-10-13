@@ -44,8 +44,8 @@ export default function Landing() {
             </h1>
             <p className="text-lg text-ink-2 max-w-xl">Drag any image in. Touchplate finds the author who sealed it first, before the repost existed, and shows the block where priority locked.</p>
             <div className="flex gap-3 flex-wrap" data-no-overlap="ctas">
-              <Link href="/lookup" className="btn-ink rounded-[12px] px-5 py-3 font-semibold">Look up an image</Link>
-              <Link href="/studio" className="btn-outline rounded-[12px] px-5 py-3 font-semibold">Seal your work</Link>
+              <Link prefetch={false} href="/lookup" className="btn-ink rounded-[12px] px-5 py-3 font-semibold">Look up an image</Link>
+              <Link prefetch={false} href="/studio" className="btn-outline rounded-[12px] px-5 py-3 font-semibold">Seal your work</Link>
             </div>
             <div className="max-w-xl"><LookupPanel compact /></div>
           </div>
@@ -86,7 +86,7 @@ export default function Landing() {
         <Reveal><h2 className="display text-4xl md:text-5xl mb-4">The <span className="accent-serif">proof</span></h2></Reveal>
         <p className="text-ink-2 max-w-2xl">Generated numbers, the break campaign with transaction links, and a verifier that recomputes everything offline.</p>
         <div className="mt-4 flex gap-3 flex-wrap">
-          <Link href="/proof" className="btn-ink rounded-[12px] px-5 py-3 font-semibold">Open the proof</Link>
+          <Link prefetch={false} href="/proof" className="btn-ink rounded-[12px] px-5 py-3 font-semibold">Open the proof</Link>
           <code className="mono text-[12px] rounded-xl border border-line bg-paper-2 px-3 py-3 overflow-x-auto max-w-full">touchplate-verify --image suspect.jpg --contract {TOUCHPLATE ? short(TOUCHPLATE, 6) : "…"}</code>
         </div>
       </section>
@@ -111,7 +111,7 @@ export default function Landing() {
       <footer className="bg-ink text-paper mt-10">
         <div className="mx-auto w-[min(1120px,calc(100%-32px))] py-12 grid md:grid-cols-3 gap-8 text-sm">
           <div><p className="font-bold text-lg">Touchplate</p><p className="text-paper/60 mt-2">Touchplate proves who made an image first, even after the internet strips the credit.</p></div>
-          <div className="mono text-[12px] space-y-2"><p><Link href="/lookup">Look up</Link> · <Link href="/studio">Studio</Link> · <Link href="/ledger">Ledger</Link> · <Link href="/proof">Proof</Link></p>{TOUCHPLATE && <p>Contract <a className="underline" href={addrUrl(TOUCHPLATE)} target="_blank" rel="noreferrer">{short(TOUCHPLATE, 8)}</a></p>}</div>
+          <div className="mono text-[12px] space-y-2"><p><Link prefetch={false} href="/lookup">Look up</Link> · <Link prefetch={false} href="/studio">Studio</Link> · <Link prefetch={false} href="/ledger">Ledger</Link> · <Link prefetch={false} href="/proof">Proof</Link></p>{TOUCHPLATE && <p>Contract <a className="underline" href={addrUrl(TOUCHPLATE)} target="_blank" rel="noreferrer">{short(TOUCHPLATE, 8)}</a></p>}</div>
           <p className="text-paper/50 mono text-[11px]">Built by 0xkinno for Monad Metropolis.</p>
         </div>
       </footer>
