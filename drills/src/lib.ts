@@ -60,8 +60,8 @@ export async function send(
       hash = await wallet.writeContract({ address, abi, functionName, args, account, chain, gas: gasLimit } as never);
     } catch (e) {
       // the public RPC is load balanced; a node can briefly lag behind a just-confirmed funding transaction
-      if (attempt >= 6 || !/insufficient balance|nonce too low/i.test(String(e))) throw e;
-      await new Promise((r) => setTimeout(r, 2000));
+      if (attempt >= 20 || !/insufficient balance|nonce too low/i.test(String(e))) throw e;
+      await new Promise((r) => setTimeout(r, 3000));
     }
   }
   const receipt = await pub.waitForTransactionReceipt({ hash });

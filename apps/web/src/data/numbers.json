@@ -84,5 +84,351 @@
     "oneXFee": "4592040000000000",
     "twoXFee": "9184080000000000"
   },
-  "bench": null
+  "bench": {
+    "corpus": "COCO val2017 files 1000..2299 (300 registered, 1000 distractors)",
+    "registeredOnChain": 300,
+    "thiefCopiesOnChain": 50,
+    "threshold": 31,
+    "transformsNote": "platform-style simulations with sharp, not real platform uploads",
+    "queries": 5700,
+    "perTransform": {
+      "JPEG q90": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0.9833,
+        "touchplate": 1,
+        "randomThreshold": 0.4,
+        "shuffledOrder": 0.9267,
+        "n": 300
+      },
+      "JPEG q70": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0.97,
+        "touchplate": 1,
+        "randomThreshold": 0.38,
+        "shuffledOrder": 0.92,
+        "n": 300
+      },
+      "JPEG q50": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0.9733,
+        "touchplate": 1,
+        "randomThreshold": 0.3967,
+        "shuffledOrder": 0.9233,
+        "n": 300
+      },
+      "WebP q75": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0.9833,
+        "touchplate": 1,
+        "randomThreshold": 0.3767,
+        "shuffledOrder": 0.9233,
+        "n": 300
+      },
+      "resize 1080 long edge": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0.9833,
+        "touchplate": 1,
+        "randomThreshold": 0.3933,
+        "shuffledOrder": 0.9167,
+        "n": 300
+      },
+      "resize 640 long edge": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 1,
+        "touchplate": 1,
+        "randomThreshold": 0.4433,
+        "shuffledOrder": 0.9367,
+        "n": 300
+      },
+      "centre crop 5%": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0.07,
+        "touchplate": 0.07,
+        "randomThreshold": 0.22,
+        "shuffledOrder": 0.0633,
+        "n": 300
+      },
+      "centre crop 10%": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0.0033,
+        "touchplate": 0.0033,
+        "randomThreshold": 0.0633,
+        "shuffledOrder": 0.0033,
+        "n": 300
+      },
+      "centre crop 20%": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0,
+        "touchplate": 0,
+        "randomThreshold": 0.01,
+        "shuffledOrder": 0,
+        "n": 300
+      },
+      "brightness +15%": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0.9633,
+        "touchplate": 1,
+        "randomThreshold": 0.4067,
+        "shuffledOrder": 0.9167,
+        "n": 300
+      },
+      "brightness -15%": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0.9967,
+        "touchplate": 1,
+        "randomThreshold": 0.4833,
+        "shuffledOrder": 0.91,
+        "n": 300
+      },
+      "contrast +15%": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0.9767,
+        "touchplate": 1,
+        "randomThreshold": 0.3667,
+        "shuffledOrder": 0.9167,
+        "n": 300
+      },
+      "contrast -15%": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0.99,
+        "touchplate": 1,
+        "randomThreshold": 0.3533,
+        "shuffledOrder": 0.89,
+        "n": 300
+      },
+      "2% border": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0.0833,
+        "touchplate": 0.0833,
+        "randomThreshold": 0.16,
+        "shuffledOrder": 0.0833,
+        "n": 300
+      },
+      "text overlay": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0.9633,
+        "touchplate": 0.9767,
+        "randomThreshold": 0.39,
+        "shuffledOrder": 0.91,
+        "n": 300
+      },
+      "screenshot frame": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0,
+        "touchplate": 0,
+        "randomThreshold": 0.0033,
+        "shuffledOrder": 0,
+        "n": 300
+      },
+      "horizontal flip": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0.97,
+        "touchplate": 0.9933,
+        "randomThreshold": 0.3667,
+        "shuffledOrder": 0.8967,
+        "n": 300
+      },
+      "metadata strip": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0.9867,
+        "touchplate": 1,
+        "randomThreshold": 0.3867,
+        "shuffledOrder": 0.9133,
+        "n": 300
+      },
+      "platform round trip": {
+        "fileHash": 0,
+        "metadata": 0,
+        "fingerprintOnly": 0.9467,
+        "touchplate": 1,
+        "randomThreshold": 0.4,
+        "shuffledOrder": 0.9467,
+        "n": 300
+      }
+    },
+    "contestedImages": {
+      "n": 950,
+      "fingerprintOnlyRecall": 0.6505263157894737,
+      "touchplateRecall": 0.74,
+      "shuffledOrderRecall": 0.3831578947368421
+    },
+    "falseAttribution": {
+      "distractors": 1000,
+      "matched": 0,
+      "rate": 0,
+      "lowDetailDistractors": 4
+    },
+    "roc": [
+      {
+        "threshold": 0,
+        "tpr": 0.3473684210526316,
+        "fpr": 0
+      },
+      {
+        "threshold": 4,
+        "tpr": 0.583859649122807,
+        "fpr": 0
+      },
+      {
+        "threshold": 8,
+        "tpr": 0.6426315789473684,
+        "fpr": 0
+      },
+      {
+        "threshold": 12,
+        "tpr": 0.6731578947368421,
+        "fpr": 0
+      },
+      {
+        "threshold": 16,
+        "tpr": 0.6954385964912281,
+        "fpr": 0
+      },
+      {
+        "threshold": 20,
+        "tpr": 0.7101754385964912,
+        "fpr": 0
+      },
+      {
+        "threshold": 24,
+        "tpr": 0.7196491228070175,
+        "fpr": 0
+      },
+      {
+        "threshold": 28,
+        "tpr": 0.7243859649122807,
+        "fpr": 0
+      },
+      {
+        "threshold": 32,
+        "tpr": 0.7308771929824561,
+        "fpr": 0
+      },
+      {
+        "threshold": 36,
+        "tpr": 0.7426315789473684,
+        "fpr": 0
+      },
+      {
+        "threshold": 40,
+        "tpr": 0.7596491228070176,
+        "fpr": 0
+      },
+      {
+        "threshold": 44,
+        "tpr": 0.7791228070175439,
+        "fpr": 0
+      },
+      {
+        "threshold": 48,
+        "tpr": 0.7978947368421052,
+        "fpr": 0
+      },
+      {
+        "threshold": 52,
+        "tpr": 0.8089473684210526,
+        "fpr": 0
+      },
+      {
+        "threshold": 56,
+        "tpr": 0.8187719298245614,
+        "fpr": 0
+      },
+      {
+        "threshold": 60,
+        "tpr": 0.8243859649122807,
+        "fpr": 0
+      },
+      {
+        "threshold": 64,
+        "tpr": 0.8287719298245614,
+        "fpr": 0
+      },
+      {
+        "threshold": 68,
+        "tpr": 0.8331578947368421,
+        "fpr": 0
+      },
+      {
+        "threshold": 72,
+        "tpr": 0.8377192982456141,
+        "fpr": 0
+      },
+      {
+        "threshold": 76,
+        "tpr": 0.8419298245614035,
+        "fpr": 0.001
+      },
+      {
+        "threshold": 80,
+        "tpr": 0.8478947368421053,
+        "fpr": 0.001
+      },
+      {
+        "threshold": 84,
+        "tpr": 0.8543859649122807,
+        "fpr": 0.004
+      },
+      {
+        "threshold": 88,
+        "tpr": 0.8636842105263158,
+        "fpr": 0.013
+      },
+      {
+        "threshold": 92,
+        "tpr": 0.8703508771929824,
+        "fpr": 0.071
+      },
+      {
+        "threshold": 96,
+        "tpr": 0.875438596491228,
+        "fpr": 0.335
+      },
+      {
+        "threshold": 100,
+        "tpr": 0.8794736842105263,
+        "fpr": 0.883
+      }
+    ],
+    "markZ": {
+      "markedJpeg70": {
+        "n": 40,
+        "min": 27.65,
+        "median": 58.4,
+        "max": 113.5,
+        "atLeast6": 1
+      },
+      "unmarkedJpeg70": {
+        "n": 40,
+        "min": -2.03,
+        "median": 0.08,
+        "max": 2.62,
+        "atLeast6": 0
+      }
+    },
+    "lookupLatencyMs": {
+      "1000": 0.92,
+      "10000": 9.06,
+      "100000": 58.35
+    },
+    "latencyNote": "brute force Hamming over 8 dihedral variants, synthetic hashes for registry size, median of 7 after warm-up"
+  }
 }

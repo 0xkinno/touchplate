@@ -79,6 +79,7 @@ async function registerThief(registered: Reg[]): Promise<Reg[]> {
   await fund([thief.account.address], 1.0);
   const bal = await pub.getBalance({ address: thief.account.address });
   if (bal === 0n) throw new Error("thief funding did not arrive");
+  await new Promise((r) => setTimeout(r, 15_000));
   await register(thief);
   const copies = await Promise.all(
     registered.filter((r) => r.index < 50).map(async (r) => ({

@@ -52,6 +52,21 @@ const numbers = {
 mkdirSync("apps/web/src/data", { recursive: true });
 writeFileSync("apps/web/src/data/numbers.json", JSON.stringify(numbers, null, 2) + "\n");
 
+
+function benchRows() {
+  if (!bench) return [];
+  const pt = bench.perTransform;
+  const pc = (x) => `${Math.round(x * 1000) / 10}%`;
+  const lines = ["", `Benchmark on Monad mainnet: ${bench.registeredOnChain} images registered through the real flow, ${bench.thiefCopiesOnChain} thief copies registered later, ${bench.falseAttribution.distractors} distractors, ${Object.keys(pt).length} transforms (${bench.transformsNote}).`, "", "| Transform | File hash | Metadata | Fingerprint only | Touchplate | Random threshold (control) | Shuffled order (control) |", "|---|---|---|---|---|---|---|"];
+  for (const [name, r] of Object.entries(pt)) lines.push(`| ${name} | ${pc(r.fileHash)} | ${pc(r.metadata)} | ${pc(r.fingerprintOnly)} | ${pc(r.touchplate)} | ${pc(r.randomThreshold)} | ${pc(r.shuffledOrder)} |`);
+  const c = bench.contestedImages;
+  lines.push("", `On the ${c.n} contested queries (50 images that a thief re-registered later, across all 19 transforms, including the out-of-scope crops, border and frame where every arm fails): fingerprint only ${pc(c.fingerprintOnlyRecall)}, Touchplate ${pc(c.touchplateRecall)}, shuffled order ${pc(c.shuffledOrderRecall)}.`);
+  lines.push(`False attribution on ${bench.falseAttribution.distractors} never-registered distractors at threshold ${bench.threshold}: ${bench.falseAttribution.matched} (${pc(bench.falseAttribution.rate)}).`);
+  lines.push(`Watermark z after JPEG q70: marked median ${bench.markZ.markedJpeg70.median} (min ${bench.markZ.markedJpeg70.min}), unmarked max ${bench.markZ.unmarkedJpeg70.max}.`);
+  lines.push(`Lookup latency, brute force over 8 dihedral variants (synthetic registry sizes): ${Object.entries(bench.lookupLatencyMs).map(([k, v]) => `${k} entries ${v} ms`).join(", ")}.`);
+  return lines;
+}
+
 const block = [
   "<!-- NUMBERS:START -->",
   `Measured on ${numbers.corpus} (${numbers.simulatedTransformsNote}).`,
@@ -68,6 +83,7 @@ const block = [
   `| P-256 verify, precompile path / Solidity fallback | ${numbers.p256.validGas} / ${numbers.p256.solidityFallbackGas} gas |`,
   `| Entry write, packed / skeleton / scattered | ${numbers.storage.packedWriteGas} / ${numbers.storage.skeletonWriteGas} / ${numbers.storage.scatteredWriteGas} gas |`,
   `| Watermark PSNR (min) / z after transforms (min) | ${numbers.mark.psnrMin} dB / ${numbers.mark.zMinAfterTransforms} |`,
+  ...benchRows(),
   "<!-- NUMBERS:END -->",
 ].join("\n");
 writeFileSync("docs/numbers-block.md", block + "\n");

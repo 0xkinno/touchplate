@@ -27,10 +27,11 @@ export default function Landing() {
       <section className="relative overflow-hidden" style={{ minHeight: "min(100svh, 880px)" }}>
         <div
           aria-hidden="true"
-          className="absolute right-0 top-0 h-full w-[58%] max-md:w-full max-md:h-[40svh] max-md:top-auto max-md:bottom-0 opacity-70"
+          className="absolute right-0 top-0 h-full w-[58%] max-md:w-full max-md:h-[40svh] max-md:top-auto max-md:bottom-0"
           style={{
-            background:
-              "radial-gradient(500px 360px at 62% 48%, rgba(131,110,249,.35), transparent 62%), radial-gradient(700px 500px at 80% 30%, rgba(190,184,172,.55), transparent 70%), repeating-linear-gradient(115deg, rgba(120,114,104,.12) 0 2px, transparent 2px 14px)",
+            backgroundImage: "url(/hero-plate.jpg)",
+            backgroundSize: "cover",
+            backgroundPosition: "60% 50%",
             maskImage: "linear-gradient(to right, transparent 0%, black 38%)",
             WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 38%)",
           }}

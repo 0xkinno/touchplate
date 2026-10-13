@@ -1,19 +1,8 @@
-import { Touchplate } from "generated";
+import { indexer } from "envio";
 
 const day = (ts: number): string => new Date(ts * 1000).toISOString().slice(0, 10);
 
 type StatKey = "touches" | "reveals" | "derivatives" | "licenses";
-
-async function bump(
-  context: { DailyStat: { get: (id: string) => Promise<DailyStatRow | undefined>; set: (v: DailyStatRow) => void } },
-  ts: number,
-  key: StatKey,
-  volume = 0n,
-): Promise<void> {
-  const id = day(ts);
-  const cur = (await context.DailyStat.get(id)) ?? { id, day: id, touches: 0, reveals: 0, derivatives: 0, licenses: 0, licensedVolume: 0n };
-  context.DailyStat.set({ ...cur, [key]: cur[key] + 1, licensedVolume: cur.licensedVolume + volume });
-}
 
 interface DailyStatRow {
   id: string;
@@ -25,7 +14,17 @@ interface DailyStatRow {
   licensedVolume: bigint;
 }
 
-Touchplate.StudioRegistered.handler(async ({ event, context }) => {
+interface StatContext {
+  DailyStat: { get: (id: string) => Promise<DailyStatRow | undefined>; set: (v: DailyStatRow) => void };
+}
+
+async function bump(context: StatContext, ts: number, key: StatKey, volume = 0n): Promise<void> {
+  const id = day(ts);
+  const cur = (await context.DailyStat.get(id)) ?? { id, day: id, touches: 0, reveals: 0, derivatives: 0, licenses: 0, licensedVolume: 0n };
+  context.DailyStat.set({ ...cur, [key]: cur[key] + 1, licensedVolume: cur.licensedVolume + volume });
+}
+
+indexer.onEvent({ contract: "Touchplate", event: "StudioRegistered" }, async ({ event, context }) => {
   context.Studio.set({
     id: event.params.author.toLowerCase(),
     author: event.params.author,
@@ -37,7 +36,7 @@ Touchplate.StudioRegistered.handler(async ({ event, context }) => {
   });
 });
 
-Touchplate.Touched.handler(async ({ event, context }) => {
+indexer.onEvent({ contract: "Touchplate", event: "Touched" }, async ({ event, context }) => {
   context.Touch.set({
     id: event.params.root,
     root: event.params.root,
@@ -50,10 +49,10 @@ Touchplate.Touched.handler(async ({ event, context }) => {
     txHash: event.transaction.hash,
     timestamp: event.block.timestamp,
   });
-  await bump(context, event.block.timestamp, "touches");
+  await bump(context as unknown as StatContext, event.block.timestamp, "touches");
 });
 
-Touchplate.Revealed.handler(async ({ event, context }) => {
+indexer.onEvent({ contract: "Touchplate", event: "Revealed" }, async ({ event, context }) => {
   const touch = await context.Touch.get(event.params.root);
   context.Entry.set({
     id: event.params.commitment,
@@ -73,10 +72,10 @@ Touchplate.Revealed.handler(async ({ event, context }) => {
     derivative: false,
     licenseCount: 0,
   });
-  await bump(context, event.block.timestamp, "reveals");
+  await bump(context as unknown as StatContext, event.block.timestamp, "reveals");
 });
 
-Touchplate.PriorityRecorded.handler(async ({ event, context }) => {
+indexer.onEvent({ contract: "Touchplate", event: "PriorityRecorded" }, async ({ event, context }) => {
   context.PriorityRecord.set({
     id: `${event.transaction.hash}-${event.logIndex}`,
     earlier: event.params.earlier,
@@ -87,10 +86,10 @@ Touchplate.PriorityRecorded.handler(async ({ event, context }) => {
   });
   const later = await context.Entry.get(event.params.later);
   if (later) context.Entry.set({ ...later, derivative: true });
-  await bump(context, event.block.timestamp, "derivatives");
+  await bump(context as unknown as StatContext, event.block.timestamp, "derivatives");
 });
 
-Touchplate.MarkProven.handler(async ({ event, context }) => {
+indexer.onEvent({ contract: "Touchplate", event: "MarkProven" }, async ({ event, context }) => {
   context.MarkProof.set({
     id: `${event.transaction.hash}-${event.logIndex}`,
     commitment: event.params.commitment,
@@ -103,7 +102,7 @@ Touchplate.MarkProven.handler(async ({ event, context }) => {
   });
 });
 
-Touchplate.Licensed.handler(async ({ event, context }) => {
+indexer.onEvent({ contract: "Touchplate", event: "Licensed" }, async ({ event, context }) => {
   context.License.set({
     id: `${event.transaction.hash}-${event.logIndex}`,
     commitment: event.params.commitment,
@@ -117,5 +116,5 @@ Touchplate.Licensed.handler(async ({ event, context }) => {
   });
   const entry = await context.Entry.get(event.params.commitment);
   if (entry) context.Entry.set({ ...entry, licenseCount: entry.licenseCount + 1 });
-  await bump(context, event.block.timestamp, "licenses", event.params.paid);
+  await bump(context as unknown as StatContext, event.block.timestamp, "licenses", event.params.paid);
 });

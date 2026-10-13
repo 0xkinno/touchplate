@@ -192,12 +192,19 @@ export function pdqFromRgba(
   return { hash: dihedral[0], quality, dihedral };
 }
 
+const M32 = 0xffffffffn;
+
+function popcount32(v: number): number {
+  let x = v - ((v >>> 1) & 0x55555555);
+  x = (x & 0x33333333) + ((x >>> 2) & 0x33333333);
+  x = (x + (x >>> 4)) & 0x0f0f0f0f;
+  return (x * 0x01010101) >>> 24;
+}
+
+/** Hamming distance between two 256-bit fingerprints, word-wise popcount over the XOR. */
 export function hamming256(a: `0x${string}`, b: `0x${string}`): number {
-  let x = BigInt(a) ^ BigInt(b);
+  const x = BigInt(a) ^ BigInt(b);
   let c = 0;
-  while (x) {
-    c += Number(x & 1n);
-    x >>= 1n;
-  }
+  for (let i = 0n; i < 256n; i += 32n) c += popcount32(Number((x >> i) & M32));
   return c;
 }

@@ -2,22 +2,31 @@
 # The chain is the database; this indexer is only a fast cache. The offline verifier never depends on it.
 name: touchplate
 description: Touchplate provenance registry index
-networks:
+
+contracts:
+  - name: Touchplate
+    abi_file_path: ./abis/Touchplate.json
+    handler: src/EventHandlers.ts
+    events:
+      - event: StudioRegistered(address indexed author, bytes32 qx, bytes32 qy, bytes32 ed25519Pub)
+      - event: Touched(bytes32 indexed root, address indexed author, uint32 count, uint256 nonce)
+      - event: Revealed(bytes32 indexed commitment, bytes32 indexed root, address indexed author, bytes32 pdq, bytes32 dihedralRoot, uint32 touchBlock, bytes32 markSeedHash, bytes32 manifestHash, uint96 licensePrice)
+      - event: PriorityRecorded(bytes32 indexed earlier, bytes32 indexed later, uint256 distance)
+      - event: MarkProven(bytes32 indexed commitment, bytes32 suspectSha256, bytes32 seed, uint32 zMilli, string uri)
+      - event: Licensed(bytes32 indexed commitment, address indexed licensee, address indexed author, address token, uint256 paid, uint256 fee)
+
+chains:
   - id: 143
     start_block: 113077560
+    # Plain RPC as the data source: no HyperSync token and no cloud account needed.
+    rpc:
+      - url: https://rpc.monad.xyz
+        for: sync
     contracts:
       - name: Touchplate
         address:
           - "0x05648FAa32eeF566b97Cc8E0BAB1C15D7fBeeCF1"
-        abi_file_path: ./abis/Touchplate.json
-        handler: src/EventHandlers.ts
-        events:
-          - event: StudioRegistered(address indexed author, bytes32 qx, bytes32 qy, bytes32 ed25519Pub)
-          - event: Touched(bytes32 indexed root, address indexed author, uint32 count, uint256 nonce)
-          - event: Revealed(bytes32 indexed commitment, bytes32 indexed root, address indexed author, bytes32 pdq, bytes32 dihedralRoot, uint32 touchBlock, bytes32 markSeedHash, bytes32 manifestHash, uint96 licensePrice)
-          - event: PriorityRecorded(bytes32 indexed earlier, bytes32 indexed later, uint256 distance)
-          - event: MarkProven(bytes32 indexed commitment, bytes32 suspectSha256, bytes32 seed, uint32 zMilli, string uri)
-          - event: Licensed(bytes32 indexed commitment, address indexed licensee, address indexed author, address token, uint256 paid, uint256 fee)
+
 field_selection:
   transaction_fields:
     - hash
