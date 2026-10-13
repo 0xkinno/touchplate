@@ -130,7 +130,7 @@ check("studio registered through a wallet transaction", prompts.filter((p) => p.
 
 const cocoDir = resolve(ROOT, "spikes/out/coco");
 const ids = JSON.parse(readFileSync(resolve(cocoDir, "ids.json"), "utf8"));
-await page.setInputFiles('input[aria-label="Choose images to seal"]', resolve(cocoDir, ids[120]));
+await page.setInputFiles('input[aria-label="Choose images to seal"]', resolve(cocoDir, ids[130 + Math.floor(Math.random() * 85)]));
 await page.getByText(/PSNR \d+\.\d dB/).first().waitFor({ timeout: 120000 });
 check("image watermarked in the browser with PSNR shown", true);
 await shot("studio-marked.png");
