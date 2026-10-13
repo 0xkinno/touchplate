@@ -1,0 +1,106 @@
+{
+  "chainId": 10143,
+  "contract": "0x13a5941833F568Cb80d4958ED22B4B9d44a87930",
+  "author": "0xDe1413543adAB1C07f87Ff23Eb39946EBc19a20D",
+  "studioPublicKey": "0xf1d697ed40c6e1fdd39fcd52a9b145b279d0af324239a161bfe0ee3598b3c935",
+  "ausd": "0xa9012a055bd4e0eDfF8Ce09f960291C09D5322dC",
+  "p256": {
+    "qx": "0xf342f60012863ec6407527f72c04626e783515eb556b03a0343ecb50b5427be2",
+    "qy": "0x550eb2a31aae04768d776abfa1fe5f79f747c584a5642a2448716ff45c65981f"
+  },
+  "root": "0xbc9ef700089e34ca272817da5d83f7df7e0967c0c7fb506a824b7c453494290c",
+  "touchTx": "0xb19386056c3cd4d368e5c4c669adc57f9e9867462072f05c03db5059aa5ebe25",
+  "finalizedAfterMs": 1397,
+  "log": [
+    {
+      "step": "registerStudio",
+      "hash": "0x4417638f220b76e5a6afa99a8eb59ceab37bd71ca8de17ed194f72f1b7693049",
+      "explorer": "https://testnet.monadexplorer.com/tx/0x4417638f220b76e5a6afa99a8eb59ceab37bd71ca8de17ed194f72f1b7693049",
+      "gasLimit": "138470",
+      "estimate": "125882"
+    },
+    {
+      "step": "touch",
+      "hash": "0xb19386056c3cd4d368e5c4c669adc57f9e9867462072f05c03db5059aa5ebe25",
+      "explorer": "https://testnet.monadexplorer.com/tx/0xb19386056c3cd4d368e5c4c669adc57f9e9867462072f05c03db5059aa5ebe25",
+      "root": "0xbc9ef700089e34ca272817da5d83f7df7e0967c0c7fb506a824b7c453494290c",
+      "count": 4,
+      "block": "70707918",
+      "gasLimit": "121585"
+    },
+    {
+      "step": "reveal",
+      "hash": "0x3529321fed3bea9793f9ccaf3d52b07131883099d2d31775377f1ca5b54ba745",
+      "explorer": "https://testnet.monadexplorer.com/tx/0x3529321fed3bea9793f9ccaf3d52b07131883099d2d31775377f1ca5b54ba745",
+      "commitment": "0xa1d544812e336bcf3093d60283506c3ea3c53329496784d2935c378b361f274a",
+      "block": "70707926",
+      "gasLimit": "155893",
+      "estimate": "141721"
+    },
+    {
+      "step": "reveal",
+      "hash": "0x1fc0aef6d09ec481c92a6d348d373d5061c325619602ce3a0e93b0dbbd987c07",
+      "explorer": "https://testnet.monadexplorer.com/tx/0x1fc0aef6d09ec481c92a6d348d373d5061c325619602ce3a0e93b0dbbd987c07",
+      "commitment": "0x5167070530a9c530ee6233fc722653d48d646ecb30d80c0b30d32a1e74e1b939",
+      "block": "70707934",
+      "gasLimit": "155892",
+      "estimate": "141720"
+    },
+    {
+      "step": "reveal",
+      "hash": "0x11bdd211c80074ea6200a953fa2c35b47d4e67300e79e3ccdad60189fcc8e9d6",
+      "explorer": "https://testnet.monadexplorer.com/tx/0x11bdd211c80074ea6200a953fa2c35b47d4e67300e79e3ccdad60189fcc8e9d6",
+      "commitment": "0x6b2caa86e7507dcc5ec0608290452fcb9fdc9595494fed4d36638b9c343b5b57",
+      "block": "70707944",
+      "gasLimit": "155864",
+      "estimate": "141695"
+    },
+    {
+      "step": "reveal",
+      "hash": "0xdff94d87af0bade38204f4af0b0a76bcd9dca01442da30278659c9c48d26784a",
+      "explorer": "https://testnet.monadexplorer.com/tx/0xdff94d87af0bade38204f4af0b0a76bcd9dca01442da30278659c9c48d26784a",
+      "commitment": "0xe532e8150565c893c516badd94769dae73a5645cc17895a92a10bf9495a44f4e",
+      "block": "70707948",
+      "gasLimit": "155878",
+      "estimate": "141708"
+    }
+  ],
+  "entries": [
+    {
+      "index": 0,
+      "source": "000000003845.jpg",
+      "commitment": "0xa1d544812e336bcf3093d60283506c3ea3c53329496784d2935c378b361f274a",
+      "pdq": "0x2cc33e1c86947c185a73d0d90fc70778eb073f810156c4d2c77acb53eec9bac5",
+      "quality": 100,
+      "markPsnr": 40.60044774546203,
+      "revealTx": "0x3529321fed3bea9793f9ccaf3d52b07131883099d2d31775377f1ca5b54ba745"
+    },
+    {
+      "index": 1,
+      "source": "000000003934.jpg",
+      "commitment": "0x5167070530a9c530ee6233fc722653d48d646ecb30d80c0b30d32a1e74e1b939",
+      "pdq": "0xbc79327279e4d984ce42ea492e3beedcc06351a613a63e2b39898cc3867e711e",
+      "quality": 100,
+      "markPsnr": 40.60064680775716,
+      "revealTx": "0x1fc0aef6d09ec481c92a6d348d373d5061c325619602ce3a0e93b0dbbd987c07"
+    },
+    {
+      "index": 2,
+      "source": "000000004134.jpg",
+      "commitment": "0x6b2caa86e7507dcc5ec0608290452fcb9fdc9595494fed4d36638b9c343b5b57",
+      "pdq": "0x74b16798bdcccf64db7dd3002c84b7bc6d9cf06422d9b1da6e004f1bb25c30d2",
+      "quality": 100,
+      "markPsnr": 40.60082672958543,
+      "revealTx": "0x11bdd211c80074ea6200a953fa2c35b47d4e67300e79e3ccdad60189fcc8e9d6"
+    },
+    {
+      "index": 3,
+      "source": "000000004395.jpg",
+      "commitment": "0xe532e8150565c893c516badd94769dae73a5645cc17895a92a10bf9495a44f4e",
+      "pdq": "0xe5b7078a32059b25dd36d3b02b13934b97a77a564c5a9ceb62079266cdcc31cc",
+      "quality": 100,
+      "markPsnr": 40.604209922575706,
+      "revealTx": "0xdff94d87af0bade38204f4af0b0a76bcd9dca01442da30278659c9c48d26784a"
+    }
+  ]
+}
