@@ -95,7 +95,7 @@ export function LicensePanel({ commitment }: { commitment: Hex }) {
       </div>
 
       {!isConnected ? (
-        <button onClick={() => open({ view: "Connect" })} className="btn-ink rounded-[10px] px-4 py-2 mono text-[13px]">Connect wallet to license</button>
+        <button onClick={() => open()} className="btn-ink rounded-[10px] px-4 py-2 mono text-[13px]">Connect wallet to license</button>
       ) : (
         <div className="flex gap-2 flex-wrap items-center">
           <button disabled={!needsApprove || busy !== null} onClick={approve} className="btn-outline rounded-[10px] px-4 py-2 mono text-[13px]">

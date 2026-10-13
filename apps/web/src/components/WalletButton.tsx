@@ -20,7 +20,7 @@ export function WalletButton() {
 
   if (!isConnected || !address) {
     return (
-      <button onClick={() => open({ view: "Connect" })} className="btn-ink rounded-[10px] px-4 py-2 mono text-[13px]">
+      <button onClick={() => open()} className="btn-ink rounded-[10px] px-4 py-2 mono text-[13px]">
         Connect wallet
       </button>
     );

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Rejects attribution trailers and non-owner identities. Do not bypass.
+msg_file="$1"
+if grep -qiE '^(co-authored-by|signed-off-by|generated (with|by)|reviewed-by|assisted-by):' "$msg_file"; then
+  echo "commit rejected: attribution trailers are not allowed in this repository" >&2
+  exit 1
+fi
+name="$(git config user.name || true)"
+if [ "$name" != "0xkinno" ]; then
+  echo "commit rejected: git user.name must be 0xkinno" >&2
+  exit 1
+fi

@@ -221,7 +221,7 @@ export default function StudioPage() {
 
       <Step n={1} title="Connect a wallet" done={isConnected}>
         <p className="text-sm text-ink-2">Your wallet pays gas and confirms every transaction. Your passkey signs the touch.</p>
-        {!isConnected && <button className="btn-ink rounded-[10px] px-4 py-2 mono text-[13px]" onClick={() => open({ view: "Connect" })}>Connect wallet</button>}
+        {!isConnected && <button className="btn-ink rounded-[10px] px-4 py-2 mono text-[13px]" onClick={() => open()}>Connect wallet</button>}
         {isConnected && <p className="mono text-[12px]">{address}</p>}
       </Step>
 

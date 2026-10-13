@@ -1,0 +1,178 @@
+{
+  "chainId": 143,
+  "contract": "0x05648FAa32eeF566b97Cc8E0BAB1C15D7fBeeCF1",
+  "author": "0xF8c19f45BD40A073f6876EF59a00C482D6Ba45ea",
+  "studioPublicKey": "0x20a4d91a956ea5d98484cb9e94390a4d36471ebd8b505df67d1eba8f4fb57eee",
+  "ausd": "0x00000000eFE302BEAA2b3e6e1b18d08D69a9012a",
+  "p256": {
+    "qx": "0xa4bed7186f2a6d13628850dd43bd67647866eb6d313323c1c22faf98a6cb3031",
+    "qy": "0x27d665a5e9b62caa860d389b958236f77f0582d66ddf854f7d29cb8ff4b17b6a"
+  },
+  "root": "0xe143629a23663eadf762b7d3571598360d1d2efb185283af04b5e0c7b0953f38",
+  "touchTx": "0xb16aa8fdada992b31946ca9fa1d80c65a131eef6cca98f3be09623c3aeabaa4e",
+  "finalizedAfterMs": 2921,
+  "log": [
+    {
+      "step": "registerStudio",
+      "hash": "0xba5833da0b8e1507eced7b5bef4284900ee586c17481e07e06288e73754ead05",
+      "explorer": "https://monadscan.com/tx/0xba5833da0b8e1507eced7b5bef4284900ee586c17481e07e06288e73754ead05",
+      "gasLimit": "138483",
+      "estimate": "125894"
+    },
+    {
+      "step": "touch",
+      "hash": "0xb16aa8fdada992b31946ca9fa1d80c65a131eef6cca98f3be09623c3aeabaa4e",
+      "explorer": "https://monadscan.com/tx/0xb16aa8fdada992b31946ca9fa1d80c65a131eef6cca98f3be09623c3aeabaa4e",
+      "root": "0xe143629a23663eadf762b7d3571598360d1d2efb185283af04b5e0c7b0953f38",
+      "count": 8,
+      "block": "113122505",
+      "gasLimit": "121599"
+    },
+    {
+      "step": "reveal",
+      "hash": "0x001dd2498dab0f2fa125db3e617ee53d22c2e529f683acff1e5bbfc7fd8ec429",
+      "explorer": "https://monadscan.com/tx/0x001dd2498dab0f2fa125db3e617ee53d22c2e529f683acff1e5bbfc7fd8ec429",
+      "commitment": "0x8ea9d16a1eb658d5da1e6b37356f1beb0ab8c6a53823afddd0337cb5fe1ee4e7",
+      "block": "113122524",
+      "gasLimit": "156701",
+      "estimate": "142456"
+    },
+    {
+      "step": "reveal",
+      "hash": "0x2a23e8eb0b9b5f879acd3ffa92ad12d1833e7a9a456c566136a2150f77368683",
+      "explorer": "https://monadscan.com/tx/0x2a23e8eb0b9b5f879acd3ffa92ad12d1833e7a9a456c566136a2150f77368683",
+      "commitment": "0x30345dfc39a1f307374e3782b3cd7e8f46175968b0c421ce5c991d28a875a799",
+      "block": "113122537",
+      "gasLimit": "156728",
+      "estimate": "142480"
+    },
+    {
+      "step": "reveal",
+      "hash": "0xe724c09764af61c2483e89c2bba447112b3143f8baa39216a8b4ba6d2e3f2a85",
+      "explorer": "https://monadscan.com/tx/0xe724c09764af61c2483e89c2bba447112b3143f8baa39216a8b4ba6d2e3f2a85",
+      "commitment": "0x884922875f3ffe3556f747cdd7d9c71f312ab6ce805475c8f142dc14b51557f4",
+      "block": "113122554",
+      "gasLimit": "156690",
+      "estimate": "142446"
+    },
+    {
+      "step": "reveal",
+      "hash": "0xba1ce432a63e8500c780b91e21f58abd279063b23914b8b35d61de8aada43f6c",
+      "explorer": "https://monadscan.com/tx/0xba1ce432a63e8500c780b91e21f58abd279063b23914b8b35d61de8aada43f6c",
+      "commitment": "0x20de9bc1cc8a0fccc081d905abe6afc856cb57935b7e6c26b0e0deaeef070534",
+      "block": "113122564",
+      "gasLimit": "156702",
+      "estimate": "142457"
+    },
+    {
+      "step": "reveal",
+      "hash": "0x13a791e8ea80420a670a74a0be5666a9555ba805612f34a3073654dd60ac0c3e",
+      "explorer": "https://monadscan.com/tx/0x13a791e8ea80420a670a74a0be5666a9555ba805612f34a3073654dd60ac0c3e",
+      "commitment": "0x68729e01e0a9dc28eef54800f445cd5247d1aa29713350ced9f44388dc69c006",
+      "block": "113122574",
+      "gasLimit": "156702",
+      "estimate": "142457"
+    },
+    {
+      "step": "reveal",
+      "hash": "0x7c329e0c06a2ce72178aa69d2a7f71e5bc79dc0540cfef63ccbafd0010b4542b",
+      "explorer": "https://monadscan.com/tx/0x7c329e0c06a2ce72178aa69d2a7f71e5bc79dc0540cfef63ccbafd0010b4542b",
+      "commitment": "0xf3e8af419a663bea4b48adc77965b21f299ca48731aa21ac301746d6672da7ea",
+      "block": "113122579",
+      "gasLimit": "156702",
+      "estimate": "142457"
+    },
+    {
+      "step": "reveal",
+      "hash": "0xcfaf030f9449bdc24d50f271c1c79ebc93c909b9293e736e04baa7769b919e4a",
+      "explorer": "https://monadscan.com/tx/0xcfaf030f9449bdc24d50f271c1c79ebc93c909b9293e736e04baa7769b919e4a",
+      "commitment": "0x836076f7b7944e29d4efb38c59467d60042a479f78da411a9658ce5b2bcb1240",
+      "block": "113122583",
+      "gasLimit": "156740",
+      "estimate": "142491"
+    },
+    {
+      "step": "reveal",
+      "hash": "0x059195aa5d5ea1c81abccad4a7de32ff4f2215316e6dd266a04526d16dc2c82c",
+      "explorer": "https://monadscan.com/tx/0x059195aa5d5ea1c81abccad4a7de32ff4f2215316e6dd266a04526d16dc2c82c",
+      "commitment": "0xa64dc3f9d30a1fb2d80f1f844fa63960bdf0dd4fa7f7d87644cefdcb6844cb5c",
+      "block": "113122589",
+      "gasLimit": "156741",
+      "estimate": "142492"
+    }
+  ],
+  "entries": [
+    {
+      "index": 0,
+      "source": "000000003845.jpg",
+      "commitment": "0x8ea9d16a1eb658d5da1e6b37356f1beb0ab8c6a53823afddd0337cb5fe1ee4e7",
+      "pdq": "0x2cc33e1c86947c185a73d0d90fc70778eb073f810156c4d2c77acb53eec9bac5",
+      "quality": 100,
+      "markPsnr": 40.60209232821923,
+      "revealTx": "0x001dd2498dab0f2fa125db3e617ee53d22c2e529f683acff1e5bbfc7fd8ec429"
+    },
+    {
+      "index": 1,
+      "source": "000000003934.jpg",
+      "commitment": "0x30345dfc39a1f307374e3782b3cd7e8f46175968b0c421ce5c991d28a875a799",
+      "pdq": "0xbc79327279e4d984ce42ea492e3beedcc06351a613a63e2b39898cc3867e711e",
+      "quality": 100,
+      "markPsnr": 40.603386886464634,
+      "revealTx": "0x2a23e8eb0b9b5f879acd3ffa92ad12d1833e7a9a456c566136a2150f77368683"
+    },
+    {
+      "index": 2,
+      "source": "000000004134.jpg",
+      "commitment": "0x884922875f3ffe3556f747cdd7d9c71f312ab6ce805475c8f142dc14b51557f4",
+      "pdq": "0x74b16798bdcccf64db7dd3002c84b7bc6d9cf06422d9b1da6e004f1bb25c30d2",
+      "quality": 100,
+      "markPsnr": 40.60541884478547,
+      "revealTx": "0xe724c09764af61c2483e89c2bba447112b3143f8baa39216a8b4ba6d2e3f2a85"
+    },
+    {
+      "index": 3,
+      "source": "000000004395.jpg",
+      "commitment": "0x20de9bc1cc8a0fccc081d905abe6afc856cb57935b7e6c26b0e0deaeef070534",
+      "pdq": "0xe5b7078a32059b25dd36d3b02b13934b97a77a564c5a9ceb62079266cdcc31cc",
+      "quality": 100,
+      "markPsnr": 40.60200274380702,
+      "revealTx": "0xba1ce432a63e8500c780b91e21f58abd279063b23914b8b35d61de8aada43f6c"
+    },
+    {
+      "index": 4,
+      "source": "000000004495.jpg",
+      "commitment": "0x68729e01e0a9dc28eef54800f445cd5247d1aa29713350ced9f44388dc69c006",
+      "pdq": "0x1c5fa82dd173ce5e3e02b9a7e1de0400bb92ebfd047f0e607fe38b94051d448b",
+      "quality": 100,
+      "markPsnr": 40.60459721771642,
+      "revealTx": "0x13a791e8ea80420a670a74a0be5666a9555ba805612f34a3073654dd60ac0c3e"
+    },
+    {
+      "index": 5,
+      "source": "000000004765.jpg",
+      "commitment": "0xf3e8af419a663bea4b48adc77965b21f299ca48731aa21ac301746d6672da7ea",
+      "pdq": "0x1c4d9e7666196d83c5d09b4e1335f64e4cc30cfd1413e329c336fbe8b6fc0017",
+      "quality": 100,
+      "markPsnr": 40.60234097084916,
+      "revealTx": "0x7c329e0c06a2ce72178aa69d2a7f71e5bc79dc0540cfef63ccbafd0010b4542b"
+    },
+    {
+      "index": 6,
+      "source": "000000004795.jpg",
+      "commitment": "0x836076f7b7944e29d4efb38c59467d60042a479f78da411a9658ce5b2bcb1240",
+      "pdq": "0x71fa2898857bda7828ab23545a3d8d7fa880500d555daa35f863fa84dd097ef4",
+      "quality": 100,
+      "markPsnr": 40.6021930574184,
+      "revealTx": "0xcfaf030f9449bdc24d50f271c1c79ebc93c909b9293e736e04baa7769b919e4a"
+    },
+    {
+      "index": 7,
+      "source": "000000005001.jpg",
+      "commitment": "0xa64dc3f9d30a1fb2d80f1f844fa63960bdf0dd4fa7f7d87644cefdcb6844cb5c",
+      "pdq": "0x52427635e9ddcc0ecf2eb55e18e933b2f0d55979ce3364491d2acb93a1353860",
+      "quality": 100,
+      "markPsnr": 40.6056492798654,
+      "revealTx": "0x059195aa5d5ea1c81abccad4a7de32ff4f2215316e6dd266a04526d16dc2c82c"
+    }
+  ]
+}

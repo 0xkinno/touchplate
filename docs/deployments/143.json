@@ -1,0 +1,14 @@
+{
+  "chainId": 143,
+  "network": "monad-mainnet",
+  "contract": "Touchplate",
+  "address": "0x05648FAa32eeF566b97Cc8E0BAB1C15D7fBeeCF1",
+  "deployTx": "0x65203152bfc9a12b64aeb4fcf708c87716480519b1e5172a8cc554daf462ad1b",
+  "deployBlock": 113077560,
+  "tokenA": "0x00000000eFE302BEAA2b3e6e1b18d08D69a9012a",
+  "tokenB": "0x754704Bc059F8C67012fEd69BC8A327a5aafb603",
+  "feeRecipient": "0xF8c19f45BD40A073f6876EF59a00C482D6Ba45ea",
+  "feeBps": 100,
+  "compiler": "0.8.28",
+  "explorer": "https://monadscan.com/address/0x05648FAa32eeF566b97Cc8E0BAB1C15D7fBeeCF1"
+}

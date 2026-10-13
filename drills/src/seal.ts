@@ -8,13 +8,12 @@ import { resolve } from "node:path";
 import { toHex } from "viem";
 import { ed25519 } from "@noble/curves/ed25519.js";
 import {
-  AUSD, ROOT, TP, SoftPasskey, buildBatch, deriveKeyFamilies, explorerTx, prepareImage, pub, saveJson, send,
+  AUSD, DEPLOYER_KEY, MAINNET, ROOT, TP, SoftPasskey, buildBatch, deriveKeyFamilies, explorerTx, prepareImage, pub, saveJson, send,
   studioChallenge, touchChallenge, touchplateAbi, waitFinalized, walletFor,
 } from "./lib.ts";
 
 const COUNT = Number(process.env.SEAL_COUNT ?? 4);
-const key = process.env.DEPLOYER_PRIVATE_KEY as `0x${string}`;
-const { account, wallet } = walletFor(key);
+const { account, wallet } = walletFor(DEPLOYER_KEY);
 const chainId = BigInt(await pub.getChainId());
 const fam = deriveKeyFamilies(crypto.getRandomValues(new Uint8Array(32)));
 const passkey = new SoftPasskey();
@@ -59,7 +58,7 @@ for (const [i, p] of prepared.entries()) {
   writeFileSync(resolve(ROOT, `spikes/out/sealed/${i}.jpg`), p.published);
   sealed.push({ index: i, source: p.file, commitment: p.commitment, pdq: p.pdq.hash, quality: p.pdq.quality, markPsnr: p.markPsnr, revealTx: r.hash, seed: toHex(p.markSeed) });
 }
-saveJson("docs/evidence/seal-run.json", {
+saveJson(MAINNET ? "docs/evidence/seal-run-mainnet.json" : "docs/evidence/seal-run.json", {
   chainId: Number(chainId), contract: TP, author: account.address, studioPublicKey: studioPub, ausd: AUSD,
   p256: { qx: passkey.qx, qy: passkey.qy }, root: batch.root, touchTx: touch.hash, finalizedAfterMs: ms, log,
   entries: sealed.map(({ seed: _seed, ...rest }) => rest),

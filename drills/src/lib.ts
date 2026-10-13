@@ -8,7 +8,7 @@ import {
   type PublicClient, type TransactionReceipt, type WalletClient,
 } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { monadTestnet } from "viem/chains";
+import { monad, monadTestnet } from "viem/chains";
 import {
   buildBatch, commitmentOf, dihedralRootOf, embed, gasFor, markSeedFor, markSeedHash, pdqFromRgba, signManifest,
   deriveKeyFamilies, touchChallenge, SoftPasskey, studioChallenge, touchplateAbi, manifestHashOf,
@@ -19,16 +19,19 @@ const here = dirname(fileURLToPath(import.meta.url));
 export const ROOT = resolve(here, "../..");
 config({ path: resolve(ROOT, ".env.local") });
 
-export const RPC = process.env.MONAD_TESTNET_RPC ?? "https://testnet-rpc.monad.xyz";
-export const TP = process.env.NEXT_PUBLIC_TOUCHPLATE_ADDRESS as Address;
-export const AUSD = process.env.NEXT_PUBLIC_AUSD_ADDRESS as Address;
-export const explorerTx = (h: string): string => `https://testnet.monadexplorer.com/tx/${h}`;
+export const MAINNET = process.env.NETWORK === "mainnet";
+const chain = MAINNET ? monad : monadTestnet;
+export const RPC = MAINNET ? (process.env.MONAD_MAINNET_RPC ?? "https://rpc.monad.xyz") : (process.env.MONAD_TESTNET_RPC ?? "https://testnet-rpc.monad.xyz");
+export const TP = (MAINNET ? process.env.MAINNET_TOUCHPLATE_ADDRESS : process.env.NEXT_PUBLIC_TOUCHPLATE_ADDRESS) as Address;
+export const AUSD = (MAINNET ? process.env.MAINNET_AUSD_ADDRESS : process.env.NEXT_PUBLIC_AUSD_ADDRESS) as Address;
+export const DEPLOYER_KEY = (MAINNET ? process.env.MAINNET_DEPLOYER_PRIVATE_KEY : process.env.DEPLOYER_PRIVATE_KEY) as Hex;
+export const explorerTx = (h: string): string => MAINNET ? `https://monadscan.com/tx/${h}` : `https://testnet.monadexplorer.com/tx/${h}`;
 
-export const pub: PublicClient = createPublicClient({ chain: monadTestnet, transport: http(RPC) });
+export const pub: PublicClient = createPublicClient({ chain, transport: http(RPC) });
 
 export function walletFor(key: Hex): { account: Account; wallet: WalletClient } {
   const account = privateKeyToAccount(key);
-  return { account, wallet: createWalletClient({ account, chain: monadTestnet, transport: http(RPC) }) };
+  return { account, wallet: createWalletClient({ account, chain, transport: http(RPC) }) };
 }
 
 export interface Sent {
@@ -51,7 +54,7 @@ export async function send(
   const data = encodeFunctionData({ abi, functionName, args } as never);
   const estimate = await pub.estimateGas({ account, to: address, data });
   const gasLimit = gasFor(kind, estimate);
-  const hash = await wallet.writeContract({ address, abi, functionName, args, account, chain: monadTestnet, gas: gasLimit } as never);
+  const hash = await wallet.writeContract({ address, abi, functionName, args, account, chain, gas: gasLimit } as never);
   const receipt = await pub.waitForTransactionReceipt({ hash });
   if (receipt.status !== "success") throw new Error(`${functionName} reverted: ${hash}`);
   return { hash, receipt, gasLimit, estimate };
