@@ -6,7 +6,7 @@ import { createPublicClient, http, type Hex } from "viem";
 import snapshotFile from "@/data/registry-snapshot.json";
 import { CHAIN_ID, DEPLOY_BLOCK, RPC_URL, TOUCHPLATE } from "./env";
 
-export const client = createPublicClient({ transport: http(RPC_URL) });
+export const client = createPublicClient({ transport: http(RPC_URL, { retryCount: 6, retryDelay: 400, timeout: 15_000 }) });
 
 interface Cache {
   snap: RegistrySnapshot;
@@ -65,14 +65,17 @@ export async function blockTimeOf(n: bigint): Promise<number> {
 export async function certificateFor(query: PdqResult, marks: MarkProof[] = []): Promise<{ cert: Certificate; refs: EntryRef[] }> {
   const c = await getRegistry();
   const refs = refsOf(c);
-  const needed = new Set<bigint>();
-  for (const r of refs) needed.add(r.touchBlock);
-  for (const r of c.snap.revealed) needed.add(r.blockNumber);
-  await Promise.all([...needed].map((n) => blockTimeOf(n)));
-  const cert = attest({
-    chainId: CHAIN_ID, contract: TOUCHPLATE, query, entries: refs, snapshot: c.snap, marks,
-    blockTime: (n) => times.get(n) ?? 0,
-  });
+  const build = (): Certificate =>
+    attest({ chainId: CHAIN_ID, contract: TOUCHPLATE, query, entries: refs, snapshot: c.snap, marks, blockTime: (n) => times.get(n) ?? 0 });
+  // Decide first, then fetch timestamps only for the blocks the verdict actually cites (keeps RPC load low).
+  let cert = build();
+  const v = cert.verdict;
+  if (v.kind === "MATCHED" || v.kind === "AUTHORED") {
+    const rev = c.snap.revealed.find((r) => r.commitment === v.entry.commitment);
+    const needed = [v.entry.touchBlock, ...(rev ? [rev.blockNumber] : [])];
+    await Promise.all(needed.map((n) => blockTimeOf(n)));
+    cert = build();
+  }
   return { cert, refs };
 }
 
