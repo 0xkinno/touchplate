@@ -1,0 +1,14 @@
+reference
+.tools
+spikes/out
+spikes/s4/out
+spikes/s4/cache
+qa
+node_modules
+**/node_modules
+contracts/lib
+contracts/out
+contracts/cache
+contracts/broadcast
+**/.next
+.env*

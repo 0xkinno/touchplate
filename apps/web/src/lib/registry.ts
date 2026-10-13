@@ -1,8 +1,9 @@
 import "server-only";
 import {
-  attest, scanRegistry, toEntryRefs, type Certificate, type EntryRef, type MarkProof, type PdqResult, type RegistrySnapshot,
+  attest, scanRegistry, snapshotFromJson, toEntryRefs, type Certificate, type EntryRef, type MarkProof, type PdqResult, type RegistrySnapshot,
 } from "@touchplate/core";
 import { createPublicClient, http, type Hex } from "viem";
+import snapshotFile from "@/data/registry-snapshot.json";
 import { CHAIN_ID, DEPLOY_BLOCK, RPC_URL, TOUCHPLATE } from "./env";
 
 export const client = createPublicClient({ transport: http(RPC_URL) });
@@ -12,7 +13,16 @@ interface Cache {
   finalized: bigint;
   at: number;
 }
-let cache: Cache | undefined;
+function seeded(): Cache | undefined {
+  try {
+    const f = snapshotFromJson(JSON.stringify(snapshotFile));
+    if (f.meta.contract.toLowerCase() !== TOUCHPLATE.toLowerCase() || f.meta.chainId !== CHAIN_ID) return undefined;
+    return { snap: f.snapshot, finalized: f.snapshot.scannedTo, at: 0 };
+  } catch {
+    return undefined;
+  }
+}
+let cache: Cache | undefined = seeded();
 let inflight: Promise<Cache> | undefined;
 
 /** Registry view. The chain is the database; this is only an in-memory cache that resumes from the last block. */

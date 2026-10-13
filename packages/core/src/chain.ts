@@ -144,3 +144,15 @@ export function proofsToMarks(snap: RegistrySnapshot, zByCommitment: Map<Hex, nu
     return z === undefined ? [] : [{ commitment: m.commitment, z }];
   });
 }
+
+const BIG = "$big";
+/** JSON text of a snapshot; bigints are tagged so `snapshotFromJson` can restore them exactly. */
+export function snapshotToJson(s: RegistrySnapshot, meta: { contract: Address; chainId: number }): string {
+  return JSON.stringify({ meta, snapshot: s }, (_, v) => (typeof v === "bigint" ? { [BIG]: v.toString() } : v));
+}
+
+export function snapshotFromJson(text: string): { meta: { contract: Address; chainId: number }; snapshot: RegistrySnapshot } {
+  return JSON.parse(text, (_, v) =>
+    v !== null && typeof v === "object" && typeof (v as Record<string, unknown>)[BIG] === "string" ? BigInt((v as Record<string, string>)[BIG]) : v,
+  ) as { meta: { contract: Address; chainId: number }; snapshot: RegistrySnapshot };
+}

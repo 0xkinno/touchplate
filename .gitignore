@@ -15,3 +15,5 @@ TOUCHPLATE_BUILD_INSTRUCTION.md
 contracts/lib/
 contracts/cache/
 contracts/out/
+.vercel/
+.vercel

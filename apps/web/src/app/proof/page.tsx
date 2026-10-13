@@ -26,7 +26,7 @@ export default function ProofPage() {
     <div className="mx-auto w-[min(1120px,calc(100%-32px))] pb-24 space-y-10">
       <header className="pt-6">
         <h1 className="display text-5xl md:text-6xl">The <span className="accent-serif">proof</span></h1>
-        <p className="mt-3 text-ink-2 max-w-2xl">Every number on this page is generated from a results file in the repository. {n.simulatedTransformsNote}. Corpus: {n.corpus}.</p>
+        <p className="mt-3 text-ink-2 max-w-2xl">Every number on this page is generated from a results file in the repository. {n.simulatedTransformsNote.charAt(0).toUpperCase() + n.simulatedTransformsNote.slice(1)}. Corpus: {n.corpus}.</p>
       </header>
 
       <section aria-labelledby="h-surv">
