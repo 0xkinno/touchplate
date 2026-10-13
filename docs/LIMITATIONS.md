@@ -9,6 +9,11 @@ Measured boundaries of Touchplate. Numbers come from `spikes/` runs now and are 
 - Consequence: a copier who crops about 3% or more per axis can evade fingerprint matching, priority recording and the mark proof. Touchplate does not claim otherwise.
 - The benchmark reports recall for 5, 10 and 20% centre crops as measured, including where it is zero.
 
+## Added content also breaks matching (measured on mainnet, drill D2)
+- A 2% border on every side (4% per axis of added content) was recovered on 1 of 8 images; a phone-UI screenshot frame on 0 of 8.
+- Centre crops of 5, 10 and 20% were recovered on 0 of 8. Horizontal flip 8 of 8, text overlay 7 of 8.
+- These are the same boundary as crop tolerance: the fingerprint describes the whole frame, so large changes to the frame move it.
+
 ## Fingerprint
 - Images with quality below 50 are flagged low detail and are excluded from automatic priority recording.
 - Degenerate images (exact ties against the median) hash differently across implementations.

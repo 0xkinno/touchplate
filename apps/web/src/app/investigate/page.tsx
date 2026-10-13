@@ -52,7 +52,7 @@ export default function InvestigatePage() {
         <p className="mt-3 text-ink-2 max-w-xl">A language model plans and calls tools against Monad. Deterministic code owns the verdict; the model only explains it, and any name or number it adds that the engine did not output is rejected.</p>
       </header>
       <div className="rounded-2xl border border-line bg-paper-2/70 p-5 space-y-3">
-        <input type="file" accept="image/*" aria-label="Image to investigate" disabled={busy} onChange={(e) => e.target.files?.[0] && void go(e.target.files[0])} />
+        <input type="file" accept="image/*" className="max-w-full text-sm" aria-label="Image to investigate" disabled={busy} onChange={(e) => e.target.files?.[0] && void go(e.target.files[0])} />
         <form className="flex gap-2 flex-wrap" onSubmit={(e) => { e.preventDefault(); if (url) fetchImage(url).then(go).catch((x: unknown) => setErr(x instanceof Error ? x.message : "Could not fetch.")); }}>
           <input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="or an image address" aria-label="Image address" className="mono text-[12px] px-3 py-2 rounded-[10px] border border-line bg-paper w-72 max-w-full" />
           <button className="btn-outline rounded-[10px] px-3 py-2 mono text-[12px]">Investigate</button>
@@ -62,12 +62,12 @@ export default function InvestigatePage() {
       {busy && <p className="mono text-[13px] text-mute" role="status">Investigating…</p>}
       {err && <ErrorNote message={err} />}
       {failed && <ErrorNote message={failed.message} />}
-      <ol className="space-y-2">
+      <ol className="space-y-2 min-w-0">
         {events.filter((e) => e.type === "tool" || e.type === "validator").map((e, i) => (
-          <li key={i} className="rounded-xl border border-line bg-paper p-3 mono text-[12px]">
+          <li key={i} className="rounded-xl border border-line bg-paper p-3 mono text-[12px] break-all min-w-0">
             {e.type === "tool" ? (
               <>
-                <p><strong>{e.name}</strong> {Object.keys(e.args).length ? JSON.stringify(e.args) : ""}</p>
+                <p className="break-all"><strong>{e.name}</strong> {Object.keys(e.args).length ? JSON.stringify(e.args) : ""}</p>
                 <pre className="whitespace-pre-wrap break-all text-ink-2 mt-1 max-h-40 overflow-auto">{JSON.stringify(e.result, null, 1).slice(0, 900)}</pre>
               </>
             ) : <p className="text-ember">{e.note}</p>}

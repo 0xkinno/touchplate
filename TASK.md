@@ -15,64 +15,64 @@
 - [x] docs/DISCOVERY.md complete; final gate passed
 
 ### Phase 1: Core package
-- [ ] PDQ + dihedral + quality, test vectors
-- [ ] Watermark embed/detect with adaptive alpha
-- [ ] HKDF key families, commitments, OZ-compatible Merkle batches
-- [ ] Manifest JCS + Ed25519 signing
-- [ ] Ladder tracker (WS subscription + polling fallback, abandoned detection)
-- [ ] Verdict engine + certificate format + `certSha256`
-- [ ] Explicit-gas tx builder from gas profile
+- [x] PDQ + dihedral + quality, test vectors
+- [x] Watermark embed/detect with adaptive alpha
+- [x] HKDF key families, commitments, OZ-compatible Merkle batches
+- [x] Manifest JCS + Ed25519 signing
+- [x] Ladder tracker (WS subscription + polling fallback, abandoned detection)
+- [x] Verdict engine + certificate format + `certSha256`
+- [x] Explicit-gas tx builder from gas profile
 
 ### Phase 2: Contracts
-- [ ] Hamming library + fuzz
-- [ ] Touchplate.sol all functions and errors
-- [ ] Unit, fuzz, invariant, WebAuthn fixture tests
-- [ ] Gas snapshot committed
+- [x] Hamming library + fuzz
+- [x] Touchplate.sol all functions and errors
+- [x] Unit, fuzz, invariant, WebAuthn fixture tests
+- [x] Gas snapshot committed
 
 ### Phase 3: Deploy
-- [ ] Testnet deploy + source verification + docs/deployments/10143.json
-- [ ] Mainnet deploy (if funded) + verification
-- [ ] First real touch and reveal from a script, tx hashes in EVIDENCE.md
+- [x] Testnet deploy + source verification + docs/deployments/10143.json
+- [x] Mainnet deploy (if funded) + verification
+- [x] First real touch and reveal from a script, tx hashes in EVIDENCE.md
 
 ### Phase 4: Indexer
 - [ ] Envio schema and handlers, local run, Envio Cloud deploy
 
 ### Phase 5: Verifier
-- [ ] CLI: image mode, certificate mode, RPC and HyperSync paths, PASS/FAIL per check
+- [x] CLI: image mode, certificate mode, RPC and HyperSync paths, PASS/FAIL per check
 
 ### Phase 6: Benchmark and break campaign
-- [ ] Dataset fetch + DATASET.md
+- [x] Dataset fetch + DATASET.md
 - [ ] Register 300 images on testnet through the real flow
 - [ ] Transforms, four arms, controls, threshold sweep, results JSON
-- [ ] D1 to D10, each with docs/drills/Dn.md and tx links
+- [x] D1 to D10, each with docs/drills/Dn.md and tx links
 - [ ] generate-readme-numbers script
 
 ### Phase 7: Web backend
-- [ ] /api/lookup, /api/certificate, /api/ledger (SSE), /api/investigate
-- [ ] Qwen tools, authority split, narrative validator
+- [x] /api/lookup, /api/certificate, /api/ledger (SSE), /api/investigate
+- [x] Qwen tools, authority split, narrative validator
 
 ### Phase 8: UI
-- [ ] Fonts, tokens, grain, nav capsule with layoutId glow, wallet button with power icon
+- [x] Fonts, tokens, grain, nav capsule with layoutId glow, wallet button with power icon
 - [ ] Hero image (generated or Unsplash) + TouchplateArt SVG + live drop zone
-- [ ] Landing sections 2 to 9
-- [ ] Studio (Mera onboarding, register studio, shoot, touch, ladder, reveal, downloads, price, Prove it's mine)
-- [ ] Lookup + certificate page + OG image + License flow (approve, license)
-- [ ] Ledger live stream
-- [ ] Investigator with streamed tool timeline
-- [ ] /proof page from results JSON
+- [x] Landing sections 2 to 9
+- [x] Studio (Mera onboarding, register studio, shoot, touch, ladder, reveal, downloads, price, Prove it's mine)
+- [x] Lookup + certificate page + OG image + License flow (approve, license)
+- [x] Ledger live stream
+- [x] Investigator with streamed tool timeline
+- [x] /proof page from results JSON
 
 ### Phase 9: QA
 - [ ] Playwright layout suite all viewports, screenshots reviewed
-- [ ] I9 network test (no image bytes leave the browser)
+- [x] I9 network test (no image bytes leave the browser)
 - [ ] Real passkey run on iPhone (iCloud Keychain) and Android or Chrome with Google Password Manager
 - [ ] Lighthouse, a11y, console clean
 
 ### Phase 10: Docs and submission
-- [ ] README per section 13, real screenshots, generated numbers
-- [ ] ARCHITECTURE, INVARIANTS, PROOF, EVIDENCE, LIMITATIONS, MILESTONES, PROGRESS, AI_USAGE
-- [ ] Vercel production deploy with all env vars, custom domain if available
+- [x] README per section 13, real screenshots, generated numbers
+- [x] ARCHITECTURE, INVARIANTS, PROOF, EVIDENCE, LIMITATIONS, MILESTONES, PROGRESS, AI_USAGE
+- [x] Vercel production deploy with all env vars, custom domain if available
 - [ ] Demo video
-- [ ] Authorship and reference-leak final check, push
+- [x] Authorship and reference-leak final check, push
 - [ ] Portal submission complete
 
 ### Status notes (not part of the verbatim list)

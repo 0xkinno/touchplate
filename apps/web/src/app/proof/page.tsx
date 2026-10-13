@@ -68,14 +68,14 @@ export default function ProofPage() {
       <section aria-labelledby="h-dep">
         <h2 id="h-dep" className="font-semibold text-xl mb-3">Deployment</h2>
         {deployment ? (
-          <dl className="mono text-[12px] space-y-1">
+          <dl className="mono text-[12px] space-y-1 break-all">
             <div>Contract <a className="text-violet-deep underline" href={addrUrl(deployment.address)} target="_blank" rel="noreferrer">{deployment.address}</a> (chain {deployment.chainId}, block {deployment.deployBlock})</div>
             <div>Deploy tx <a className="text-violet-deep underline" href={txUrl(deployment.deployTx)} target="_blank" rel="noreferrer">{deployment.deployTx}</a></div>
             <div>Live app contract: {TOUCHPLATE ? <a className="text-violet-deep underline" href={`${EXPLORER}/address/${TOUCHPLATE}`} target="_blank" rel="noreferrer">{short(TOUCHPLATE, 8)}</a> : "not configured"}</div>
           </dl>
         ) : <p className="text-ink-2">No deployment record found.</p>}
         {seal?.log && (
-          <ul className="mono text-[12px] mt-3 space-y-1">{seal.log.map((l, i) => <li key={i}>{l.step}: <a className="text-violet-deep underline" href={txUrl(l.hash)} target="_blank" rel="noreferrer">{short(l.hash, 10)}</a></li>)}</ul>
+          <ul className="mono text-[12px] mt-3 space-y-1 break-all">{seal.log.map((l, i) => <li key={i}>{l.step}: <a className="text-violet-deep underline" href={txUrl(l.hash)} target="_blank" rel="noreferrer">{short(l.hash, 10)}</a></li>)}</ul>
         )}
       </section>
 
@@ -93,14 +93,14 @@ export default function ProofPage() {
             <article key={d.id} className="rounded-xl border border-line p-4">
               <h3 className="font-semibold">{d.id} · {d.title} <span className={d.passed ? "text-violet-deep" : "text-ember"}>{d.passed ? "as expected" : "unexpected"}</span></h3>
               <p className="text-sm text-ink-2 mt-1">{d.outcome}</p>
-              <p className="mono text-[11px] mt-2 space-x-3">{d.txs.map((t) => <a key={t.hash} className="text-violet-deep underline" href={txUrl(t.hash)} target="_blank" rel="noreferrer">{t.label}</a>)}</p>
+              <p className="mono text-[11px] mt-2 flex flex-wrap gap-x-3 gap-y-1">{d.txs.map((t) => <a key={t.hash} className="text-violet-deep underline" href={txUrl(t.hash)} target="_blank" rel="noreferrer">{t.label}</a>)}</p>
             </article>))}</div>
         )}
       </section>
 
       <section aria-labelledby="h-ver">
         <h2 id="h-ver" className="font-semibold text-xl mb-3">Verify without trusting us</h2>
-        <pre className="mono text-[12px] rounded-xl border border-line bg-paper-2 p-4 overflow-x-auto">{`pnpm --filter touchplate-verify start -- --image ./suspect.jpg --rpc https://testnet-rpc.monad.xyz --contract ${TOUCHPLATE || "<address>"} --from-block ${deployment?.deployBlock ?? "<deploy block>"}\npnpm --filter touchplate-verify start -- --certificate ./cert.json --rpc https://testnet-rpc.monad.xyz --contract ${TOUCHPLATE || "<address>"}`}</pre>
+        <pre className="mono text-[12px] rounded-xl border border-line bg-paper-2 p-4 overflow-x-auto max-w-full whitespace-pre-wrap break-all">{`pnpm --filter touchplate-verify start -- --image ./suspect.jpg --rpc https://testnet-rpc.monad.xyz --contract ${TOUCHPLATE || "<address>"} --from-block ${deployment?.deployBlock ?? "<deploy block>"}\npnpm --filter touchplate-verify start -- --certificate ./cert.json --rpc https://testnet-rpc.monad.xyz --contract ${TOUCHPLATE || "<address>"}`}</pre>
       </section>
     </div>
   );

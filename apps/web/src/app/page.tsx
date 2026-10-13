@@ -36,9 +36,9 @@ export default function Landing() {
           }}
         />
         <div className="relative mx-auto w-[min(1120px,calc(100%-32px))] grid lg:grid-cols-[1.05fr_.95fr] gap-10 items-center py-10">
-          <div className="space-y-6" data-no-overlap="headline">
+          <div className="space-y-6 min-w-0">
             <span className="inline-block mono text-[12px] rounded-full border border-line px-3 py-1 bg-paper/70">Monad · Trust, Identity &amp; AI</span>
-            <h1 className="display text-[44px] sm:text-6xl lg:text-[80px]">
+            <h1 data-no-overlap="headline" className="display text-[44px] sm:text-6xl lg:text-[80px]">
               Proof of who made it first, even after the internet strips the <span className="accent-serif">credit.</span>
             </h1>
             <p className="text-lg text-ink-2 max-w-xl">Drag any image in. Touchplate finds the author who sealed it first, before the repost existed, and shows the block where priority locked.</p>

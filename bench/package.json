@@ -1,0 +1,1 @@
+{"name":"@touchplate/bench","private":true,"type":"module","version":"0.1.0","author":"0xkinno","license":"MIT","dependencies":{"@touchplate/core":"workspace:*","dotenv":"^18.0.7","sharp":"^0.35.5","viem":"^2.57.5"},"devDependencies":{"@types/node":"^26.6.5","tsx":"^4.23.15","typescript":"5.9.3"}}
