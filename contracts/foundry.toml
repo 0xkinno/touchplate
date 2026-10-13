@@ -1,0 +1,17 @@
+[profile.default]
+src = "src"
+test = "test"
+script = "script"
+out = "out"
+cache_path = "cache"
+solc = "0.8.28"
+evm_version = "cancun"
+optimizer = true
+optimizer_runs = 200
+remappings = ["@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/"]
+allow_paths = ["../node_modules"]
+libs = ["node_modules", "lib"]
+
+[invariant]
+runs = 64
+depth = 32

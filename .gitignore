@@ -12,3 +12,6 @@ broadcast/
 *.log
 TOUCHPLATE_BUILD_INSTRUCTION.md
 .tools/
+contracts/lib/
+contracts/cache/
+contracts/out/
