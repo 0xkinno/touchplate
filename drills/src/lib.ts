@@ -54,7 +54,16 @@ export async function send(
   const data = encodeFunctionData({ abi, functionName, args } as never);
   const estimate = await pub.estimateGas({ account, to: address, data });
   const gasLimit = gasFor(kind, estimate);
-  const hash = await wallet.writeContract({ address, abi, functionName, args, account, chain, gas: gasLimit } as never);
+  let hash: Hash | undefined;
+  for (let attempt = 0; hash === undefined; attempt++) {
+    try {
+      hash = await wallet.writeContract({ address, abi, functionName, args, account, chain, gas: gasLimit } as never);
+    } catch (e) {
+      // the public RPC is load balanced; a node can briefly lag behind a just-confirmed funding transaction
+      if (attempt >= 6 || !/insufficient balance|nonce too low/i.test(String(e))) throw e;
+      await new Promise((r) => setTimeout(r, 2000));
+    }
+  }
   const receipt = await pub.waitForTransactionReceipt({ hash });
   if (receipt.status !== "success") throw new Error(`${functionName} reverted: ${hash}`);
   return { hash, receipt, gasLimit, estimate };

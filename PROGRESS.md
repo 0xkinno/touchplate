@@ -24,3 +24,11 @@ Carry into Phase 1 from the measurements:
 - Wallet connect modal on every transacting page; every on-chain action (register studio, touch, reveal, approve, license, faucet, prove mark) opens the wallet and sends a real signed transaction.
 - Aurora Intents "License from any chain" on /lookup and /c/[certId] (see TASK.md additions).
 - Everything is built inside this folder; `reference/` stays ignored and unnamed.
+
+## Session 2: build, deploy and campaign
+
+- Contracts, core, verifier, web app, API routes and wallet modal built; mainnet deployment and Vercel deploy live.
+- Drills D1 to D10 ran on mainnet with transaction links; D2 and D6 report limits honestly.
+- Layout suite passes on nine viewports; end-to-end passes on the live site.
+- README and documentation written; handoff updated for the cloud agent.
+- Benchmark registration (300 images) landed on mainnet; evaluation stage finishing.

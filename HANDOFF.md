@@ -99,7 +99,7 @@ MONAD_MAINNET_RPC=https://rpc.monad.xyz
 MONAD_TESTNET_RPC=https://testnet-rpc.monad.xyz
 ```
 
-Network switch: scripts read `NETWORK=mainnet` (default testnet). The web app reads `NEXT_PUBLIC_CHAIN_ID`.
+Network switch: scripts read `NETWORK` and default to mainnet; set `NETWORK=testnet` for testnet. The web app reads `NEXT_PUBLIC_CHAIN_ID`.
 **RPC limits**: public RPC `eth_getLogs` is capped at 100 blocks; `packages/core/src/chain.ts` already chunks.
 Gas is charged on the declared limit: always send a tight explicit limit (`gasFor`).
 
@@ -119,51 +119,41 @@ cd verifier && npx tsx src/cli.ts --image x.jpg --contract <addr> --from-block <
 Playwright: `npx playwright install chromium`. The e2e test injects an EIP-6963 test wallet backed by a funded key
 and a CDP virtual authenticator with PRF, and counts `eth_sendTransaction` requests to prove each action asks the wallet.
 
-## 6. Current state (update this section as you work)
+## 6. Current state (updated at the end of the last session)
 
-Done and verified: Phase 0 (all spikes, evidence in `docs/DISCOVERY.md`), contracts + tests + testnet and mainnet
-deploys, core package (18 tests), registry scanner, attest, verifier CLI (image + certificate modes PASS), first real
-touch and reveals on testnet and mainnet (`docs/evidence/seal-run*.json`), web app source for all routes, API routes,
-Aurora quote/status routes, production build passes.
+**Live**: https://touchplate.vercel.app (Vercel project `touchplate`, scope `kinnoskis-projects`, root `apps/web`,
+production env vars set from `apps/web/.env.local`). Contract on mainnet: `0x05648FAa32eeF566b97Cc8E0BAB1C15D7fBeeCF1`.
 
-**Open blocker being worked when this was written:** wallet connect modal does not open in dev. Cause: dependency
-version skew. `wagmi@2.19.5` and `@reown/appkit-adapter-wagmi@1.8.24` are pinned in `apps/web`, but a stale
-`@wagmi/connectors@8.2.0` / `@wagmi/core@3.x` copy is still resolved by pnpm and its `./tempo` export is missing.
-Fix: remove `wagmi`, `@wagmi/core`, `@reown/*`, `@walletconnect/*` from `apps/web`, delete `node_modules` and
-`pnpm-lock.yaml` entries for them, then `pnpm add wagmi@2.19.5 @wagmi/core@2.22.1 @reown/appkit@1.8.24
-@reown/appkit-adapter-wagmi@1.8.24 @walletconnect/ethereum-provider`; confirm `pnpm why @wagmi/connectors` shows only 6.x.
-Then rerun `tests/e2e.mjs`. The test uses `getByText("Touchplate Test Wallet")` in the AppKit modal.
+Done and verified:
+- Phase 0: all spikes S1 to S9 with evidence (`docs/DISCOVERY.md`).
+- Phases 1 to 3: core package (18 tests), contract (27 tests), deploys on testnet and mainnet, first real touch and reveals.
+- Phase 5: verifier CLI (image and certificate modes PASS).
+- Phase 6: break campaign D1 to D10 ran on mainnet (`docs/drills/`, all as expected); benchmark harness in `bench/`.
+- Phases 7 and 8: API routes, Qwen investigator with validator, Aurora quote/status routes (key in URL path per Aurora docs,
+  validated), landing, Studio, Lookup, Ledger (polling, not SSE, because serverless cuts streams), Investigator, Proof,
+  entry pages with OG image, wallet connect modal (Reown AppKit), real wallet transactions for every on-chain action.
+- Phase 9: Playwright end to end on the live site passes (`apps/web/tests/e2e.mjs`), layout suite passes on nine viewports
+  (`apps/web/tests/layout.mjs`).
+- Phase 10: README, ARCHITECTURE, INVARIANTS, PROOF, LIMITATIONS, MILESTONES, AI_USAGE, EVIDENCE, `.env.example`.
 
-## 7. Remaining work, in dependency order
+## 7. Remaining work (everything below needs a human, a device, or a credential)
 
-Mark `[x]` in `TASK.md` only when verified. Update `PROGRESS.md` and `EVIDENCE.md` every session.
-
-1. **Fix the wallet modal** (section 6) and make `tests/e2e.mjs` pass end to end on a local build.
-2. **Drills D1..D10** in `drills/src/dN-*.ts`, each writing `docs/drills/Dn.json` (`{id,title,outcome,passed,txs[]}`)
-   and `docs/drills/Dn.md` with a tx link per step. Specs are in `TOUCHPLATE_BUILD_INSTRUCTION.md` section 8.2.
-   Use `SoftPasskey` from core for automated touches, a second funded key for the thief (D3, D4), and the
-   verifier for D8. D5 needs a naive-mode contract kept only under `drills/` (not deployed from `contracts/`).
-   `recordPriority` needs the earlier author's dihedral variant and Merkle proof (see `Touchplate.sol`).
-3. **Benchmark** in `bench/`: COCO val2017 (ids and licence in `bench/DATASET.md`), 300 registered + 1000 distractors,
-   transforms per section 8.1, four arms plus random and shuffled controls, threshold sweep, mark z distributions,
-   lookup latency at 1k/10k/100k synthetic. Write `bench/results/summary.json` (read by `generate-numbers.mjs`).
-   Register the 300 images on testnet in batches (cheap; use `drills/src/seal.ts` as the pattern).
-4. **Indexer**: `indexer/` Envio HyperIndex config and handlers for the events in `packages/core/src/abi.ts`
-   (Studio, Touch, Entry, PriorityRecord, MarkProof, License, DailyStat). Deploy to Envio Cloud, set `ENVIO_GRAPHQL_URL`.
-   The verifier must keep working without it; optional `--hypersync` path.
-5. **UI QA**: Playwright layout suite (`apps/web/tests/layout.spec.ts`) at 375x667, 390x844, 393x852, 412x915,
-   768x1024, 1024x1366, 1280x800, 1440x900, 1920x1080 using device emulation for phones: no horizontal overflow,
-   no overlap of `[data-no-overlap]` boxes, no console errors, alt text, AA contrast, Lighthouse perf >= 85.
-   Replace the CSS hero background with a licensed photograph if one is available (no credit in the UI).
-6. **I9 test**: assert no image bytes appear in any network request (partly in `e2e.mjs`).
-7. **Aurora real payment**: build is done; the one real Base USDC payment must be sent by 0xkinno from their own
-   wallet (do not move user funds yourself). Record every hash in `EVIDENCE.md` and `/proof`.
-8. **Docs**: README per section 13 (draft exists), ARCHITECTURE, INVARIANTS, PROOF, LIMITATIONS, MILESTONES,
-   AI_USAGE (disclosure that AI coding assistants were used under 0xkinno's direction; no contributor credit).
-9. **Deploy**: `vercel --prod` from `apps/web` with the env vars in section 4. Test the live URL with Playwright.
-   Add the link to the README links table.
-10. **Final checks**: `bash scripts/check-authorship.sh`, `git ls-files | grep -E "^reference/|\.env"` is empty,
-    no commit message contains a trailer or an assistant's name, then push.
+1. **Benchmark finish**: `cd bench && npx tsx src/run.ts` (resumable; reconstructs state from chain). It writes
+   `bench/results/summary.json`; then `node scripts/generate-numbers.mjs`, rebuild and redeploy so landing, `/proof`
+   and the README numbers block pick up the benchmark. If the log shows "thief funding did not arrive", fund the
+   deployer and rerun.
+2. **Envio**: Envio's CLI does not run on Windows. Use Envio Cloud (https://envio.dev, connect the GitHub repo, root
+   `indexer`) or WSL. It generates code remotely. Then copy the hosted GraphQL URL into `ENVIO_GRAPHQL_URL` (local and
+   Vercel). For HyperSync create a free token at https://app.envio.dev/api-tokens and add `ENVIO_API_TOKEN`; then add
+   the `--hypersync` path to the verifier (do not ship it untested).
+3. **Reown allowlist**: add `touchplate.vercel.app` (and `localhost`) to the Reown project's domain allowlist.
+4. **Real passkey runs** on an iPhone (iCloud Keychain) and Android or Chrome with Google Password Manager. All runs so
+   far used a CDP virtual authenticator.
+5. **Aurora real payment**: one Base USDC payment funded by 0xkinno through `/lookup` > License > "License from any
+   chain". Record every hash in `EVIDENCE.md`.
+6. **Demo video** (use the `hackathon-demo-video` workflow), **portal submission**, optional custom domain.
+7. **Hero photograph**: the hero uses generated SVG and CSS art; swap in a licensed photograph if available (no credit in UI).
+8. **Lighthouse and AA contrast pass** on the live site.
 
 ## 8. Known gotchas (each cost real time)
 

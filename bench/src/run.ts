@@ -7,10 +7,10 @@ import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import sharp from "sharp";
-import { decide, detect, hamming256, toEntryRefs, type EntryRef, type PdqResult } from "@touchplate/core";
+import { decide, detect, embed, hamming256, toEntryRefs, type EntryRef, type PdqResult } from "@touchplate/core";
 import type { Hex } from "viem";
 import { fund, newActor, platformRoundTrip, register, registry, reveal, seal, type Actor } from "../../drills/src/harness.ts";
-import { ROOT, pdqOf } from "../../drills/src/lib.ts";
+import { ROOT, pdqOf, pub } from "../../drills/src/lib.ts";
 
 const DATA = resolve(ROOT, "bench/data");
 const RESULTS = resolve(ROOT, "bench/results");
@@ -69,19 +69,49 @@ async function registerAll(): Promise<Registration> {
   await Promise.all(workers);
   registered.sort((x, y) => x.index - y.index);
 
-  // the thief registers stripped copies of 50 registered images after the originals are revealed
-  await register(thief);
-  const copies = await Promise.all(stolenSources.map(async (s) => ({ name: `stolen-${s.name}`, buf: await platformRoundTrip(s.buf), index: s.index })));
-  const ts = await seal(thief, copies.map((c) => ({ name: c.name, buf: c.buf })));
-  const trev = await reveal(thief, ts);
-  const thieves: Reg[] = ts.prepared.map((p, j) => ({
-    name: copies[j].name, index: copies[j].index, author: thief.account.address, commitment: p.commitment, pdq: p.pdq.hash,
-    seedHex: `0x${Buffer.from(p.markSeed).toString("hex")}`, publishedFile: "", revealTx: trev[j].hash, touchTx: ts.touch.hash,
-  }));
-  const out = { registered, thieves };
+  const out = { registered, thieves: [] as Reg[] };
   writeFileSync(REG_FILE, JSON.stringify(out, null, 1));
   return out;
 }
+
+async function registerThief(registered: Reg[]): Promise<Reg[]> {
+  const thief = newActor("bench-thief");
+  await fund([thief.account.address], 1.0);
+  const bal = await pub.getBalance({ address: thief.account.address });
+  if (bal === 0n) throw new Error("thief funding did not arrive");
+  await register(thief);
+  const copies = await Promise.all(
+    registered.filter((r) => r.index < 50).map(async (r) => ({
+      name: `stolen-${r.name}`, buf: await platformRoundTrip(readFileSync(resolve(DATA, r.publishedFile))), index: r.index,
+    })),
+  );
+  const ts = await seal(thief, copies.map((c) => ({ name: c.name, buf: c.buf })));
+  const trev = await reveal(thief, ts);
+  return ts.prepared.map((p, j) => ({
+    name: copies[j].name, index: copies[j].index, author: thief.account.address, commitment: p.commitment, pdq: p.pdq.hash,
+    seedHex: "0x" as Hex, publishedFile: "", revealTx: trev[j].hash, touchTx: ts.touch.hash,
+  }));
+}
+
+/** Rebuilds the registered list from chain logs and the published files when local state was lost. */
+async function reconstruct(): Promise<Reg[]> {
+  const { snap } = await registry();
+  const byPdq = new Map(snap.revealed.map((r) => [r.pdq.toLowerCase(), r]));
+  const touchByRoot = new Map(snap.touched.map((t) => [t.root, t]));
+  const out: Reg[] = [];
+  for (let index = 0; index < 300; index++) {
+    const file = `published/${index}.jpg`;
+    const q = await pdqOf(readFileSync(resolve(DATA, file)));
+    const r = byPdq.get(q.hash.toLowerCase());
+    if (!r) throw new Error(`published image ${index} is not on chain`);
+    out.push({
+      name: split.registered[index], index, author: r.author, commitment: r.commitment, pdq: r.pdq, seedHex: "0x" as Hex,
+      publishedFile: file, revealTx: r.txHash, touchTx: touchByRoot.get(r.root)?.txHash ?? ("0x" as Hex),
+    });
+  }
+  return out;
+}
+
 
 // ------------------------------------------------------------------ transforms
 type T = (b: Buffer) => Promise<Buffer>;
@@ -222,18 +252,21 @@ async function evaluate(reg: Registration): Promise<Record<string, unknown>> {
     }
   }
 
-  // watermark: marked originals versus distractors scored against a registered seed, after JPEG q70
+  // watermark: freshly marked originals (known seeds) versus unmarked distractors, both after JPEG q70
   const zMarked: number[] = [];
   const zUnmarked: number[] = [];
-  for (const r of reg.registered.slice(0, 60)) {
-    const out = await TRANSFORMS["JPEG q70"](readFileSync(resolve(DATA, r.publishedFile)));
-    const raw = await sharp(out).removeAlpha().toColourspace("srgb").raw().toBuffer({ resolveWithObject: true });
-    zMarked.push(detect(new Uint8Array(raw.data), raw.info.width, raw.info.height, 3, Uint8Array.from(Buffer.from(r.seedHex.slice(2), "hex"))));
+  const seedOf = (k: number): Uint8Array => Uint8Array.from({ length: 32 }, (_, i) => (k * 131 + i * 17 + 7) & 255);
+  for (const [k, name] of split.registered.slice(0, 40).entries()) {
+    const raw = await sharp(load(name)).removeAlpha().toColourspace("srgb").raw().toBuffer({ resolveWithObject: true });
+    const marked = embed(new Uint8Array(raw.data), raw.info.width, raw.info.height, 3, seedOf(k));
+    const jpeg = await sharp(Buffer.from(marked.rgb), { raw: { width: raw.info.width, height: raw.info.height, channels: 3 } }).jpeg({ quality: 70 }).toBuffer();
+    const back = await sharp(jpeg).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+    zMarked.push(detect(new Uint8Array(back.data), back.info.width, back.info.height, 3, seedOf(k)));
   }
-  for (const [i, n] of split.distractors.slice(0, 60).entries()) {
-    const out = await TRANSFORMS["JPEG q70"](load(n));
-    const raw = await sharp(out).removeAlpha().toColourspace("srgb").raw().toBuffer({ resolveWithObject: true });
-    zUnmarked.push(detect(new Uint8Array(raw.data), raw.info.width, raw.info.height, 3, Uint8Array.from(Buffer.from(reg.registered[i].seedHex.slice(2), "hex"))));
+  for (const [k, name] of split.distractors.slice(0, 40).entries()) {
+    const jpeg = await sharp(load(name)).jpeg({ quality: 70 }).toBuffer();
+    const back = await sharp(jpeg).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+    zUnmarked.push(detect(new Uint8Array(back.data), back.info.width, back.info.height, 3, seedOf(k)));
   }
   const stat = (a: number[]) => {
     const s = [...a].sort((x, y) => x - y);
@@ -286,12 +319,21 @@ async function evaluate(reg: Registration): Promise<Record<string, unknown>> {
   };
 }
 
-const reg: Registration = existsSync(REG_FILE) ? (JSON.parse(readFileSync(REG_FILE, "utf8")) as Registration) : await registerAll();
+let reg: Registration;
+if (existsSync(REG_FILE)) {
+  reg = JSON.parse(readFileSync(REG_FILE, "utf8")) as Registration;
+} else if (existsSync(resolve(DATA, "published/299.jpg"))) {
+  reg = { registered: await reconstruct(), thieves: [] };
+  writeFileSync(REG_FILE, JSON.stringify(reg, null, 1));
+} else {
+  reg = await registerAll();
+}
+if (reg.thieves.length === 0) {
+  reg.thieves = await registerThief(reg.registered);
+  writeFileSync(REG_FILE, JSON.stringify(reg, null, 1));
+}
 console.log(`registered ${reg.registered.length} + ${reg.thieves.length} thief copies`);
 const summary = await evaluate(reg);
-writeFileSync(resolve(RESULTS, "summary.json"), JSON.stringify(summary, null, 2) + "\n");
-writeFileSync(
-  resolve(RESULTS, "registration.json"),
-  JSON.stringify({ registered: reg.registered.map(({ seedHex: _s, ...r }) => r), thieves: reg.thieves.map(({ seedHex: _s, ...r }) => r) }, null, 1) + "\n",
-);
+writeFileSync(resolve(RESULTS, "summary.json"), JSON.stringify(summary, null, 2));
+writeFileSync(resolve(RESULTS, "registration.json"), JSON.stringify({ registered: reg.registered.map(({ seedHex: _s, ...r }) => r), thieves: reg.thieves.map(({ seedHex: _s, ...r }) => r) }, null, 1));
 console.log("bench done");

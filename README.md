@@ -160,7 +160,7 @@ stateDiagram-v2
 
 ## Judge it in two minutes
 
-1. Open https://touchplate.vercel.app/lookup (no wallet needed) and drop `docs/evidence/sample-repost.jpg`-style copy of any sealed image, or any recompressed copy of a ledger entry. You get the author, the block where priority locked, the distance, and a downloadable certificate.
+1. Open https://touchplate.vercel.app/lookup (no wallet needed) and drop any recompressed or resized copy of an image listed on the [ledger](https://touchplate.vercel.app/ledger), or the provided sample [`docs/evidence/sample-repost.jpg`](docs/evidence/sample-repost.jpg) (sealed on testnet). You get the author, the block where priority locked, the distance and a downloadable certificate.
 2. Open the **entry page** from the verdict and follow the touch and reveal links to the explorer.
 3. Run the offline verifier on the same file (command below) and compare `certSha256`.
 4. Open [/proof](https://touchplate.vercel.app/proof) for the generated numbers and the break campaign.
@@ -240,6 +240,32 @@ It prints PASS or FAIL for every check and never contacts a Touchplate server.
 | **Envio** | HyperIndex config, schema and handlers in `indexer/`; HyperSync is the verifier fast path | config committed; hosted deployment and token pending |
 | **Aurora Intents** | "License from any chain": dry quote to USDC on Monad, deposit address and QR, status polling, then the buyer signs `license()` | quote, tokens and status routes verified against Aurora's API; the one real cross-chain payment is pending 0xkinno |
 | **AUSD and USDC** | Licence tokens (immutable allowlist of two) | live on mainnet |
+
+## Aurora Intents: license from any chain
+
+A licence is paid in USDC (or AUSD) on Monad. A buyer holding another asset on another chain does not have to bridge by hand.
+
+```mermaid
+sequenceDiagram
+  participant B as Buyer (any chain)
+  participant T as Touchplate /api/aurora
+  participant A as Aurora Intents API
+  participant M as Monad
+  B->>T: Choose origin asset, see the exact amount (dry quote)
+  T->>A: POST /api/quote/{key} dry=true, EXACT_OUTPUT = licence price in USDC
+  A-->>T: amountInFormatted
+  B->>T: Get deposit address (live quote, refund address)
+  T->>A: POST /api/quote/{key} dry=false
+  A-->>B: Deposit address + QR
+  B->>A: Sends the origin asset
+  T->>A: GET /api/status/{key} (polled)
+  A-->>M: USDC delivered to the buyer's Monad address
+  B->>M: Signs approve + license() in their wallet
+```
+
+What was verified: the key authenticates against `https://intents-api.aurora.dev` (203 supported assets), Monad USDC settles on chain 143 (`0x754704Bc…B603`) and AUSD does not, which is why the contract carries an immutable allowlist of AUSD and USDC. The final step, `license()`, is always a normal wallet transaction.
+
+The one live cross-chain payment must be sent by the licensee from their own wallet; it is the open item in [`EVIDENCE.md`](EVIDENCE.md).
 
 ## What is enforced where
 
