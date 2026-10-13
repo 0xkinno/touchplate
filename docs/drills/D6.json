@@ -1,0 +1,22 @@
+{
+  "id": "D6",
+  "title": "Collision forgery",
+  "attack": "Black-box hill climbing (4000 iterations, fingerprint distance only) perturbs an unrelated photograph until its PDQ approaches a registered image's.",
+  "outcome": "Distance went from 132 to 62 (threshold 31). Verdict on the forged image: NO_RECORD. Watermark z against the registered image's seed: -0.93 (decision threshold 6), so it can never be AUTHORED.",
+  "passed": true,
+  "txs": [
+    {
+      "label": "target entry reveal",
+      "hash": "0x001dd2498dab0f2fa125db3e617ee53d22c2e529f683acff1e5bbfc7fd8ec429"
+    }
+  ],
+  "data": {
+    "startDistance": 132,
+    "bestDistance": 62,
+    "iterations": 4000,
+    "verdict": "NO_RECORD",
+    "reachedMatched": false,
+    "markZ": -0.9306459513530292,
+    "target": "0x8ea9d16a1eb658d5da1e6b37356f1beb0ab8c6a53823afddd0337cb5fe1ee4e7"
+  }
+}

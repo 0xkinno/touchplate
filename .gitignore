@@ -17,3 +17,6 @@ contracts/cache/
 contracts/out/
 .vercel/
 .vercel
+drills/contracts/out/
+drills/contracts/cache/
+bench/data/

@@ -1,0 +1,17 @@
+{
+  "name": "touchplate-indexer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "author": "0xkinno",
+  "license": "MIT",
+  "scripts": {
+    "codegen": "envio codegen",
+    "dev": "envio dev",
+    "start": "envio start"
+  },
+  "devDependencies": {
+    "envio": "latest",
+    "typescript": "5.9.3"
+  }
+}

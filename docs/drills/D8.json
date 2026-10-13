@@ -1,0 +1,23 @@
+{
+  "id": "D8",
+  "title": "Lying server",
+  "attack": "A proxy returns a forged verdict naming a different author, first without fixing the certificate hash, then with a recomputed hash.",
+  "outcome": "Honest certificate: hash reproduces, chain agrees. Forged without rehash: hash MISMATCH (detected as a hash mismatch). Forged with rehash: hash reproduces, chain DISAGREES (detected as a verdict mismatch).",
+  "passed": true,
+  "txs": [],
+  "data": {
+    "honest": {
+      "hashOk": true,
+      "chainOk": true
+    },
+    "forgedWithoutRehash": {
+      "hashOk": false,
+      "chainOk": false
+    },
+    "forgedWithRehash": {
+      "hashOk": true,
+      "chainOk": false
+    },
+    "expectedAuthor": "0xF8c19f45BD40A073f6876EF59a00C482D6Ba45ea"
+  }
+}

@@ -19,7 +19,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 export const ROOT = resolve(here, "../..");
 config({ path: resolve(ROOT, ".env.local") });
 
-export const MAINNET = process.env.NETWORK === "mainnet";
+export const MAINNET = process.env.NETWORK !== "testnet";
 const chain = MAINNET ? monad : monadTestnet;
 export const RPC = MAINNET ? (process.env.MONAD_MAINNET_RPC ?? "https://rpc.monad.xyz") : (process.env.MONAD_TESTNET_RPC ?? "https://testnet-rpc.monad.xyz");
 export const TP = (MAINNET ? process.env.MAINNET_TOUCHPLATE_ADDRESS : process.env.NEXT_PUBLIC_TOUCHPLATE_ADDRESS) as Address;

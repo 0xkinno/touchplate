@@ -1,0 +1,25 @@
+{
+  "id": "D7",
+  "title": "Replayed touch",
+  "attack": "Reuse an old WebAuthn assertion, and present an assertion for a different root.",
+  "outcome": "Both reverted on chain: same assertion and root reverted; assertion for a different root reverted.",
+  "passed": true,
+  "txs": [
+    {
+      "label": "Replayer registers studio",
+      "hash": "0x38c345ab76e1df48ead93da27c849a42963dd49e91577fa43707a49c1107ed2e"
+    },
+    {
+      "label": "Replayer touches 1 image(s)",
+      "hash": "0x779af7f84a3a402ddf91117f97d656e18b07fcafc0c2de0af2c3035d6b3b5904"
+    },
+    {
+      "label": "replay: same assertion, same root (status reverted; TouchExists)",
+      "hash": "0xaace50dc32147e6acf76df98031ac213357c27e5a6ad8501375d571b05162c83"
+    },
+    {
+      "label": "replay: old assertion for a different root (status reverted; BadAssertion)",
+      "hash": "0x784546ce4ed989193ba6a1c9a3fa0c5de6553261fbd6da7c3bb954829d9fd3f3"
+    }
+  ]
+}

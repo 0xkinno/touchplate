@@ -1,0 +1,83 @@
+type Studio {
+  id: ID!
+  author: String!
+  qx: String!
+  qy: String!
+  ed25519Pub: String!
+  registeredBlock: Int!
+  registerTx: String!
+}
+
+type Touch {
+  id: ID!
+  root: String!
+  author: String!
+  count: Int!
+  nonce: BigInt!
+  blockNumber: Int!
+  txIndex: Int!
+  logIndex: Int!
+  txHash: String!
+  timestamp: Int!
+}
+
+type Entry {
+  id: ID!
+  commitment: String!
+  root: String!
+  author: String!
+  pdq: String!
+  dihedralRoot: String!
+  markSeedHash: String!
+  manifestHash: String!
+  licensePrice: BigInt!
+  touchBlock: Int!
+  touchTxIndex: Int!
+  touchLogIndex: Int!
+  revealBlock: Int!
+  revealTx: String!
+  derivative: Boolean!
+  licenseCount: Int!
+}
+
+type PriorityRecord {
+  id: ID!
+  earlier: String!
+  later: String!
+  distance: BigInt!
+  blockNumber: Int!
+  txHash: String!
+}
+
+type MarkProof {
+  id: ID!
+  commitment: String!
+  suspectSha256: String!
+  seed: String!
+  zMilli: Int!
+  uri: String!
+  blockNumber: Int!
+  txHash: String!
+}
+
+type License {
+  id: ID!
+  commitment: String!
+  licensee: String!
+  author: String!
+  token: String!
+  paid: BigInt!
+  fee: BigInt!
+  blockNumber: Int!
+  txHash: String!
+}
+
+type DailyStat {
+  id: ID!
+  day: String!
+  touches: Int!
+  reveals: Int!
+  derivatives: Int!
+  licenses: Int!
+  licensedVolume: BigInt!
+}

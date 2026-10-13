@@ -5,7 +5,6 @@ packages:
   - "verifier"
   - "bench"
   - "drills"
-  - "indexer"
 allowBuilds:
   '@reown/appkit': true
   bufferutil: false
