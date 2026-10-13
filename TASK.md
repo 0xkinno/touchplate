@@ -3,16 +3,16 @@
 ### Phase 0: Discovery and reference
 - [x] Repo init, `.gitignore` (node_modules, .env*, reference/, out/, cache/, qa/), authorship config, `includeCoAuthoredBy: false`
 - [x] Clone all reference repos; write per-repo notes and PLAYBOOK.md (inside reference/)
-- [ ] S1 commit-state ladder spike with 100 timed txs
-- [ ] S2 gas-on-limit spike
+- [x] S1 commit-state ladder spike with 100 timed txs
+- [x] S2 gas-on-limit spike
 - [x] S3 Mera key families + P-256 pubkey capture
-- [ ] S4 WebAuthn assertion verified via precompile 0x0100 on testnet
+- [x] S4 WebAuthn assertion verified via precompile 0x0100 on testnet
 - [x] S5 PDQ TS port parity with Python pdqhash
 - [x] S6 watermark PSNR and z-score
-- [ ] S7 Qwen model id and tool call
-- [ ] S8 AUSD testnet address, faucet, decimals
+- [x] S7 Qwen model id and tool call
+- [x] S8 AUSD testnet address, faucet, decimals
 - [x] S9 storage layout gas
-- [ ] docs/DISCOVERY.md complete; final gate passed
+- [x] docs/DISCOVERY.md complete; final gate passed
 
 ### Phase 1: Core package
 - [ ] PDQ + dihedral + quality, test vectors
@@ -76,10 +76,18 @@
 - [ ] Portal submission complete
 
 ### Status notes (not part of the verbatim list)
-- S1: block-level ladder measured (286 complete ladders, `spikes/s1-ladder-blocks.json`). The 100 own timed txs are pending testnet MON.
-- S2, S4 on-chain, S8 faucet tx: scripted in `spikes/funded.ts`, pending testnet MON for the spike account.
-- S4: valid, tampered, wrong-challenge, wrong-key and high-s cases verified through the live testnet precompile via `eth_call` state override (`spikes/s4-sim.json`); on-chain tx hashes still pending.
-- S5: 49 of 50 images within 0 bits of the reference; one degenerate synthetic image (quality 44) differs. Documented in `docs/DISCOVERY.md`.
-- S6: PSNR and z conditions met; the unmarked-below-3 condition is missed by one value (3.02 of 400). Documented.
-- S7: model id and endpoint documented; tool-call round trip pending an API key and workspace id.
-- Final gate is not marked: funded spikes are open.
+- S1: 286 block ladders plus 100 own timed txs (`spikes/s1-ladder.json`).
+- S4: three on-chain txs through the precompile (`spikes/s4-onchain.json`), valid accepted, tampered and wrong challenge rejected.
+- S5: 49 of 50 within 0 bits of the reference; one degenerate synthetic image (quality 44) differs. Documented.
+- S6: PSNR and z conditions met; unmarked-below-3 missed by one value (3.02 of 400). Documented.
+- S7: tool-call round trip verified on `dashscope-intl` with `qwen3.8-max`.
+- Real-device passkey runs remain in Phase 9.
+
+### Additions requested by 0xkinno (after Phase 0)
+- [ ] Crops declared out of scope; bench reports 5/10/20% centre-crop recall; README boundaries section
+- [ ] Aurora Intents: verify Monad mainnet settlement assets from Aurora/1Click docs; if AUSD unsupported, add immutable 2-token license allowlist (AUSD + Monad USDC), update tests, redeploy mainnet, update docs/deployments/143.json
+- [ ] /api/aurora/quote (dry quote to USDC on Monad, recipient = buyer address, AURORA_APP_KEY optional), amount shown before deposit
+- [ ] Deposit address + QR, status polling, on SUCCESS prompt buyer to sign license()
+- [ ] One real payment from Base USDC, hashes in EVIDENCE.md and /proof
+- [ ] README section "Aurora Intents"
+- [ ] Wallet connect modal; every on-chain action opens the wallet and sends a real signed transaction

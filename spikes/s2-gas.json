@@ -1,0 +1,29 @@
+{
+  "estimateGas": "45020",
+  "oneX": {
+    "gasLimit": "45020",
+    "hash": "0xe97a431a5a0c6c78c6254448efafe181484e0f229a9742f80d2e75a04ed24449",
+    "explorer": "https://testnet.monadexplorer.com/tx/0xe97a431a5a0c6c78c6254448efafe181484e0f229a9742f80d2e75a04ed24449",
+    "gasUsed": "45020",
+    "effectiveGasPrice": "102000000000",
+    "feePaid": "4592040000000000",
+    "predictedByLimit": "4592040000000000",
+    "predictedByUsed": "4592040000000000",
+    "status": "success"
+  },
+  "twoX": {
+    "gasLimit": "90040",
+    "hash": "0x4515f156d6a957afd78d9fc2059e4efc55705c0c08b4072c08eb7e63fa8c53d6",
+    "explorer": "https://testnet.monadexplorer.com/tx/0x4515f156d6a957afd78d9fc2059e4efc55705c0c08b4072c08eb7e63fa8c53d6",
+    "gasUsed": "90040",
+    "effectiveGasPrice": "102000000000",
+    "feePaid": "9184080000000000",
+    "predictedByLimit": "9184080000000000",
+    "predictedByUsed": "9184080000000000",
+    "status": "success"
+  },
+  "feeDifference": "4592040000000000",
+  "limitDifferenceTimesPrice": "4592040000000000",
+  "chargedOnLimit": true,
+  "gasUsedIdentical": false
+}

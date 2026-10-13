@@ -1,6 +1,6 @@
 # DISCOVERY
 
-Phase 0 record for Touchplate. Every figure below comes from a script in `spikes/` run against the live Monad testnet RPC (chain 10143) or from the named source file. Items that need a funded account are marked PENDING and carry no invented numbers.
+Phase 0 record for Touchplate. Every figure below comes from a script in `spikes/` run against the live Monad testnet RPC (chain 10143) or from the named source file. Transactions were sent from a throwaway spike account on testnet; hashes are listed inline.
 
 Run date: 2026-10-13. Public RPC: `https://testnet-rpc.monad.xyz`, WS: `wss://testnet-rpc.monad.xyz`.
 
@@ -35,7 +35,15 @@ Subscription payload (raw samples in `spikes/out/s1-ws-*.json`):
 
 Block interval (`spikes/s1-block-interval.json`): 0.304 s per block over 1,000 blocks, 0.3032 over 100,000. Gas limit per block 150,000,000, base fee 100 gwei.
 
-Own-transaction timing (100 txs): PENDING funding. Script: `spikes/funded.ts s1`.
+Own-transaction timing (`spikes/s1-ladder.json`, 100 self-transfers at 21,000 gas, one every 700 ms, rung times from `monadNewHeads` keyed by block hash, measured from just before `eth_sendRawTransaction`):
+
+| Submit to | n | min ms | p50 ms | p90 ms | p99 ms |
+|---|---|---|---|---|---|
+| Receipt seen (polled) | 100 | 566 | 1041 | 1637 | 4543 |
+| Proposed | 100 | 444 | 763 | 1347 | 4290 |
+| Voted | 100 | 750 | 1058 | 1718 | 4735 |
+| Finalized | 100 | 1027 | 1324 | 1945 | 4861 |
+| Verified | 100 | 1946 | 2224 | 2867 | 5741 |
 
 ### Verified is native, and D is 3
 
@@ -55,7 +63,16 @@ Source: `spikes/s4/src/P256Probe.sol`, `spikes/s4-sim.ts`, output `spikes/s4-sim
 | High-s (malleated) signature | rejected | 37,645 |
 | Solidity fallback path, valid-shaped input | n/a | 256,353 |
 
-Direct staticcall to `0x0000000000000000000000000000000000000100`: valid 160-byte input returns `0x...01`, tampered input returns empty. The precompile exists on testnet and the OpenZeppelin `WebAuthn` library verifies a browser-produced assertion against it. On-chain transactions for this spike: PENDING funding (`funded.ts s4`).
+Direct staticcall to `0x0000000000000000000000000000000000000100`: valid 160-byte input returns `0x...01`, tampered input returns empty. The precompile exists on testnet and the OpenZeppelin `WebAuthn` library verifies a browser-produced assertion against it. 
+On-chain (probe `0xbae6c16d54a76ae3539f7fdcd2617db236f9244a`, deploy tx `0x002f02c73d7ed6e53f01aea96af79bde432500f7057829c8f973ec696e94dcdd`, `spikes/s4-onchain.json`):
+
+| Transaction | Event `ok` | Tx hash |
+|---|---|---|
+| Valid assertion | true | `0x7e3d531fae2b431e69485cfa20a1e97c5ff128b446e8bc6c14183e61d31c688c` |
+| Tampered signature | false | `0x44772f9b09d483101e1335f3d08e79f633f1f55669212315026cfb2d6b68b8b4` |
+| Wrong challenge | false | `0x79c8363350fc713310ef934006dbac7dae1846041300a272fa014f592801929b` |
+
+Note: receipts on Monad report `gasUsed` equal to the declared limit (see S2), so the on-chain `gasUsed` values (54,024 / 62,674 / 44,750) are 1.2x the estimate and are not the execution cost. Use the `estimateGas` figures above.
 
 ### Passkey key families (S3)
 
@@ -130,7 +147,8 @@ Pass reading: PSNR at least 40 dB, z at least 6 after JPEG q70 and resize 1080 o
 
 ### Qwen (S7)
 
-From the Alibaba Cloud Model Studio OpenAI-compatibility page (fetched 2026-10-13): model id `qwen3.8-max` (a dated snapshot `qwen3.8-max-0902` is also listed). Base URLs are workspace scoped: Singapore `https://{WorkspaceId}.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1`, US `https://dashscope-us.aliyuncs.com/compatible-mode/v1`, Hong Kong and Tokyo follow the same pattern. An API key works only in the region it was created. Tool-calling round trip: PENDING (needs `QWEN_API_KEY` and the workspace id). Documentation-verified only; not yet run.
+From the Alibaba Cloud Model Studio OpenAI-compatibility page (fetched 2026-10-13): model id `qwen3.8-max` (a dated snapshot `qwen3.8-max-0902` is also listed). Base URLs are workspace scoped: Singapore `https://{WorkspaceId}.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1`, US `https://dashscope-us.aliyuncs.com/compatible-mode/v1`, Hong Kong and Tokyo follow the same pattern. An API key works only in the region it was created. 
+Run result (`spikes/s7-qwen.mjs`, `spikes/s7-qwen.json`): the workspace key was rejected by the US host (401) and accepted by `https://dashscope-intl.aliyuncs.com/compatible-mode/v1` with model `qwen3.8-max`. The model returned a `lookup_registry` tool call with well-formed JSON arguments, accepted a tool result, and produced a final answer (781 tokens total). Tool calling is verified.
 
 ### AUSD (S8)
 
@@ -138,7 +156,7 @@ Source: `spikes/s8-probe.mjs`, `s8-faucet-sim.mjs`, `s8-impl.mjs`.
 
 - Testnet AUSD `0xa9012a055bd4e0eDfF8Ce09f960291C09D5322dC`: `name AUSD`, `symbol AUSD`, `decimals 6`, 5,937 bytes of code, identical size to the mainnet token `0x00000000eFE302BEAA2b3e6e1b18d08D69a9012a` (`decimals 6`).
 - Faucet `0xd236c18D274E54FAccC3dd9DDA4b27965a73ee6C` is an ERC-1967 proxy; implementation `0xba804df5c476e8eaef87bf8085f295300cce2a49` contains selector `0x544c7cf9` (`requestFunds(address)`) and `token()`. A simulated `requestFunds(user)` from an unfunded address succeeds; estimateGas 130,600. The faucet holds 993,684,600,000,001 base units of AUSD.
-- Balance increase from a real faucet transaction: PENDING funding (`funded.ts s8`).
+- Real faucet transaction `0x3249c919995907007449f3f3b37a1dc524409eb726448d6956576dea20f2d3ff` (success): AUSD balance 0 to 10,000,000,000 base units, which is 10,000 AUSD at 6 decimals.
 
 ### Storage pages (S9)
 
@@ -154,7 +172,14 @@ Decision: keep an entry in one struct of at most 4 slots in a single page (layou
 
 ### Gas is charged on the declared limit (S2)
 
-Documented in the Monad gas-pricing page. Measurement from own transactions at 1x and 2x of `gasUsed`: PENDING funding (`funded.ts s2`).
+Same call (WebAuthn attest) sent with the estimated limit and with twice that (`spikes/s2-gas.json`), effective gas price 102 gwei:
+
+| Limit | Tx | Fee paid | Receipt gasUsed |
+|---|---|---|---|
+| 45,020 | `0xe97a431a5a0c6c78c6254448efafe181484e0f229a9742f80d2e75a04ed24449` | 0.00459204 MON | 45,020 |
+| 90,040 | `0x4515f156d6a957afd78d9fc2059e4efc55705c0c08b4072c08eb7e63fa8c53d6` | 0.00918408 MON | 90,040 |
+
+Fee difference equals (limit difference x price) exactly, and the receipt reports `gasUsed` equal to the limit. Doubling the limit doubled the fee for identical execution, so every client transaction must set a tight explicit limit (I10).
 
 ## 4. Why existing approaches fail
 
@@ -172,7 +197,7 @@ A creator can seal a batch of images with one passkey touch, wait for that block
 
 ## 7. One failure mode
 
-Cropping. PDQ matches nothing beyond about 2 to 3% crop per axis and the mark does not survive a crop, so a thief who crops a stolen copy can evade `recordPriority` and the mark proof. This is reported, not hidden (see implications below).
+Cropping. PDQ matches nothing beyond about 2 to 3% crop per axis and the mark does not survive a crop, so a thief who crops a stolen copy can evade `recordPriority` and the mark proof. This is reported, not hidden, and is declared out of scope (see implications below and `docs/LIMITATIONS.md`).
 
 ## 8. One reproducible demonstration
 
@@ -191,7 +216,7 @@ npx tsx s5-roundtrip.ts        # file hash vs PDQ after platform-style transform
 3. Entry storage: at most 4 slots in one page. `root` and `manifestHash` need not be stored if the events carry them and no function reads them back.
 4. Client must low-S normalise every assertion. Prefer a native-only P-256 verification so an invalid signature does not pay the presence probe.
 5. Rotated or flipped copies: the PDQ reference states that picking one canonical dihedral hash is not stable. `recordPriority` therefore needs the earlier author's eight dihedral variants committed (one extra slot for a Merkle root over them) and a proof of the variant used.
-6. Crops: the shipped claim must say "re-encoding, resizing, colour change, flip and rotation", not "modest crops". Mitigations to decide before Phase 1: commit hashes of a small set of centre-crop variants; make mark detection search grid offsets; or state crop as out of scope in LIMITATIONS.
+6. Crops: decision by 0xkinno is that large crops are out of scope for the watermark. No offset search and no crop variants are added. The shipped claim says "re-encoding, resizing, colour change, flip and rotation", the bench reports PDQ recall for 5, 10 and 20% centre crops as measured, and the result is stated in LIMITATIONS and the README boundaries section.
 7. Gas: set explicit limits from the committed profile; the precompile path costs about 43k for a whole call, the Solidity fallback about 256k.
 
 ## 10. Break plan and proof plan
@@ -205,8 +230,8 @@ Proof plan: 300 registered and 1,000 distractor images, ten simulated platform t
 | Gate item | Status |
 |---|---|
 | Discovered something non-obvious | Yes: native Verified, per-page storage pricing, narrow crop tolerance, rotation canonicalisation caveat |
-| Reproduced it | Yes for everything not marked PENDING |
+| Reproduced it | Yes, including on-chain transactions for S2, S4 and S8 |
 | Product exists because of it | Yes |
 | Break plan written | Yes (section 10) |
 | Proof plan written | Yes (section 10) |
-| Funded spikes S1 (own txs), S2, S4 (on-chain), S8 (faucet tx), S7 (tool call) | PENDING: need testnet MON for `0xDe1413543adAB1C07f87Ff23Eb39946EBc19a20D` and a Qwen key |
+| Funded spikes S1, S2, S4, S7, S8 | Done, see sections above |

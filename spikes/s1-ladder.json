@@ -1,0 +1,949 @@
+{
+  "count": 100,
+  "from": "0xDe1413543adAB1C07f87Ff23Eb39946EBc19a20D",
+  "note": "self-transfers, gas 21000; rung times from monadNewHeads commitState keyed by block hash; submit = just before eth_sendRawTransaction",
+  "distribution": {
+    "submitToReceiptMs": {
+      "n": 100,
+      "min": 566,
+      "p50": 1041,
+      "p90": 1637,
+      "p99": 4543,
+      "max": 4543
+    },
+    "submitToProposedMs": {
+      "n": 100,
+      "min": 444,
+      "p50": 763,
+      "p90": 1347,
+      "p99": 4290,
+      "max": 4290
+    },
+    "submitToVotedMs": {
+      "n": 100,
+      "min": 750,
+      "p50": 1058,
+      "p90": 1718,
+      "p99": 4735,
+      "max": 4735
+    },
+    "submitToFinalizedMs": {
+      "n": 100,
+      "min": 1027,
+      "p50": 1324,
+      "p90": 1945,
+      "p99": 4861,
+      "max": 4861
+    },
+    "submitToVerifiedMs": {
+      "n": 100,
+      "min": 1946,
+      "p50": 2224,
+      "p90": 2867,
+      "p99": 5741,
+      "max": 5741
+    }
+  },
+  "rows": [
+    {
+      "hash": "0xf0a84c303c2e179ff409281e3bdffad331488ef5c50ae9e114ae58e5efa88aee",
+      "block": "70698438",
+      "submitToReceiptMs": 833,
+      "submitToProposedMs": 763,
+      "submitToVotedMs": 1068,
+      "submitToFinalizedMs": 1325,
+      "submitToVerifiedMs": 2245
+    },
+    {
+      "hash": "0x90d94584ebeaab5f328ea343c86d8e04041b1749972a885f48c9f0d8c11da836",
+      "block": "70698441",
+      "submitToReceiptMs": 945,
+      "submitToProposedMs": 649,
+      "submitToVotedMs": 822,
+      "submitToFinalizedMs": 1104,
+      "submitToVerifiedMs": 2072
+    },
+    {
+      "hash": "0xfec89a1b8cdd95f2b19e9749192a8fb0df67526f4d004b9a46215198c04f71c5",
+      "block": "70698445",
+      "submitToReceiptMs": 635,
+      "submitToProposedMs": 612,
+      "submitToVotedMs": 1007,
+      "submitToFinalizedMs": 1153,
+      "submitToVerifiedMs": 2085
+    },
+    {
+      "hash": "0x6fa91a83020f407daf6b7dd9b1cf30a6cae0a3bcf2394a8bce86a5b9132b9719",
+      "block": "70698449",
+      "submitToReceiptMs": 685,
+      "submitToProposedMs": 646,
+      "submitToVotedMs": 965,
+      "submitToFinalizedMs": 1241,
+      "submitToVerifiedMs": 2189
+    },
+    {
+      "hash": "0xdbd7fca9dd5549891e9a5c968fc77858c63b048775d2466bf28167825aee2ded",
+      "block": "70698454",
+      "submitToReceiptMs": 1283,
+      "submitToProposedMs": 998,
+      "submitToVotedMs": 1219,
+      "submitToFinalizedMs": 1500,
+      "submitToVerifiedMs": 2413
+    },
+    {
+      "hash": "0xb4f932955edb844bc88dcc12adf9a3c730971cc81f2ace3f5e2b007f725042e0",
+      "block": "70698458",
+      "submitToReceiptMs": 892,
+      "submitToProposedMs": 635,
+      "submitToVotedMs": 937,
+      "submitToFinalizedMs": 1224,
+      "submitToVerifiedMs": 2149
+    },
+    {
+      "hash": "0xeac091e4c84ff84f28b7298350aef84f22e8fed7a98d9fd4b38cdd1596d9084f",
+      "block": "70698461",
+      "submitToReceiptMs": 577,
+      "submitToProposedMs": 444,
+      "submitToVotedMs": 750,
+      "submitToFinalizedMs": 1033,
+      "submitToVerifiedMs": 1946
+    },
+    {
+      "hash": "0xab5eba9833b961c0a8d7d53127a9a5ee2062e5f45359a5a7dd56a103091348e5",
+      "block": "70698465",
+      "submitToReceiptMs": 589,
+      "submitToProposedMs": 566,
+      "submitToVotedMs": 858,
+      "submitToFinalizedMs": 1128,
+      "submitToVerifiedMs": 2031
+    },
+    {
+      "hash": "0xcefc8715b1d387561aebd21a3e5b343a33ab060a394e73eae803af8b064ff314",
+      "block": "70698469",
+      "submitToReceiptMs": 942,
+      "submitToProposedMs": 671,
+      "submitToVotedMs": 942,
+      "submitToFinalizedMs": 1229,
+      "submitToVerifiedMs": 2147
+    },
+    {
+      "hash": "0xf6f50c5a2a1559a248250bb8935df9db431cdf1994da41e83be07de29d40bea6",
+      "block": "70698473",
+      "submitToReceiptMs": 1064,
+      "submitToProposedMs": 821,
+      "submitToVotedMs": 987,
+      "submitToFinalizedMs": 1273,
+      "submitToVerifiedMs": 2165
+    },
+    {
+      "hash": "0x00790f7124134d95bbb4491e277e069dff3f3b21d17465a522617e4619af7f45",
+      "block": "70698477",
+      "submitToReceiptMs": 1195,
+      "submitToProposedMs": 620,
+      "submitToVotedMs": 922,
+      "submitToFinalizedMs": 1214,
+      "submitToVerifiedMs": 2107
+    },
+    {
+      "hash": "0x3c14605de6a6977daf6674d3162571ea21a48f06b88b09493f9f31d333caa17a",
+      "block": "70698481",
+      "submitToReceiptMs": 1071,
+      "submitToProposedMs": 725,
+      "submitToVotedMs": 1208,
+      "submitToFinalizedMs": 1309,
+      "submitToVerifiedMs": 2220
+    },
+    {
+      "hash": "0x62f0ca1f0af27be4a4de24251c9e56800634867033918d05858ec8fcb6329582",
+      "block": "70698489",
+      "submitToReceiptMs": 2103,
+      "submitToProposedMs": 2005,
+      "submitToVotedMs": 2287,
+      "submitToFinalizedMs": 2578,
+      "submitToVerifiedMs": 3504
+    },
+    {
+      "hash": "0x6fc1db63ea8ef9270c5ad7ad0e308ed82d549d55b93b15c8b960742ce85251e9",
+      "block": "70698503",
+      "submitToReceiptMs": 4543,
+      "submitToProposedMs": 4290,
+      "submitToVotedMs": 4735,
+      "submitToFinalizedMs": 4861,
+      "submitToVerifiedMs": 5741
+    },
+    {
+      "hash": "0x147ca9ac9865db659d3a162a428164c8d75e8b689dea20932716390b681ed0a2",
+      "block": "70698507",
+      "submitToReceiptMs": 1219,
+      "submitToProposedMs": 767,
+      "submitToVotedMs": 1017,
+      "submitToFinalizedMs": 1310,
+      "submitToVerifiedMs": 2205
+    },
+    {
+      "hash": "0x95e6da7277cc1cb883ba172db09b8110e869586ef047e586568899b6cda2a334",
+      "block": "70698510",
+      "submitToReceiptMs": 596,
+      "submitToProposedMs": 503,
+      "submitToVotedMs": 927,
+      "submitToFinalizedMs": 1086,
+      "submitToVerifiedMs": 1992
+    },
+    {
+      "hash": "0x51dab84e156d0a1040b92cc6c541e9683e057443827bb7a6f751518e340c799d",
+      "block": "70698514",
+      "submitToReceiptMs": 888,
+      "submitToProposedMs": 601,
+      "submitToVotedMs": 890,
+      "submitToFinalizedMs": 1177,
+      "submitToVerifiedMs": 2098
+    },
+    {
+      "hash": "0xd57bcb293d39038e6ba7cf5efde8ac5eb2100e04cbc5dbde5b2b5ac228e49fa4",
+      "block": "70698518",
+      "submitToReceiptMs": 1004,
+      "submitToProposedMs": 723,
+      "submitToVotedMs": 1012,
+      "submitToFinalizedMs": 1302,
+      "submitToVerifiedMs": 2224
+    },
+    {
+      "hash": "0x81a6cbecafd84a1f46e3017cbf5b40fdfc694aa1cd2f8847a6489a92aa8d0e33",
+      "block": "70698522",
+      "submitToReceiptMs": 1381,
+      "submitToProposedMs": 842,
+      "submitToVotedMs": 1136,
+      "submitToFinalizedMs": 1425,
+      "submitToVerifiedMs": 2313
+    },
+    {
+      "hash": "0x72249bfa48a1bdfc5425fcc9e3a11f77cf70ccc3eebee21f5a937adc82a3c334",
+      "block": "70698526",
+      "submitToReceiptMs": 827,
+      "submitToProposedMs": 759,
+      "submitToVotedMs": 1221,
+      "submitToFinalizedMs": 1371,
+      "submitToVerifiedMs": 2261
+    },
+    {
+      "hash": "0xdf0c0fc10b2ca73f45d8927a748c97e6c0f37f523a4d5cedfbb91225606c020d",
+      "block": "70698530",
+      "submitToReceiptMs": 1229,
+      "submitToProposedMs": 885,
+      "submitToVotedMs": 1170,
+      "submitToFinalizedMs": 1464,
+      "submitToVerifiedMs": 2416
+    },
+    {
+      "hash": "0x5bfa50f5178450dfb5b6023975d6eb468352f67e7795103247a8752aec63bb28",
+      "block": "70698534",
+      "submitToReceiptMs": 900,
+      "submitToProposedMs": 841,
+      "submitToVotedMs": 1117,
+      "submitToFinalizedMs": 1369,
+      "submitToVerifiedMs": 2264
+    },
+    {
+      "hash": "0xb2dfc7aee991c8f8f423acede9afe19fc67e8addd6340dff95e3d6de7557169e",
+      "block": "70698538",
+      "submitToReceiptMs": 908,
+      "submitToProposedMs": 670,
+      "submitToVotedMs": 869,
+      "submitToFinalizedMs": 1157,
+      "submitToVerifiedMs": 2067
+    },
+    {
+      "hash": "0xef55bff9ef870284079568399779c17938e6b7960dc5939ee97adf2e1ea818c6",
+      "block": "70698542",
+      "submitToReceiptMs": 770,
+      "submitToProposedMs": 668,
+      "submitToVotedMs": 1219,
+      "submitToFinalizedMs": 1270,
+      "submitToVerifiedMs": 2173
+    },
+    {
+      "hash": "0x0e733566a35c2c282d23f4344fdc705e105eb13c584aec5581d94c28916a134e",
+      "block": "70698545",
+      "submitToReceiptMs": 933,
+      "submitToProposedMs": 634,
+      "submitToVotedMs": 795,
+      "submitToFinalizedMs": 1073,
+      "submitToVerifiedMs": 2076
+    },
+    {
+      "hash": "0x863d52b68c560837c5fe845d1241e45ecaca7da37cb1e8d5dc3bf2e88cdfd1c8",
+      "block": "70698549",
+      "submitToReceiptMs": 716,
+      "submitToProposedMs": 673,
+      "submitToVotedMs": 1033,
+      "submitToFinalizedMs": 1325,
+      "submitToVerifiedMs": 2100
+    },
+    {
+      "hash": "0x371ff60c6e59733c15e2c2c2612f45ed859d702f6f806aaeb62abe32469185db",
+      "block": "70698553",
+      "submitToReceiptMs": 766,
+      "submitToProposedMs": 702,
+      "submitToVotedMs": 1031,
+      "submitToFinalizedMs": 1330,
+      "submitToVerifiedMs": 2171
+    },
+    {
+      "hash": "0x3bf723b50a96507e5d5c1fbec73d50a2bcae11bf27f20461a3b210a5676edab0",
+      "block": "70698559",
+      "submitToReceiptMs": 1439,
+      "submitToProposedMs": 1347,
+      "submitToVotedMs": 1563,
+      "submitToFinalizedMs": 1795,
+      "submitToVerifiedMs": 2716
+    },
+    {
+      "hash": "0xf0cf8a230e4f01d50be50749b4d2e4fb95c8e3122e4a707ec35266d21a95a9be",
+      "block": "70698563",
+      "submitToReceiptMs": 968,
+      "submitToProposedMs": 788,
+      "submitToVotedMs": 1119,
+      "submitToFinalizedMs": 1358,
+      "submitToVerifiedMs": 2269
+    },
+    {
+      "hash": "0xc58cf60eccd7c602d95a09eb1f8ef51b744e0910eb8457e15c7b341898f4d216",
+      "block": "70698568",
+      "submitToReceiptMs": 1432,
+      "submitToProposedMs": 1115,
+      "submitToVotedMs": 1401,
+      "submitToFinalizedMs": 1682,
+      "submitToVerifiedMs": 2584
+    },
+    {
+      "hash": "0x46bd996debc08a5b0609ec47515c4e50ab2fbc80dad0b3505c7cdde1926329ab",
+      "block": "70698572",
+      "submitToReceiptMs": 1075,
+      "submitToProposedMs": 668,
+      "submitToVotedMs": 1113,
+      "submitToFinalizedMs": 1324,
+      "submitToVerifiedMs": 2184
+    },
+    {
+      "hash": "0x6bc39875db0d80f79999a0e208d2ed7b2cffe76edfd2dd31800ccce95065f914",
+      "block": "70698575",
+      "submitToReceiptMs": 1060,
+      "submitToProposedMs": 602,
+      "submitToVotedMs": 866,
+      "submitToFinalizedMs": 1061,
+      "submitToVerifiedMs": 1970
+    },
+    {
+      "hash": "0xf60b2c56917bb3480724dc46004dd2368fdba57c10270a8d1e3f48a950fc6875",
+      "block": "70698579",
+      "submitToReceiptMs": 1058,
+      "submitToProposedMs": 633,
+      "submitToVotedMs": 883,
+      "submitToFinalizedMs": 1177,
+      "submitToVerifiedMs": 2063
+    },
+    {
+      "hash": "0x74feb6298f65a044d819935783f01d1017f00a500d38b900d1e61dec17bc3dde",
+      "block": "70698584",
+      "submitToReceiptMs": 1102,
+      "submitToProposedMs": 978,
+      "submitToVotedMs": 1270,
+      "submitToFinalizedMs": 1554,
+      "submitToVerifiedMs": 2466
+    },
+    {
+      "hash": "0xa6bb7f11b4ca27a54b188c10de290470c6fdc3449184d910c65f1add1bb31893",
+      "block": "70698588",
+      "submitToReceiptMs": 796,
+      "submitToProposedMs": 742,
+      "submitToVotedMs": 1111,
+      "submitToFinalizedMs": 1349,
+      "submitToVerifiedMs": 2237
+    },
+    {
+      "hash": "0x6855c7bea92622ec2c850ebcac901b404a25dd1836e58f45640a18c09f7af1c8",
+      "block": "70698593",
+      "submitToReceiptMs": 1516,
+      "submitToProposedMs": 1211,
+      "submitToVotedMs": 1346,
+      "submitToFinalizedMs": 1638,
+      "submitToVerifiedMs": 2602
+    },
+    {
+      "hash": "0x883638877aab5dacca444c1c22fa502701a5b38c45bd6dd27fd2a8abf46d1cae",
+      "block": "70698596",
+      "submitToReceiptMs": 600,
+      "submitToProposedMs": 522,
+      "submitToVotedMs": 884,
+      "submitToFinalizedMs": 1179,
+      "submitToVerifiedMs": 2013
+    },
+    {
+      "hash": "0x916a3d3097a76a811a223f9db0b730553791f47dee7096f3b46d77ffcdcdd53f",
+      "block": "70698600",
+      "submitToReceiptMs": 1124,
+      "submitToProposedMs": 679,
+      "submitToVotedMs": 943,
+      "submitToFinalizedMs": 1219,
+      "submitToVerifiedMs": 2149
+    },
+    {
+      "hash": "0x39a995847e4e80d6fdd014a9e9675d926da74d10bcd4a84120b1db22fa971ef3",
+      "block": "70698604",
+      "submitToReceiptMs": 909,
+      "submitToProposedMs": 761,
+      "submitToVotedMs": 1045,
+      "submitToFinalizedMs": 1338,
+      "submitToVerifiedMs": 2242
+    },
+    {
+      "hash": "0x99a5252af1c6acf334dbd27e71aef84268d26608ccc64c12f39c37cbd1687f7e",
+      "block": "70698609",
+      "submitToReceiptMs": 1241,
+      "submitToProposedMs": 1182,
+      "submitToVotedMs": 1463,
+      "submitToFinalizedMs": 1747,
+      "submitToVerifiedMs": 2633
+    },
+    {
+      "hash": "0x5e403c8fd66688a452d28e4ded9ccb6188a6a34dc3bc4428cdae3c9f6d1ded6c",
+      "block": "70698614",
+      "submitToReceiptMs": 1133,
+      "submitToProposedMs": 1131,
+      "submitToVotedMs": 1429,
+      "submitToFinalizedMs": 1706,
+      "submitToVerifiedMs": 2633
+    },
+    {
+      "hash": "0x6ec0a6b3b1bc4bf37c97ee70d28bb3b6458d2780d19111176802fc5532ee53c4",
+      "block": "70698618",
+      "submitToReceiptMs": 913,
+      "submitToProposedMs": 782,
+      "submitToVotedMs": 1118,
+      "submitToFinalizedMs": 1374,
+      "submitToVerifiedMs": 2257
+    },
+    {
+      "hash": "0x2a104be9a99e49b2d0ea780f54a223577c6a22dc417e52243d13d20d803d665d",
+      "block": "70698626",
+      "submitToReceiptMs": 2214,
+      "submitToProposedMs": 1928,
+      "submitToVotedMs": 2310,
+      "submitToFinalizedMs": 2614,
+      "submitToVerifiedMs": 3438
+    },
+    {
+      "hash": "0x87d0e659ff901edf3b2b0b0ca258e0547734a2b9817444ade28108a336d8a1c7",
+      "block": "70698631",
+      "submitToReceiptMs": 955,
+      "submitToProposedMs": 892,
+      "submitToVotedMs": 1182,
+      "submitToFinalizedMs": 1470,
+      "submitToVerifiedMs": 2526
+    },
+    {
+      "hash": "0xc721132b89a0168b8f33a40044cb94baca65faf57e6ccf104b4477a56263255b",
+      "block": "70698635",
+      "submitToReceiptMs": 1303,
+      "submitToProposedMs": 947,
+      "submitToVotedMs": 1341,
+      "submitToFinalizedMs": 1401,
+      "submitToVerifiedMs": 2429
+    },
+    {
+      "hash": "0xc85f4044542dac8330031d61b6cb6e2c93df80fce6650f9124c057832251d4c5",
+      "block": "70698639",
+      "submitToReceiptMs": 1304,
+      "submitToProposedMs": 957,
+      "submitToVotedMs": 1299,
+      "submitToFinalizedMs": 1475,
+      "submitToVerifiedMs": 2365
+    },
+    {
+      "hash": "0xd1e6e070c64f12020c35761fd1aff203d96ff33987991c6ac72422e5ebf55c43",
+      "block": "70698644",
+      "submitToReceiptMs": 1489,
+      "submitToProposedMs": 1180,
+      "submitToVotedMs": 1570,
+      "submitToFinalizedMs": 1775,
+      "submitToVerifiedMs": 2867
+    },
+    {
+      "hash": "0x3c9c4df9054b11488d6d626ae8e71ed31178695f770ee79041cafaab3de18208",
+      "block": "70698648",
+      "submitToReceiptMs": 1210,
+      "submitToProposedMs": 892,
+      "submitToVotedMs": 1206,
+      "submitToFinalizedMs": 1269,
+      "submitToVerifiedMs": 2149
+    },
+    {
+      "hash": "0x266b0f493d0392b041407b9a84f8b78e55467810eb3949b50955abc39857596a",
+      "block": "70698655",
+      "submitToReceiptMs": 1893,
+      "submitToProposedMs": 1764,
+      "submitToVotedMs": 2042,
+      "submitToFinalizedMs": 2225,
+      "submitToVerifiedMs": 3148
+    },
+    {
+      "hash": "0x6077e8f9941a4560b226762a153c337b6bbe2290e23d8bf83476041f1a9aa073",
+      "block": "70698659",
+      "submitToReceiptMs": 1235,
+      "submitToProposedMs": 833,
+      "submitToVotedMs": 1114,
+      "submitToFinalizedMs": 1401,
+      "submitToVerifiedMs": 2300
+    },
+    {
+      "hash": "0xcfb7887a9d0eaf42059676952f220d9d8eaaabf4a748d7106f33a29f254edb60",
+      "block": "70698664",
+      "submitToReceiptMs": 1797,
+      "submitToProposedMs": 872,
+      "submitToVotedMs": 1226,
+      "submitToFinalizedMs": 1465,
+      "submitToVerifiedMs": 2352
+    },
+    {
+      "hash": "0xcb203f45122c5b177e5e494c462a2246aa00226c1b7b07d456a988227e5cd079",
+      "block": "70698671",
+      "submitToReceiptMs": 2014,
+      "submitToProposedMs": 1799,
+      "submitToVotedMs": 1930,
+      "submitToFinalizedMs": 2211,
+      "submitToVerifiedMs": 3147
+    },
+    {
+      "hash": "0x91ec9e2ad8dfb2f8e671d6d002f8c9b8cb109d3dcc23cb66108461126b8de868",
+      "block": "70698674",
+      "submitToReceiptMs": 894,
+      "submitToProposedMs": 594,
+      "submitToVotedMs": 774,
+      "submitToFinalizedMs": 1054,
+      "submitToVerifiedMs": 1949
+    },
+    {
+      "hash": "0xb4a6c396dbd6b5b65395e3c3888c995490c0b4b056b8b7899277229e3889d8be",
+      "block": "70698678",
+      "submitToReceiptMs": 898,
+      "submitToProposedMs": 630,
+      "submitToVotedMs": 872,
+      "submitToFinalizedMs": 1159,
+      "submitToVerifiedMs": 2090
+    },
+    {
+      "hash": "0x764efa48172f6a71194d7717529556cf778cd28c9fd8616445ac219cc5b49daa",
+      "block": "70698682",
+      "submitToReceiptMs": 1198,
+      "submitToProposedMs": 804,
+      "submitToVotedMs": 1007,
+      "submitToFinalizedMs": 1287,
+      "submitToVerifiedMs": 2182
+    },
+    {
+      "hash": "0xd9a1e01ce928f6247d69b566b4147af5b6ed379ddcf24dd293b562f987db646f",
+      "block": "70698686",
+      "submitToReceiptMs": 984,
+      "submitToProposedMs": 775,
+      "submitToVotedMs": 2026,
+      "submitToFinalizedMs": 2414,
+      "submitToVerifiedMs": 3007
+    },
+    {
+      "hash": "0xe8f85c4a37f0d3eb426db4ee67a769fe449fbc082426d700dee78f9a59c81836",
+      "block": "70698687",
+      "submitToReceiptMs": 908,
+      "submitToProposedMs": 685,
+      "submitToVotedMs": 810,
+      "submitToFinalizedMs": 1077,
+      "submitToVerifiedMs": 1977
+    },
+    {
+      "hash": "0xec7361baa43bc797a282c18d497299bbc7793763c5c382ed8ff5264db5fe3361",
+      "block": "70698691",
+      "submitToReceiptMs": 805,
+      "submitToProposedMs": 563,
+      "submitToVotedMs": 883,
+      "submitToFinalizedMs": 1164,
+      "submitToVerifiedMs": 2055
+    },
+    {
+      "hash": "0xcb42261165779437a81c19426d838878b6234cd05bba98a1b5b6630edaa88673",
+      "block": "70698695",
+      "submitToReceiptMs": 874,
+      "submitToProposedMs": 773,
+      "submitToVotedMs": 956,
+      "submitToFinalizedMs": 1239,
+      "submitToVerifiedMs": 2172
+    },
+    {
+      "hash": "0xb7ad052edee390145df65ca057ed03fe401ae1ac155e6386f0d45ada3020b663",
+      "block": "70698698",
+      "submitToReceiptMs": 783,
+      "submitToProposedMs": 481,
+      "submitToVotedMs": 787,
+      "submitToFinalizedMs": 1081,
+      "submitToVerifiedMs": 2013
+    },
+    {
+      "hash": "0xfd407d8016d84b44f4ef85eee3caaa363acf15436acfcab93b5e17edf5619f15",
+      "block": "70698702",
+      "submitToReceiptMs": 1085,
+      "submitToProposedMs": 732,
+      "submitToVotedMs": 921,
+      "submitToFinalizedMs": 1173,
+      "submitToVerifiedMs": 2080
+    },
+    {
+      "hash": "0xd719a942fbfa730cabb5d206877e25c694007a8dc4a5778ddee0da556b9a1c22",
+      "block": "70698706",
+      "submitToReceiptMs": 1097,
+      "submitToProposedMs": 726,
+      "submitToVotedMs": 995,
+      "submitToFinalizedMs": 1273,
+      "submitToVerifiedMs": 2229
+    },
+    {
+      "hash": "0x0eba89fdc304b51e4482158d4adfeda4aabd29d250a151c262717fa69dfbfdc8",
+      "block": "70698709",
+      "submitToReceiptMs": 780,
+      "submitToProposedMs": 518,
+      "submitToVotedMs": 858,
+      "submitToFinalizedMs": 1133,
+      "submitToVerifiedMs": 2025
+    },
+    {
+      "hash": "0xce1b86c115da631862cba7aea6374cc639a176ba0d0a51e1912ebb30d5f8ef13",
+      "block": "70698717",
+      "submitToReceiptMs": 2188,
+      "submitToProposedMs": 1842,
+      "submitToVotedMs": 2385,
+      "submitToFinalizedMs": 2451,
+      "submitToVerifiedMs": 3357
+    },
+    {
+      "hash": "0x2bc285902e0c6fa12ce3ef25bac693409f5ddcc4a868778f914fa9e1f0fdb925",
+      "block": "70698728",
+      "submitToReceiptMs": 3155,
+      "submitToProposedMs": 2812,
+      "submitToVotedMs": 3230,
+      "submitToFinalizedMs": 3333,
+      "submitToVerifiedMs": 4289
+    },
+    {
+      "hash": "0x86a61c1bf73ee87ba30ab2dd95c9fe38dd2081d571dc0a1cfc2f895d8f6d7ba5",
+      "block": "70698732",
+      "submitToReceiptMs": 854,
+      "submitToProposedMs": 781,
+      "submitToVotedMs": 1014,
+      "submitToFinalizedMs": 1238,
+      "submitToVerifiedMs": 2222
+    },
+    {
+      "hash": "0xbb3a631c3a80014882eb284f79dd23c15b016842cdc11bdee1dcd7b0e8b36d82",
+      "block": "70698737",
+      "submitToReceiptMs": 1169,
+      "submitToProposedMs": 1040,
+      "submitToVotedMs": 1282,
+      "submitToFinalizedMs": 1578,
+      "submitToVerifiedMs": 2451
+    },
+    {
+      "hash": "0x83e98d36b0b00135d0fe5c56ad47b2c48a7526b2db5fd52fe5200ef572fd1da6",
+      "block": "70698742",
+      "submitToReceiptMs": 1015,
+      "submitToProposedMs": 930,
+      "submitToVotedMs": 1340,
+      "submitToFinalizedMs": 1527,
+      "submitToVerifiedMs": 2445
+    },
+    {
+      "hash": "0x08f4a95b3a4b8b2a4d11ccafb81fc2c91234c144d49751db87f214d2e02cd9a2",
+      "block": "70698745",
+      "submitToReceiptMs": 1134,
+      "submitToProposedMs": 735,
+      "submitToVotedMs": 799,
+      "submitToFinalizedMs": 1090,
+      "submitToVerifiedMs": 1988
+    },
+    {
+      "hash": "0x2861199ce180d18e6b99efd6988e8f983f41c3a8b764949d6a271d1a313d0046",
+      "block": "70698750",
+      "submitToReceiptMs": 1113,
+      "submitToProposedMs": 935,
+      "submitToVotedMs": 1204,
+      "submitToFinalizedMs": 1479,
+      "submitToVerifiedMs": 2447
+    },
+    {
+      "hash": "0xd1007be7c4098ceee5754411b3ac3575a99678fe7cda2b43efe639642582d945",
+      "block": "70698754",
+      "submitToReceiptMs": 1637,
+      "submitToProposedMs": 856,
+      "submitToVotedMs": 1134,
+      "submitToFinalizedMs": 1355,
+      "submitToVerifiedMs": 2373
+    },
+    {
+      "hash": "0xbd13e7f80b522788f25bc8a101da0e66cdc4f1b93a77243c2f66a657f72b7418",
+      "block": "70698759",
+      "submitToReceiptMs": 1524,
+      "submitToProposedMs": 1198,
+      "submitToVotedMs": 1567,
+      "submitToFinalizedMs": 1682,
+      "submitToVerifiedMs": 2591
+    },
+    {
+      "hash": "0x6b3aa5509261a6824ca78ee43ca50d912bcb4ab9e12b38ebb9efa88038243e77",
+      "block": "70698763",
+      "submitToReceiptMs": 652,
+      "submitToProposedMs": 738,
+      "submitToVotedMs": 989,
+      "submitToFinalizedMs": 1167,
+      "submitToVerifiedMs": 2153
+    },
+    {
+      "hash": "0x5aebbc329812624b8f4a0fa0ad9fdb62d8274e4003450c8e7281423ec8bbd2d5",
+      "block": "70698767",
+      "submitToReceiptMs": 895,
+      "submitToProposedMs": 724,
+      "submitToVotedMs": 1002,
+      "submitToFinalizedMs": 1205,
+      "submitToVerifiedMs": 2131
+    },
+    {
+      "hash": "0x31806c230f49016ad6541f71fa03c241edc922ab34b80ed09f56f897f0a637f9",
+      "block": "70698771",
+      "submitToReceiptMs": 899,
+      "submitToProposedMs": 768,
+      "submitToVotedMs": 1047,
+      "submitToFinalizedMs": 1316,
+      "submitToVerifiedMs": 2255
+    },
+    {
+      "hash": "0xf0f91f20bd3c48bd656b72d854d307bbd97e53c429a6e3e0e22181b51461af7a",
+      "block": "70698774",
+      "submitToReceiptMs": 1192,
+      "submitToProposedMs": 746,
+      "submitToVotedMs": 905,
+      "submitToFinalizedMs": 1150,
+      "submitToVerifiedMs": 2088
+    },
+    {
+      "hash": "0x89de1246cff06300cf4cbff0e9c656d795d1cbca3288bb871de10c1cb8324d60",
+      "block": "70698778",
+      "submitToReceiptMs": 1127,
+      "submitToProposedMs": 779,
+      "submitToVotedMs": 978,
+      "submitToFinalizedMs": 1263,
+      "submitToVerifiedMs": 2187
+    },
+    {
+      "hash": "0x3f5d023c5d75bdc11bc9de8ba8b7e6d5ebacfa770daefb4d7ed3382adb046074",
+      "block": "70698784",
+      "submitToReceiptMs": 1827,
+      "submitToProposedMs": 1542,
+      "submitToVotedMs": 1684,
+      "submitToFinalizedMs": 1945,
+      "submitToVerifiedMs": 2815
+    },
+    {
+      "hash": "0x04feb49dea77c8488e028418ecff4bd5ea0ebaaa36817a250ca841cd6263f93a",
+      "block": "70698787",
+      "submitToReceiptMs": 600,
+      "submitToProposedMs": 515,
+      "submitToVotedMs": 811,
+      "submitToFinalizedMs": 1083,
+      "submitToVerifiedMs": 1988
+    },
+    {
+      "hash": "0xc28ab2c91a3802e860fee57b41f8c4f29689eaecf744b6980efabbcc84d05233",
+      "block": "70698791",
+      "submitToReceiptMs": 600,
+      "submitToProposedMs": 573,
+      "submitToVotedMs": 982,
+      "submitToFinalizedMs": 1168,
+      "submitToVerifiedMs": 2092
+    },
+    {
+      "hash": "0x08eb3b98a07309ba858c492edf264a44af58ac3ceace626707e6119002cd7a65",
+      "block": "70698795",
+      "submitToReceiptMs": 1351,
+      "submitToProposedMs": 717,
+      "submitToVotedMs": 996,
+      "submitToFinalizedMs": 1278,
+      "submitToVerifiedMs": 2230
+    },
+    {
+      "hash": "0xe96e4a9fe8544e48f4bb7918607b950fea3bafb4b5f1395bb14c1a6fcc97c754",
+      "block": "70698801",
+      "submitToReceiptMs": 1399,
+      "submitToProposedMs": 1404,
+      "submitToVotedMs": 1692,
+      "submitToFinalizedMs": 1982,
+      "submitToVerifiedMs": 2948
+    },
+    {
+      "hash": "0x37b40a9305afa10c4858bffe05d6cc748fc2f5a245ebf373a65c2d64d2873d95",
+      "block": "70698805",
+      "submitToReceiptMs": 1065,
+      "submitToProposedMs": 767,
+      "submitToVotedMs": 1055,
+      "submitToFinalizedMs": 1298,
+      "submitToVerifiedMs": 2202
+    },
+    {
+      "hash": "0x9c960020db3bee4157d8a481f83bbb98394074611aa8a2346854ccab0e064897",
+      "block": "70698811",
+      "submitToReceiptMs": 1463,
+      "submitToProposedMs": 1283,
+      "submitToVotedMs": 1718,
+      "submitToFinalizedMs": 1824,
+      "submitToVerifiedMs": 2708
+    },
+    {
+      "hash": "0x92cc13430ae9e36703ea2611d5e752e8bac9770d4128f2386af981211944e107",
+      "block": "70698815",
+      "submitToReceiptMs": 883,
+      "submitToProposedMs": 755,
+      "submitToVotedMs": 1058,
+      "submitToFinalizedMs": 1350,
+      "submitToVerifiedMs": 2241
+    },
+    {
+      "hash": "0xf02fc6a0daca7adaf53fcd7d6fe8f9113bdb11951a9439e3441338b301b7d42a",
+      "block": "70698819",
+      "submitToReceiptMs": 588,
+      "submitToProposedMs": 563,
+      "submitToVotedMs": 1046,
+      "submitToFinalizedMs": 1219,
+      "submitToVerifiedMs": 2128
+    },
+    {
+      "hash": "0x7d1d16e7218fa1c491527fa4b00d70113045cc095d8cd32a35a44d54e6c8c2ec",
+      "block": "70698824",
+      "submitToReceiptMs": 1205,
+      "submitToProposedMs": 1029,
+      "submitToVotedMs": 1319,
+      "submitToFinalizedMs": 1555,
+      "submitToVerifiedMs": 2447
+    },
+    {
+      "hash": "0x4ab76e8ce10009a27fd843e3ac45500bdc292f76e8c1c4a023e9a88493ff2939",
+      "block": "70698827",
+      "submitToReceiptMs": 566,
+      "submitToProposedMs": 452,
+      "submitToVotedMs": 756,
+      "submitToFinalizedMs": 1027,
+      "submitToVerifiedMs": 1953
+    },
+    {
+      "hash": "0xfcc804384cec24cdc5798b35fed1a724059e28c0fd2819f2522599a09c089c1e",
+      "block": "70698831",
+      "submitToReceiptMs": 989,
+      "submitToProposedMs": 630,
+      "submitToVotedMs": 871,
+      "submitToFinalizedMs": 1141,
+      "submitToVerifiedMs": 2087
+    },
+    {
+      "hash": "0xa2dd96ffb958980f7d8f00ca3db38b6ffdee4d02e67d222eb3f6b1a5fd08efe1",
+      "block": "70698835",
+      "submitToReceiptMs": 788,
+      "submitToProposedMs": 692,
+      "submitToVotedMs": 1141,
+      "submitToFinalizedMs": 1256,
+      "submitToVerifiedMs": 2179
+    },
+    {
+      "hash": "0xdc9c238cd3ea586ae03a88ebbd76b6c9b2fad734247d97487fe34428fdee3a3f",
+      "block": "70698838",
+      "submitToReceiptMs": 1039,
+      "submitToProposedMs": 635,
+      "submitToVotedMs": 769,
+      "submitToFinalizedMs": 1058,
+      "submitToVerifiedMs": 1946
+    },
+    {
+      "hash": "0x112edeec1113919b5af21e8252388634fadb7cbd74c018e58ef8efddb8e4849c",
+      "block": "70698843",
+      "submitToReceiptMs": 1041,
+      "submitToProposedMs": 850,
+      "submitToVotedMs": 1287,
+      "submitToFinalizedMs": 1437,
+      "submitToVerifiedMs": 2393
+    },
+    {
+      "hash": "0xec805dd36eb3adf5e9902d01139a9188efeb330b36aeca10eb4621f4ff21c02b",
+      "block": "70698846",
+      "submitToReceiptMs": 585,
+      "submitToProposedMs": 521,
+      "submitToVotedMs": 832,
+      "submitToFinalizedMs": 1110,
+      "submitToVerifiedMs": 2011
+    },
+    {
+      "hash": "0x5219c9fcfeb59f914ada98edee2a3b5f304edf0b6969b0425ab9c7fc6a2c6b7c",
+      "block": "70698852",
+      "submitToReceiptMs": 1446,
+      "submitToProposedMs": 1280,
+      "submitToVotedMs": 1745,
+      "submitToFinalizedMs": 1809,
+      "submitToVerifiedMs": 2741
+    },
+    {
+      "hash": "0x56294d8c8f4564b5a8f7db28b9c4bc45c11c3efe3d73b4d853ea437a5062d104",
+      "block": "70698856",
+      "submitToReceiptMs": 821,
+      "submitToProposedMs": 826,
+      "submitToVotedMs": 1092,
+      "submitToFinalizedMs": 1376,
+      "submitToVerifiedMs": 2267
+    },
+    {
+      "hash": "0x6a12c1efd5cc6147e8475ea669804ea5cba9a1c8d6e491d2a9bb9bfdf60a2af4",
+      "block": "70698860",
+      "submitToReceiptMs": 904,
+      "submitToProposedMs": 632,
+      "submitToVotedMs": 1035,
+      "submitToFinalizedMs": 1325,
+      "submitToVerifiedMs": 2147
+    },
+    {
+      "hash": "0x4eb3f70c2d06c2384e58dfad06cd47d43be08d40d4a08eb0b6dc192932e306f3",
+      "block": "70698864",
+      "submitToReceiptMs": 980,
+      "submitToProposedMs": 756,
+      "submitToVotedMs": 1148,
+      "submitToFinalizedMs": 1345,
+      "submitToVerifiedMs": 2245
+    },
+    {
+      "hash": "0xaa4572c23d38534228a2a51d055a00bf590458b1d332bc4f26f2c955684806bd",
+      "block": "70698869",
+      "submitToReceiptMs": 1333,
+      "submitToProposedMs": 1146,
+      "submitToVotedMs": 1297,
+      "submitToFinalizedMs": 1585,
+      "submitToVerifiedMs": 2507
+    },
+    {
+      "hash": "0x565a763c3bfeceb98da6da7b6e22a1c0a3a56a9e5aad42a4b9c674453f036bad",
+      "block": "70698873",
+      "submitToReceiptMs": 900,
+      "submitToProposedMs": 738,
+      "submitToVotedMs": 967,
+      "submitToFinalizedMs": 1255,
+      "submitToVerifiedMs": 2193
+    },
+    {
+      "hash": "0xd8e82eeb09fd1115c176b16a34177e1d4cbc04c185290580676d310e2aca3233",
+      "block": "70698877",
+      "submitToReceiptMs": 1109,
+      "submitToProposedMs": 1029,
+      "submitToVotedMs": 1095,
+      "submitToFinalizedMs": 1363,
+      "submitToVerifiedMs": 2269
+    }
+  ]
+}

@@ -1,24 +1,26 @@
 # PROGRESS
 
-## Session 1 (Phase 0)
+## Session 1: Phase 0 complete
 
-Done and verified (see `docs/DISCOVERY.md` for outputs):
-- Repository, ignore rules, authorship config, workspace, Foundry toolchain in `.tools/` (ignored).
-- Reference research completed under `reference/` (ignored).
-- S1 block-level ladder, S3 key families, S4 precompile verification (simulated on the live RPC), S5 PDQ parity and transform behaviour, S6 watermark, S7 model id from documentation, S8 token and faucet interface, S9 storage layout.
+All Phase 0 tasks are verified with evidence in `docs/DISCOVERY.md`, `EVIDENCE.md` and `spikes/*.json`. Two documented exceptions: S5 (one degenerate synthetic image) and S6 (one unmarked value at |z| 3.02 of 400).
 
-Open, all blocked on inputs only 0xkinno can supply:
-1. Testnet MON for `0xDe1413543adAB1C07f87Ff23Eb39946EBc19a20D` (a throwaway spike key in the ignored `spikes/.env`). The faucet is behind a bot challenge, so it must be claimed by hand at https://faucet.monad.xyz. Then `cd spikes && npx tsx funded.ts` runs S8, S4, S2 and S1 and writes the evidence files.
-2. `QWEN_API_KEY` and the Model Studio workspace id for the S7 tool-call round trip.
-3. The git author email for 0xkinno (currently `0xkinno@users.noreply.github.com`, a placeholder that can be changed before the first push).
-4. A Reown project id (`NEXT_PUBLIC_REOWN_PROJECT_ID`) for the external-wallet connect modal in Phase 8.
+Decisions recorded:
+- Large crops are out of scope for the watermark; no offset search, no crop variants. Bench reports 5/10/20% centre-crop recall honestly (`docs/LIMITATIONS.md`, README boundaries later).
+- Git identity: `0xkinno <140649226+0xkinno@users.noreply.github.com>`; history rewritten and verified. No remote is configured, so nothing was pushed.
 
-Decisions to confirm before Phase 1 (from measured results):
-- Crop tolerance is about 2 to 3% per axis, so "modest crops" cannot be claimed. Choose: commit centre-crop variants, add offset search to mark detection, or declare crops out of scope.
-- Rotated copies need the earlier entry's dihedral variants committed (one extra slot) for on-chain priority recording.
+Carry into Phase 1 from the measurements:
+- Verified is a native `commitState`; Finalized to Verified p50 is 913 ms; block time 0.304 s.
 - Reveal window must be set in wall-clock terms (0.304 s per block).
+- Entry layout: at most 4 slots in one page; low-S normalise assertions; explicit tight gas limits (gas is charged on the limit).
+- Rotated copies need the earlier entry's dihedral variants committed.
+- Qwen: base `https://dashscope-intl.aliyuncs.com/compatible-mode/v1`, model `qwen3.8-max`.
 
-## Owner requirements recorded for Phase 8
-- A wallet connect modal on every page that can transact. Every on-chain action (register studio, touch, reveal, approve, license, faucet, prove mark) must open the wallet confirmation and send a real signed transaction; no simulated sends.
-- All build files and documents live inside this folder. `reference/` stays ignored and is never named in committed files.
-- Sole author and contributor: 0xkinno. No co-author trailers.
+## Open items that need 0xkinno
+1. Mainnet deploy, Aurora real payment and any mainnet transaction need a funded mainnet key. A real Base USDC payment moves real money and must be sent by 0xkinno from their own wallet; I will build the flow and record the hashes they produce.
+2. A git remote URL if a push is wanted.
+3. Real-device passkey tests (Phase 9).
+
+## Owner requirements for Phase 8
+- Wallet connect modal on every transacting page; every on-chain action (register studio, touch, reveal, approve, license, faucet, prove mark) opens the wallet and sends a real signed transaction.
+- Aurora Intents "License from any chain" on /lookup and /c/[certId] (see TASK.md additions).
+- Everything is built inside this folder; `reference/` stays ignored and unnamed.

@@ -1,0 +1,39 @@
+{
+  "attempts": [
+    {
+      "base": "https://dashscope-us.aliyuncs.com/compatible-mode/v1",
+      "status": 401,
+      "error": "Incorrect API key provided. For details, see: https://www.alibabacloud.com/help/en/model-studio/error-code#apikey-error",
+      "toolCall": null
+    },
+    {
+      "base": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+      "status": 200,
+      "error": null,
+      "toolCall": "lookup_registry"
+    }
+  ],
+  "result": {
+    "base": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+    "model": "qwen3.8-max",
+    "toolCall": {
+      "arguments": "{\"pdq\": \"0xabababababababababababababababababababababababababababababababab\"}",
+      "name": "lookup_registry"
+    },
+    "secondStatus": 200,
+    "finalText": "The lookup came back empty — there's no finalized registry entry with a fingerprint near `0xababab...abab`, so I can't tell you who created that image first (or whether it's in the registry at all).\n\nA couple of things worth flagging:\n\n- That value is a repeating `0xab` pattern across all 32 bytes, which isn't what a real perceptual hash typically looks like. It may be a placeholder rather than an actual fingerprint from a real image.\n- Since the tool searches for the *nearest* match and found nothing, it isn't a close-miss case either — nothing in the index is anywhere near that point in hash space.\n\nIf you have the actual image or a hash generated from it, I'm happy to re-run the lookup. Otherwise, if you were testing the tool's behavior on a synthetic input, this is the expected \"no match\" response.",
+    "usage": {
+      "completion_tokens": 285,
+      "completion_tokens_details": {
+        "reasoning_tokens": 92,
+        "text_tokens": 285
+      },
+      "prompt_tokens": 496,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 496
+      },
+      "total_tokens": 781
+    }
+  }
+}

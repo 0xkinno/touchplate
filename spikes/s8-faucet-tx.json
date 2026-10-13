@@ -1,0 +1,12 @@
+{
+  "faucet": "0xd236c18D274E54FAccC3dd9DDA4b27965a73ee6C",
+  "ausd": "0xa9012a055bd4e0eDfF8Ce09f960291C09D5322dC",
+  "decimals": 6,
+  "hash": "0x3249c919995907007449f3f3b37a1dc524409eb726448d6956576dea20f2d3ff",
+  "explorer": "https://testnet.monadexplorer.com/tx/0x3249c919995907007449f3f3b37a1dc524409eb726448d6956576dea20f2d3ff",
+  "status": "success",
+  "gasUsed": "156720",
+  "balanceBefore": "0",
+  "balanceAfter": "10000000000",
+  "increased": true
+}

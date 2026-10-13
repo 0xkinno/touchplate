@@ -1,0 +1,37 @@
+{
+  "probe": "0xbae6c16d54a76ae3539f7fdcd2617db236f9244a",
+  "qx": "0x605365188b9f80a4a1c27bf2225ef07668dcb4fcc6cffc45d2f61ced6b1414f0",
+  "qy": "0x91880b91be01d79cc586525ebbca9f50120a020c621b94a92f96139c16054c9b",
+  "results": [
+    {
+      "label": "valid assertion",
+      "hash": "0x7e3d531fae2b431e69485cfa20a1e97c5ff128b446e8bc6c14183e61d31c688c",
+      "explorer": "https://testnet.monadexplorer.com/tx/0x7e3d531fae2b431e69485cfa20a1e97c5ff128b446e8bc6c14183e61d31c688c",
+      "eventOk": true,
+      "expected": true,
+      "gasUsed": "54024",
+      "gasLimit": "54024",
+      "block": "70698349"
+    },
+    {
+      "label": "tampered signature",
+      "hash": "0x44772f9b09d483101e1335f3d08e79f633f1f55669212315026cfb2d6b68b8b4",
+      "explorer": "https://testnet.monadexplorer.com/tx/0x44772f9b09d483101e1335f3d08e79f633f1f55669212315026cfb2d6b68b8b4",
+      "eventOk": false,
+      "expected": false,
+      "gasUsed": "62674",
+      "gasLimit": "62674",
+      "block": "70698352"
+    },
+    {
+      "label": "wrong challenge",
+      "hash": "0x79c8363350fc713310ef934006dbac7dae1846041300a272fa014f592801929b",
+      "explorer": "https://testnet.monadexplorer.com/tx/0x79c8363350fc713310ef934006dbac7dae1846041300a272fa014f592801929b",
+      "eventOk": false,
+      "expected": false,
+      "gasUsed": "44750",
+      "gasLimit": "44750",
+      "block": "70698362"
+    }
+  ]
+}
