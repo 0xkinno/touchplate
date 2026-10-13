@@ -232,6 +232,31 @@ importers:
         specifier: ^7.0.2
         version: 7.0.2
 
+  verifier:
+    dependencies:
+      '@noble/hashes':
+        specifier: ^2.4.0
+        version: 2.4.0
+      '@touchplate/core':
+        specifier: workspace:*
+        version: link:../packages/core
+      sharp:
+        specifier: ^0.35.5
+        version: 0.35.5(@types/node@26.6.5)
+      viem:
+        specifier: ^2.57.4
+        version: 2.57.4(typescript@7.0.2)
+    devDependencies:
+      '@types/node':
+        specifier: ^26.6.5
+        version: 26.6.5
+      tsx:
+        specifier: ^4.23.15
+        version: 4.23.15
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+
 packages:
 
   '@adraffy/ens-normalize@1.11.1':

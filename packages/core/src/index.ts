@@ -10,3 +10,5 @@ export * from "./certificate.ts";
 export * from "./gas.ts";
 export * from "./abi.ts";
 export * from "./softauth.ts";
+export * from "./chain.ts";
+export * from "./attest.ts";

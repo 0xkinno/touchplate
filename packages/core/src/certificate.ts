@@ -24,6 +24,7 @@ export interface Certificate {
   revealTx?: Hex;
   touchBlock?: string;
   revealBlock?: string;
+  finalized: boolean;
   ladder: LadderStamp[];
   distance?: number;
   threshold: number;
@@ -50,4 +51,9 @@ export function buildCertificate(c: Omit<Certificate, "certSha256" | "engineVers
 export function verifyCertificateHash(c: Certificate): boolean {
   const { certSha256, ...rest } = c;
   return certHash(rest) === certSha256;
+}
+
+/** JSON text of a certificate with bigints as decimal strings; `verifyCertificateHash` accepts the parsed result. */
+export function certToJson(c: Certificate): string {
+  return JSON.stringify(c, replacer, 2);
 }

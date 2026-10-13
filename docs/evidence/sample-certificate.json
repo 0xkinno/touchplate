@@ -1,0 +1,44 @@
+{
+  "chainId": 10143,
+  "contract": "0x13a5941833F568Cb80d4958ED22B4B9d44a87930",
+  "verdict": {
+    "kind": "MATCHED",
+    "entry": {
+      "commitment": "0xa1d544812e336bcf3093d60283506c3ea3c53329496784d2935c378b361f274a",
+      "author": "0xDe1413543adAB1C07f87Ff23Eb39946EBc19a20D",
+      "pdq": "0x2cc33e1c86947c185a73d0d90fc70778eb073f810156c4d2c77acb53eec9bac5",
+      "touchBlock": "70707918",
+      "touchTxIndex": 1,
+      "touchLogIndex": 1,
+      "finalized": true,
+      "derivative": false
+    },
+    "distance": 0,
+    "laterMatches": []
+  },
+  "threshold": 31,
+  "quality": 100,
+  "author": "0xDe1413543adAB1C07f87Ff23Eb39946EBc19a20D",
+  "studioEd25519Pub": "0xf1d697ed40c6e1fdd39fcd52a9b145b279d0af324239a161bfe0ee3598b3c935",
+  "commitment": "0xa1d544812e336bcf3093d60283506c3ea3c53329496784d2935c378b361f274a",
+  "touchTx": "0xb19386056c3cd4d368e5c4c669adc57f9e9867462072f05c03db5059aa5ebe25",
+  "revealTx": "0x3529321fed3bea9793f9ccaf3d52b07131883099d2d31775377f1ca5b54ba745",
+  "touchBlock": "70707918",
+  "revealBlock": "70707926",
+  "finalized": true,
+  "ladder": [
+    {
+      "rung": "touched",
+      "at": 1791902466,
+      "blockNumber": "70707918"
+    },
+    {
+      "rung": "revealed",
+      "at": 1791902468,
+      "blockNumber": "70707926"
+    }
+  ],
+  "distance": 0,
+  "engineVersion": "touchplate-engine/1",
+  "certSha256": "aad2b1de0615ab870d5708c1d215c655c75b33923be99464c12c2a8d928ac19b"
+}

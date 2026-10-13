@@ -135,7 +135,7 @@ describe("manifest and certificate", () => {
   it("certificate hash is reproducible and tamper-evident", () => {
     const c = buildCertificate({
       chainId: 10143, contract: "0x13a5941833F568Cb80d4958ED22B4B9d44a87930", verdict: { kind: "NO_RECORD" },
-      ladder: [{ rung: "finalized", at: 1 }], threshold: 31, quality: 90,
+      finalized: true, ladder: [{ rung: "touched", at: 1 }], threshold: 31, quality: 90,
     });
     expect(verifyCertificateHash(c)).toBe(true);
     expect(verifyCertificateHash({ ...c, quality: 91 })).toBe(false);

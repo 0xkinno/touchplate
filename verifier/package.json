@@ -1,0 +1,25 @@
+{
+  "name": "touchplate-verify",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "author": "0xkinno",
+  "license": "MIT",
+  "bin": {
+    "touchplate-verify": "./src/cli.ts"
+  },
+  "scripts": {
+    "start": "tsx src/cli.ts"
+  },
+  "dependencies": {
+    "@noble/hashes": "^2.4.0",
+    "@touchplate/core": "workspace:*",
+    "sharp": "^0.35.5",
+    "viem": "^2.57.4"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
