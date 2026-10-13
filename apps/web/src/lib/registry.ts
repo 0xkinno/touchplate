@@ -23,7 +23,7 @@ function seeded(): Cache | undefined {
   }
 }
 /** About 8 seconds of log pages at the public RPC's 100-block limit and 12-way concurrency. */
-const BUDGET_BLOCKS = 60_000n;
+const BUDGET_BLOCKS = 40_000n;
 let cache: Cache | undefined = seeded();
 let inflight: Promise<Cache> | undefined;
 
@@ -32,15 +32,21 @@ export async function getRegistry(maxAgeMs = 4000): Promise<Cache> {
   if (cache && Date.now() - cache.at < maxAgeMs) return cache;
   if (!inflight) {
     inflight = (async () => {
+      const started = Date.now();
       const fin = await client.getBlock({ blockTag: "finalized" });
-      const tip = await client.getBlockNumber();
-      const from = cache ? cache.snap.scannedTo + 1n : DEPLOY_BLOCK;
-      // Catch up in budgeted slices so a cold start answers within the function limit; the next call continues.
-      const slice = BUDGET_BLOCKS;
-      const to = tip - from > slice ? from + slice - 1n : tip;
-      const base = cache?.snap;
-      const snap = to >= from ? await scanRegistry(client, TOUCHPLATE, DEPLOY_BLOCK, to, base) : (base as RegistrySnapshot);
-      cache = { snap, finalized: fin.number, at: Date.now() };
+      let snap = cache?.snap;
+      // Catch up in budgeted slices until the tip or the time budget, so a cold start answers within the
+      // function limit and the next call continues from where this one stopped.
+      for (;;) {
+        const tip = await client.getBlockNumber();
+        const from = snap ? snap.scannedTo + 1n : DEPLOY_BLOCK;
+        if (from > tip) break;
+        const to = tip - from > BUDGET_BLOCKS ? from + BUDGET_BLOCKS - 1n : tip;
+        snap = await scanRegistry(client, TOUCHPLATE, DEPLOY_BLOCK, to, snap);
+        cache = { snap, finalized: fin.number, at: Date.now() };
+        if (to >= tip || Date.now() - started > 8_000) break;
+      }
+      cache = { snap: snap as RegistrySnapshot, finalized: fin.number, at: Date.now() };
       return cache;
     })().finally(() => {
       inflight = undefined;

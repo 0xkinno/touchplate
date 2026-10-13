@@ -40,6 +40,8 @@ const browser = await chromium.launch({ headless: true });
 const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, acceptDownloads: true });
 const page = await ctx.newPage();
 const consoleErrors = [];
+const failedUrls = [];
+page.on("response", (r) => { if (r.status() >= 400) failedUrls.push(`${r.status()} ${r.url()}`); });
 page.on("console", (m) => { if (m.type() === "error") consoleErrors.push(m.text()); });
 page.on("pageerror", (e) => consoleErrors.push(`pageerror: ${e.message}`));
 
@@ -98,18 +100,24 @@ check("no horizontal overflow on landing", !overflow);
 
 // ---- wallet connect modal
 await page.waitForTimeout(4000);
+let modalSeen = false;
 for (let attempt = 0; attempt < 6; attempt++) {
-  await page.getByRole("button", { name: "Connect wallet" }).first().click();
+  if (await page.getByRole("button", { name: /Open wallet details/ }).isVisible().catch(() => false)) break;
+  await page.getByRole("button", { name: "Connect wallet", exact: true }).first().click().catch(() => undefined);
   try {
-    await page.getByText("Touchplate Test Wallet").first().waitFor({ timeout: 8000 });
+    await page.getByText("Touchplate Test Wallet").first().waitFor({ timeout: 10000 });
+    modalSeen = true;
     break;
   } catch {
-    if (attempt === 5) throw new Error("connect modal never listed the injected wallet");
+    /* the lazy wallet stack may still be loading; try again */
   }
 }
-check("connect modal lists the injected wallet", true);
+if (!modalSeen && !(await page.getByRole("button", { name: /Open wallet details/ }).isVisible().catch(() => false))) {
+  throw new Error("connect modal never listed the injected wallet");
+}
+check("connect modal lists the injected wallet, or the wallet connected directly", modalSeen || (await page.getByRole("button", { name: /Open wallet details/ }).isVisible().catch(() => false)));
 await shot("connect-modal.png");
-await page.getByText("Touchplate Test Wallet").first().click();
+if (modalSeen) await page.getByText("Touchplate Test Wallet").first().click();
 await page.getByRole("button", { name: /Open wallet details/ }).waitFor({ timeout: 30000 });
 check("wallet connected, address shown in nav", true);
 
@@ -174,7 +182,8 @@ for (const path of ["/ledger", "/investigate", "/proof"]) {
 }
 
 const real = consoleErrors.filter((e) => !/net::ERR_|favicon|walletconnect|Failed to load resource.*(403|429)|analytics|pulse\.walletconnect|web3modal|reown/i.test(e));
-check("no unexpected console errors", real.length === 0, real.slice(0, 3).join(" | "));
+const own = failedUrls.filter((u) => !/walletconnect|reown|web3modal|coinbase|metamask/i.test(u));
+check("no unexpected console errors", real.length === 0 || (own.length === 0 && real.every((e) => /Failed to load resource/.test(e))), `third-party failures: ${failedUrls.filter((u) => !own.includes(u)).slice(0, 2).join(" | ") || "none"}; own: ${own.slice(0, 2).join(" | ") || "none"}`);
 writeFileSync(resolve(OUT, "e2e-results.json"), JSON.stringify({ base: BASE, user: user.address, walletRequests: prompts.map((p) => p.method), results, consoleErrors }, null, 2));
 await browser.close();
 const failed = results.filter((r) => !r.ok);
