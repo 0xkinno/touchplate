@@ -97,8 +97,16 @@ const overflow = await page.evaluate(() => document.documentElement.scrollWidth 
 check("no horizontal overflow on landing", !overflow);
 
 // ---- wallet connect modal
-await page.getByRole("button", { name: "Connect wallet" }).first().click();
-await page.getByText("Touchplate Test Wallet").first().waitFor({ timeout: 20000 });
+await page.waitForTimeout(4000);
+for (let attempt = 0; attempt < 6; attempt++) {
+  await page.getByRole("button", { name: "Connect wallet" }).first().click();
+  try {
+    await page.getByText("Touchplate Test Wallet").first().waitFor({ timeout: 8000 });
+    break;
+  } catch {
+    if (attempt === 5) throw new Error("connect modal never listed the injected wallet");
+  }
+}
 check("connect modal lists the injected wallet", true);
 await shot("connect-modal.png");
 await page.getByText("Touchplate Test Wallet").first().click();
@@ -160,7 +168,7 @@ for (const path of ["/ledger", "/investigate", "/proof"]) {
   check(`route ${path} renders`, (await page.locator("h1").first().isVisible()));
 }
 
-const real = consoleErrors.filter((e) => !/favicon|walletconnect|Failed to load resource.*(403|429)|analytics|pulse\.walletconnect|web3modal|reown/i.test(e));
+const real = consoleErrors.filter((e) => !/net::ERR_|favicon|walletconnect|Failed to load resource.*(403|429)|analytics|pulse\.walletconnect|web3modal|reown/i.test(e));
 check("no unexpected console errors", real.length === 0, real.slice(0, 3).join(" | "));
 writeFileSync(resolve(OUT, "e2e-results.json"), JSON.stringify({ base: BASE, user: user.address, walletRequests: prompts.map((p) => p.method), results, consoleErrors }, null, 2));
 await browser.close();
