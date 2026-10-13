@@ -120,7 +120,12 @@ await page.getByText("Unlocked.").waitFor({ timeout: 60000 });
 check("passkey created and key families unlocked", true);
 const promptsBefore = prompts.filter((p) => p.method === "eth_sendTransaction").length;
 await page.getByRole("button", { name: /Touch and register/ }).click();
-await page.getByText("Registered. Your passkey is bound").waitFor({ timeout: 120000 });
+await Promise.race([
+  page.getByText("Registered. Your passkey is bound").waitFor({ timeout: 120000 }),
+  page.locator('[role="alert"]').first().waitFor({ timeout: 120000 }).then(async () => {
+    throw new Error(`registration failed: ${await page.locator('[role="alert"]').first().innerText()}`);
+  }),
+]);
 check("studio registered through a wallet transaction", prompts.filter((p) => p.method === "eth_sendTransaction").length === promptsBefore + 1);
 
 const cocoDir = resolve(ROOT, "spikes/out/coco");
