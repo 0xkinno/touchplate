@@ -1,0 +1,14 @@
+node_modules/
+.env
+.env.*
+!.env.example
+reference/
+out/
+cache/
+qa/
+.next/
+dist/
+broadcast/
+*.log
+TOUCHPLATE_BUILD_INSTRUCTION.md
+.tools/

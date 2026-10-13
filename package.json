@@ -1,0 +1,9 @@
+{
+  "name": "touchplate",
+  "private": true,
+  "version": "0.0.0",
+  "license": "MIT",
+  "author": "0xkinno",
+  "packageManager": "pnpm@12.3.4",
+  "engines": { "node": ">=20" }
+}

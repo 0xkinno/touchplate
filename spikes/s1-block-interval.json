@@ -1,0 +1,21 @@
+{
+  "span1000": {
+    "blocks": 1000,
+    "seconds": 304,
+    "secPerBlock": 0.304
+  },
+  "span10000": {
+    "blocks": 10000,
+    "seconds": 3050,
+    "secPerBlock": 0.305
+  },
+  "span100000": {
+    "blocks": 100000,
+    "seconds": 30320,
+    "secPerBlock": 0.3032
+  },
+  "head": 70542446,
+  "headTs": 1791851996,
+  "gasLimit": 150000000,
+  "baseFeeGwei": 100
+}

@@ -1,0 +1,108 @@
+{
+  "corpus": "COCO val2017 first 220 files (sorted); 20 marked, 200 unmarked",
+  "markedImages": 20,
+  "unmarkedImages": 200,
+  "psnrDb": {
+    "n": 20,
+    "min": 40.6,
+    "p10": 40.6,
+    "median": 40.6,
+    "max": 40.61
+  },
+  "zMarked": {
+    "none": {
+      "n": 20,
+      "min": 54.42,
+      "p10": 56.04,
+      "median": 102.23,
+      "max": 147.44
+    },
+    "jpeg90": {
+      "n": 20,
+      "min": 37.85,
+      "p10": 49.84,
+      "median": 93.57,
+      "max": 139.81
+    },
+    "jpeg70": {
+      "n": 20,
+      "min": 13.59,
+      "p10": 42.52,
+      "median": 66.45,
+      "max": 93.62
+    },
+    "jpeg50": {
+      "n": 20,
+      "min": 19.75,
+      "p10": 32.86,
+      "median": 47.14,
+      "max": 66.19
+    },
+    "webp75": {
+      "n": 20,
+      "min": 24.57,
+      "p10": 33.16,
+      "median": 43.98,
+      "max": 61.63
+    },
+    "resize1080": {
+      "n": 20,
+      "min": 43.69,
+      "p10": 49.31,
+      "median": 89.52,
+      "max": 127.81
+    },
+    "resize640": {
+      "n": 20,
+      "min": 49.53,
+      "p10": 54.65,
+      "median": 88.9,
+      "max": 147.44
+    },
+    "jpeg70_resize1080": {
+      "n": 20,
+      "min": 12.74,
+      "p10": 37.11,
+      "median": 60.4,
+      "max": 81.65
+    },
+    "platform_roundtrip": {
+      "n": 20,
+      "min": 42.83,
+      "p10": 47.51,
+      "median": 83.97,
+      "max": 116.43
+    },
+    "crop10pct": {
+      "n": 20,
+      "min": -1.56,
+      "p10": -1.03,
+      "median": -0.07,
+      "max": 1.45
+    }
+  },
+  "zMarkedWrongSeed": {
+    "n": 20,
+    "min": -1.86,
+    "p10": -1.22,
+    "median": -0.31,
+    "max": 1.12
+  },
+  "zUnmarkedOriginal": {
+    "n": 200,
+    "min": -2.33,
+    "p10": -1.18,
+    "median": 0.03,
+    "max": 2.5
+  },
+  "zUnmarkedAfterJpeg70Resize1080": {
+    "n": 200,
+    "min": -2.45,
+    "p10": -1.07,
+    "median": -0.07,
+    "max": 3.02
+  },
+  "passPsnr40": true,
+  "passZ6AfterJpeg70AndResize1080": true,
+  "passUnmarkedZBelow3": false
+}

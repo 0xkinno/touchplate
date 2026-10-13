@@ -1,0 +1,112 @@
+{
+  "source": "monadNewHeads, public testnet WS",
+  "rpc": "https://testnet-rpc.monad.xyz",
+  "durationMs": 90000,
+  "blocksObserved": 296,
+  "completeLadders": 286,
+  "competingProposalsSeen": 0,
+  "distribution": {
+    "proposed_to_voted_ms": {
+      "n": 286,
+      "p50": 291,
+      "p90": 416,
+      "p99": 650,
+      "min": 1,
+      "max": 1162
+    },
+    "voted_to_finalized_ms": {
+      "n": 286,
+      "p50": 272,
+      "p90": 312,
+      "p99": 447,
+      "min": 0,
+      "max": 652
+    },
+    "proposed_to_finalized_ms": {
+      "n": 286,
+      "p50": 564,
+      "p90": 628,
+      "p99": 770,
+      "min": 278,
+      "max": 1590
+    },
+    "finalized_to_verified_ms": {
+      "n": 286,
+      "p50": 913,
+      "p90": 994,
+      "p99": 1815,
+      "min": 557,
+      "max": 2050
+    },
+    "proposed_to_verified_ms": {
+      "n": 286,
+      "p50": 1472,
+      "p90": 1571,
+      "p99": 2301,
+      "min": 1159,
+      "max": 2663
+    }
+  },
+  "tagLagBlocks": {
+    "latestMinusSafe": {
+      "n": 176,
+      "p50": 1,
+      "p90": 1,
+      "p99": 2,
+      "min": 1,
+      "max": 2
+    },
+    "latestMinusFinalized": {
+      "n": 176,
+      "p50": 2,
+      "p90": 2,
+      "p99": 3,
+      "min": 2,
+      "max": 3
+    }
+  },
+  "firstBlock": 70535542,
+  "lastBlock": 70535827,
+  "sample": [
+    {
+      "blockId": "0xb2e27b673caee9b41087619a3b71fa41fe04b0b75858be134e9607e76debd532",
+      "number": 70535542,
+      "Proposed": 1791849887407,
+      "Voted": 1791849887833,
+      "Finalized": 1791849887972,
+      "Verified": 1791849888926
+    },
+    {
+      "blockId": "0x51a0d866f2b0b71ac854d6f394df5f7e67f2224e12fc09072dad4d7937be1b60",
+      "number": 70535543,
+      "Proposed": 1791849887834,
+      "Voted": 1791849887987,
+      "Finalized": 1791849888302,
+      "Verified": 1791849889189
+    },
+    {
+      "blockId": "0x09a4f7460722513992609ba25ba4d70a49558303552a236dab27bd7b885cd911",
+      "number": 70535544,
+      "Proposed": 1791849888004,
+      "Voted": 1791849888303,
+      "Finalized": 1791849888567,
+      "Verified": 1791849889480
+    },
+    {
+      "blockId": "0x70bd184c84c4db18700f1ba22072a6fd98a7c78fd22559166fbcb5f419bed83b",
+      "number": 70535545,
+      "Proposed": 1791849888356,
+      "Voted": 1791849888630,
+      "Finalized": 1791849888922,
+      "Verified": 1791849889822
+    },
+    {
+      "blockId": "0x3fa5e35f4cfdca25a7a2f6a63bbe3935c121cedf86b2c158db8943432da25a31",
+      "number": 70535546,
+      "Proposed": 1791849888632,
+      "Voted": 1791849889063,
+      "Finalized": 1791849889189,
+      "Verified": 1791849890077
+    }
+  ]
+}

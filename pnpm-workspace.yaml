@@ -1,0 +1,10 @@
+packages:
+  - "spikes"
+  - "packages/*"
+  - "apps/*"
+  - "verifier"
+  - "bench"
+  - "drills"
+  - "indexer"
+allowBuilds:
+  esbuild: true

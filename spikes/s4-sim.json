@@ -1,0 +1,58 @@
+{
+  "rpc": "https://testnet-rpc.monad.xyz",
+  "method": "eth_call with runtime-code stateOverride (no gas funds required); on-chain tx pending funding",
+  "cases": [
+    {
+      "name": "valid assertion (a1, challenge1)",
+      "returned": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "accepted": true,
+      "estimateGas": "43256"
+    },
+    {
+      "name": "valid assertion (a2, challenge2)",
+      "returned": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "accepted": true,
+      "estimateGas": "43244"
+    },
+    {
+      "name": "tampered r (one bit flipped)",
+      "returned": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "accepted": false,
+      "estimateGas": "50464"
+    },
+    {
+      "name": "wrong challenge (a1 auth, challenge2)",
+      "returned": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "accepted": false,
+      "estimateGas": "37370"
+    },
+    {
+      "name": "wrong public key (qx flipped)",
+      "returned": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "accepted": false,
+      "estimateGas": "37495"
+    },
+    {
+      "name": "high-s malleated signature",
+      "returned": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "accepted": false,
+      "estimateGas": "37645"
+    }
+  ],
+  "precompileProbe": {
+    "name": "verifyNative on garbage (precompile reachable?)",
+    "returned": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "accepted": false,
+    "estimateGas": "24888"
+  },
+  "solidityFallback": {
+    "name": "Solidity fallback verify (valid-shaped input)",
+    "returned": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "accepted": false,
+    "estimateGas": "256353"
+  },
+  "directPrecompile0x100": {
+    "validInput": "0x0000000000000000000000000000000000000000000000000000000000000001",
+    "tamperedInput": "0x"
+  }
+}

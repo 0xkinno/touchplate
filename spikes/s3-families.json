@@ -1,0 +1,47 @@
+{
+  "browser": "156.0.8078.4",
+  "authenticatorId": "274543b1-ee81-48c7-bded-b5baff46533f",
+  "credentialId": "qX5DB39LvvaelgqsuurOOgiRbkaTsIQV11XjJLDwU0k",
+  "prfEnabledAtCreate": true,
+  "spkiPrefix": "0x3059301306072a8648ce3d020106082a8648ce3d03010703420004",
+  "qx": "0x605365188b9f80a4a1c27bf2225ef07668dcb4fcc6cffc45d2f61ced6b1414f0",
+  "qy": "0x91880b91be01d79cc586525ebbca9f50120a020c621b94a92f96139c16054c9b",
+  "flagsAtCreate": 69,
+  "first": {
+    "evmAddress": "0x82571049FD639F8f98b1cDB79d887cB02F006520",
+    "studioEd25519Pub": "0x0b7a9202bf3c6dc08508879a23837465bcc7d77f69006af32c9d731a966f9d4f",
+    "studioSignatureOverProbe": "0x737c0061e6b2b90ffee3d85e57a8f88a57cb374cf402dfd800ccfea0eccb4019225858dba438b4ee54af60c29b5aab86c0af5980d9a764a836872453b24bf001",
+    "markRootSha256": "0x29d9cd3f8790d2a7ee521315b472dd7a7adaeb936115f5a2a53189532bb29806",
+    "prfSha256": "0x94aa88ad6865bbc9c4bb9c8d1012ab3f26a524834c4c442a3af224eb6912cd1e"
+  },
+  "second": {
+    "evmAddress": "0x82571049FD639F8f98b1cDB79d887cB02F006520",
+    "studioEd25519Pub": "0x0b7a9202bf3c6dc08508879a23837465bcc7d77f69006af32c9d731a966f9d4f",
+    "studioSignatureOverProbe": "0x737c0061e6b2b90ffee3d85e57a8f88a57cb374cf402dfd800ccfea0eccb4019225858dba438b4ee54af60c29b5aab86c0af5980d9a764a836872453b24bf001",
+    "markRootSha256": "0x29d9cd3f8790d2a7ee521315b472dd7a7adaeb936115f5a2a53189532bb29806",
+    "prfSha256": "0x94aa88ad6865bbc9c4bb9c8d1012ab3f26a524834c4c442a3af224eb6912cd1e"
+  },
+  "reproducible": true,
+  "assertions": [
+    {
+      "challenge": "0x241e6e0c0b38550bab97e7aa73d44bccf23c55858c5fbc8720e4a70aac21b00a",
+      "r": "0x48cad5a974e3edc96e3d5a83ab96ff93bedc93d915ab257e4fb883e13151dacd",
+      "s": "0x3c144350a58d2f867ee33488c00b5617bfc5f231f1d5161b6e3e53550e648b90",
+      "authenticatorData": "0x49960de5880e8c687434170f6476605b8fe4aeb9a28632c7995cf3ba831d97630500000003",
+      "clientDataJSON": "{\"type\":\"webauthn.get\",\"challenge\":\"JB5uDAs4VQurl-eqc9RLzPI8VYWMX7yHIOSnCqwhsAo\",\"origin\":\"http://localhost:4173\",\"crossOrigin\":false}",
+      "challengeIndex": 23,
+      "typeIndex": 1,
+      "derSignature": "0x3044022048cad5a974e3edc96e3d5a83ab96ff93bedc93d915ab257e4fb883e13151dacd02203c144350a58d2f867ee33488c00b5617bfc5f231f1d5161b6e3e53550e648b90"
+    },
+    {
+      "challenge": "0x4c6ab1cd1e2eb80b008baa66894ab6f13765fbf1396a0ea151729ee3e710c8a8",
+      "r": "0xce0cfc1b4b1a464159ff6a0f0f838fbd69980f7c219730b4dc41e6bf74affd66",
+      "s": "0x0633479be4aba99494f3feb6085ef095a9d383dc8de1a913aa15ec7d4868d88b",
+      "authenticatorData": "0x49960de5880e8c687434170f6476605b8fe4aeb9a28632c7995cf3ba831d97630500000004",
+      "clientDataJSON": "{\"type\":\"webauthn.get\",\"challenge\":\"TGqxzR4uuAsAi6pmiUq28Tdl-_E5ag6hUXKe4-cQyKg\",\"origin\":\"http://localhost:4173\",\"crossOrigin\":false}",
+      "challengeIndex": 23,
+      "typeIndex": 1,
+      "derSignature": "0x3045022100ce0cfc1b4b1a464159ff6a0f0f838fbd69980f7c219730b4dc41e6bf74affd6602200633479be4aba99494f3feb6085ef095a9d383dc8de1a913aa15ec7d4868d88b"
+    }
+  ]
+}

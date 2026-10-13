@@ -1,0 +1,30 @@
+{
+  "cubic": {
+    "n": 44,
+    "exact": 23,
+    "max": 16,
+    "mean": 1.41,
+    "over2": 2
+  },
+  "lanczos3": {
+    "n": 44,
+    "exact": 22,
+    "max": 16,
+    "mean": 1.45,
+    "over2": 2
+  },
+  "mitchell": {
+    "n": 44,
+    "exact": 23,
+    "max": 16,
+    "mean": 1.41,
+    "over2": 2
+  },
+  "linear": {
+    "n": 44,
+    "exact": 22,
+    "max": 16,
+    "mean": 1.45,
+    "over2": 2
+  }
+}

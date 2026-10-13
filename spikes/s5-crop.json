@@ -1,0 +1,90 @@
+{
+  "corpus": "COCO val2017 first 100 files",
+  "threshold": 31,
+  "rows": [
+    {
+      "kind": "all-edges",
+      "perSidePct": 0.5,
+      "totalPctPerAxis": 1,
+      "recall": 0.98,
+      "medianDistance": 12
+    },
+    {
+      "kind": "all-edges",
+      "perSidePct": 1,
+      "totalPctPerAxis": 2,
+      "recall": 0.95,
+      "medianDistance": 20
+    },
+    {
+      "kind": "all-edges",
+      "perSidePct": 2,
+      "totalPctPerAxis": 4,
+      "recall": 0.17,
+      "medianDistance": 38
+    },
+    {
+      "kind": "all-edges",
+      "perSidePct": 3,
+      "totalPctPerAxis": 6,
+      "recall": 0,
+      "medianDistance": 54
+    },
+    {
+      "kind": "all-edges",
+      "perSidePct": 5,
+      "totalPctPerAxis": 10,
+      "recall": 0,
+      "medianDistance": 84
+    },
+    {
+      "kind": "all-edges",
+      "perSidePct": 10,
+      "totalPctPerAxis": 20,
+      "recall": 0,
+      "medianDistance": 116
+    },
+    {
+      "kind": "bottom-only",
+      "perSidePct": 0.5,
+      "totalPctPerAxis": 0.5,
+      "recall": 0.99,
+      "medianDistance": 8
+    },
+    {
+      "kind": "bottom-only",
+      "perSidePct": 1,
+      "totalPctPerAxis": 1,
+      "recall": 0.99,
+      "medianDistance": 16
+    },
+    {
+      "kind": "bottom-only",
+      "perSidePct": 2,
+      "totalPctPerAxis": 2,
+      "recall": 0.71,
+      "medianDistance": 28
+    },
+    {
+      "kind": "bottom-only",
+      "perSidePct": 3,
+      "totalPctPerAxis": 3,
+      "recall": 0.18,
+      "medianDistance": 38
+    },
+    {
+      "kind": "bottom-only",
+      "perSidePct": 5,
+      "totalPctPerAxis": 5,
+      "recall": 0,
+      "medianDistance": 62
+    },
+    {
+      "kind": "bottom-only",
+      "perSidePct": 10,
+      "totalPctPerAxis": 10,
+      "recall": 0,
+      "medianDistance": 108
+    }
+  ]
+}

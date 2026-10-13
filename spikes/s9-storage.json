@@ -1,0 +1,33 @@
+{
+  "note": "estimateGas against live testnet RPC with runtime-code override; includes 21000 intrinsic + calldata + dispatch",
+  "estimateGas": {
+    "writeA": 154468,
+    "writeB": 102592,
+    "writeC": 277453,
+    "readA": 30589,
+    "readB": 30785,
+    "readC": 46869
+  },
+  "netOfIntrinsic": {
+    "writeA": 133468,
+    "writeB": 81592,
+    "writeC": 256453,
+    "readA": 9589,
+    "readB": 9785,
+    "readC": 25869
+  },
+  "slotsPerEntry": {
+    "A": 8,
+    "B": 4,
+    "C": 9
+  },
+  "docModel": {
+    "firstFreshSlotInPage": 27900,
+    "nextFreshSlotInSamePage": 17100
+  },
+  "predictedStorageGas": {
+    "A": 147600,
+    "B": 79200,
+    "C": 251100
+  }
+}

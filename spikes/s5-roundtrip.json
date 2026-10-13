@@ -1,0 +1,84 @@
+{
+  "corpus": "COCO val2017 first 200 files",
+  "threshold": 31,
+  "note": "platform-style simulations with sharp; not real platform uploads",
+  "perTransform": {
+    "jpeg70": {
+      "n": 200,
+      "pdqRecall": 1,
+      "pdqRecallNoDihedral": 1,
+      "sha256Match": 0,
+      "medianDistance": 0
+    },
+    "jpeg50": {
+      "n": 200,
+      "pdqRecall": 1,
+      "pdqRecallNoDihedral": 1,
+      "sha256Match": 0,
+      "medianDistance": 2
+    },
+    "webp75": {
+      "n": 200,
+      "pdqRecall": 1,
+      "pdqRecallNoDihedral": 1,
+      "sha256Match": 0,
+      "medianDistance": 2
+    },
+    "resize1080": {
+      "n": 200,
+      "pdqRecall": 1,
+      "pdqRecallNoDihedral": 1,
+      "sha256Match": 0,
+      "medianDistance": 2
+    },
+    "resize640": {
+      "n": 200,
+      "pdqRecall": 1,
+      "pdqRecallNoDihedral": 1,
+      "sha256Match": 0,
+      "medianDistance": 0
+    },
+    "crop10": {
+      "n": 200,
+      "pdqRecall": 0,
+      "pdqRecallNoDihedral": 0,
+      "sha256Match": 0,
+      "medianDistance": 84
+    },
+    "crop20": {
+      "n": 200,
+      "pdqRecall": 0,
+      "pdqRecallNoDihedral": 0,
+      "sha256Match": 0,
+      "medianDistance": 120
+    },
+    "bright_up": {
+      "n": 200,
+      "pdqRecall": 1,
+      "pdqRecallNoDihedral": 1,
+      "sha256Match": 0,
+      "medianDistance": 6
+    },
+    "flip_h": {
+      "n": 200,
+      "pdqRecall": 0.995,
+      "pdqRecallNoDihedral": 0.005,
+      "sha256Match": 0,
+      "medianDistance": 128
+    },
+    "platform_roundtrip": {
+      "n": 200,
+      "pdqRecall": 1,
+      "pdqRecallNoDihedral": 1,
+      "sha256Match": 0,
+      "medianDistance": 2
+    }
+  },
+  "distractorPairs": {
+    "imagesWithQualityAtLeast50": 200,
+    "pairs": 19900,
+    "falseMatchesAtThreshold": 0,
+    "falseMatchRate": 0,
+    "smallestPairDistance": 82
+  }
+}
