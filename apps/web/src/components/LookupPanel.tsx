@@ -2,13 +2,12 @@
 import type { Certificate } from "@touchplate/core/src/certificate.ts";
 import { detect } from "@touchplate/core/src/mark.ts";
 import type { PdqResult } from "@touchplate/core/src/pdq.ts";
-import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
+import type { Hex } from "viem";
 import { addrUrl, short, txUrl } from "@/lib/env";
 import { fetchImage, fingerprintOf, rasterOf } from "@/lib/image";
 import { ErrorNote, Ladder } from "./ui";
-const LicensePanel = dynamic(() => import("./LicensePanel").then((m) => m.LicensePanel), { ssr: false });
 
 interface LookupResponse {
   certificate: Certificate;
@@ -46,6 +45,11 @@ export function LookupPanel({ compact = false }: { compact?: boolean }) {
   const [url, setUrl] = useState("");
   const [over, setOver] = useState(false);
   const input = useRef<HTMLInputElement>(null);
+  const [License, setLicense] = useState<ComponentType<{ commitment: Hex }> | null>(null);
+  const needsLicense = out?.res.certificate.verdict.kind === "MATCHED" || out?.res.certificate.verdict.kind === "AUTHORED";
+  useEffect(() => {
+    if (needsLicense && !License) void import("./LicensePanel").then((m) => setLicense(() => m.LicensePanel));
+  }, [needsLicense, License]);
 
   const run = useCallback(async (blob: Blob, name: string) => {
     setBusy(true);
@@ -164,7 +168,7 @@ export function LookupPanel({ compact = false }: { compact?: boolean }) {
                 <Link href={`/c/${v.entry.commitment}`} className="btn-outline rounded-[10px] px-4 py-2 mono text-[13px]">Open entry page</Link>
               </div>
               <p className="mono text-[11px] text-mute break-all">certSha256 {cert.certSha256}. Re-run offline: touchplate-verify --image {out.fileName.slice(0, 40)} …</p>
-              {!v.entry.derivative && <LicensePanel commitment={v.entry.commitment} />}
+              {!v.entry.derivative && License && <License commitment={v.entry.commitment} />}
               {v.entry.derivative && <p className="text-sm text-ember">This entry is recorded as a derivative of an earlier one and cannot be licensed.</p>}
             </>
           )}
