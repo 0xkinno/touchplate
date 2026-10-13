@@ -9,6 +9,6 @@ done < <(git log --format='%an|%cn')
 if git log --format='%B' | grep -qiE '^(co-authored-by|signed-off-by|generated (with|by)|reviewed-by|assisted-by):'; then
   echo "attribution trailer found in commit history"; bad=1
 fi
-if git ls-files | grep -qE '^reference/|(^|/)\.env($|\.)'; then echo "reference/ or env file is tracked"; bad=1; fi
+if git ls-files | grep -vE '(^|/)\.env\.example$' | grep -qE '^reference/|(^|/)\.env($|\.)'; then echo "reference/ or env file is tracked"; bad=1; fi
 if [ "$bad" -ne 0 ]; then echo "authorship check FAILED"; exit 1; fi
 echo "authorship ok"
