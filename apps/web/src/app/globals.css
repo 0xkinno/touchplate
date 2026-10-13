@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #F6F2E9;
+  --color-paper-2: #EFE8DA;
+  --color-ink: #121212;
+  --color-ink-2: #3B3833;
+  --color-mute: #8C867B;
+  --color-line: #E2DACB;
+  --color-violet: #836EF9;
+  --color-violet-deep: #5A46E0;
+  --color-ember: #E3572B;
+  --shadow-glow: 0 0 0 1px rgba(131,110,249,.35), 0 10px 40px -8px rgba(131,110,249,.45);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-tp-display), ui-sans-serif, system-ui, sans-serif;
+  color: var(--color-ink);
+  background:
+    radial-gradient(1200px 600px at 75% -10%, rgba(131,110,249,.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(227,87,43,.06), transparent 60%),
+    var(--color-paper);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.display { letter-spacing: -0.035em; font-weight: 700; line-height: 0.98; }
+.accent-serif { font-family: var(--font-tp-serif), Georgia, serif; font-style: italic; color: var(--color-violet-deep); font-weight: 400; letter-spacing: -0.01em; }
+.mono { font-family: var(--font-tp-mono), ui-monospace, monospace; }
+.grain { position: fixed; inset: 0; pointer-events: none; z-index: 60; opacity: .05; }
+.btn-ink { background: var(--color-ink); color: var(--color-paper); transition: box-shadow .4s cubic-bezier(.22,1,.36,1); }
+.btn-ink:hover:not(:disabled) { box-shadow: var(--shadow-glow); }
+.btn-ink:disabled { opacity: .45; cursor: not-allowed; }
+.btn-outline { border: 1px solid var(--color-ink); }
+.btn-outline:hover:not(:disabled) { box-shadow: var(--shadow-glow); }
+table.t { width: 100%; border-collapse: collapse; }
+table.t th, table.t td { font-family: var(--font-tp-mono), monospace; font-size: 12.5px; padding: 10px 12px; border-top: 1px solid var(--color-line); text-align: left; vertical-align: top; }
+table.t th { color: var(--color-mute); font-weight: 400; border-top: 0; }
+.skeleton { background: linear-gradient(90deg, var(--color-paper-2), var(--color-line), var(--color-paper-2)); background-size: 200% 100%; animation: sk 1.4s linear infinite; border-radius: 8px; }
+@keyframes sk { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

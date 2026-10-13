@@ -24,7 +24,7 @@ export interface MarkProof {
 }
 
 export type Verdict =
-  | { kind: "AUTHORED"; entry: EntryRef; distance: number; markZ: number }
+  | { kind: "AUTHORED"; entry: EntryRef; distance: number; markZ: number; laterMatches: EntryRef[] }
   | { kind: "MATCHED"; entry: EntryRef; distance: number; laterMatches: EntryRef[] }
   | { kind: "CONTESTED"; candidates: EntryRef[] }
   | { kind: "NO_RECORD" };
@@ -50,6 +50,6 @@ export function decide(query: PdqResult, entries: EntryRef[], marks: MarkProof[]
     return { kind: "CONTESTED", candidates: [first.e, ...sameBlockOthers.map((m) => m.e)] };
   }
   const proof = marks.find((m) => m.commitment === first.e.commitment && m.z >= MARK_Z_THRESHOLD);
-  if (proof) return { kind: "AUTHORED", entry: first.e, distance: first.d, markZ: proof.z };
+  if (proof) return { kind: "AUTHORED", entry: first.e, distance: first.d, markZ: proof.z, laterMatches: matches.slice(1).map((m) => m.e) };
   return { kind: "MATCHED", entry: first.e, distance: first.d, laterMatches: matches.slice(1).map((m) => m.e) };
 }

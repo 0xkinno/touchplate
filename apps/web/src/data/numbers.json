@@ -1,0 +1,88 @@
+{
+  "generatedFrom": [
+    "spikes/s5-roundtrip.json",
+    "spikes/s5-crop.json",
+    "spikes/s1-ladder-blocks.json",
+    "spikes/s4-sim.json",
+    "spikes/s9-storage.json",
+    "spikes/s6-watermark.json"
+  ],
+  "corpus": "COCO val2017 first 200 files",
+  "simulatedTransformsNote": "platform-style simulations with sharp, not real platform uploads",
+  "platformRoundTrip": {
+    "pdqRecall": "100%",
+    "sha256Match": "0%"
+  },
+  "jpeg70": {
+    "pdqRecall": "100%",
+    "sha256Match": "0%"
+  },
+  "resize1080": {
+    "pdqRecall": "100%"
+  },
+  "flipWithDihedral": "99.5%",
+  "flipWithoutDihedral": "0.5%",
+  "falseMatchRate": 0,
+  "distractorPairs": 19900,
+  "smallestDistractorDistance": 82,
+  "crop": [
+    {
+      "perAxisPct": 1,
+      "recall": "98%"
+    },
+    {
+      "perAxisPct": 2,
+      "recall": "95%"
+    },
+    {
+      "perAxisPct": 4,
+      "recall": "17%"
+    },
+    {
+      "perAxisPct": 6,
+      "recall": "0%"
+    },
+    {
+      "perAxisPct": 10,
+      "recall": "0%"
+    },
+    {
+      "perAxisPct": 20,
+      "recall": "0%"
+    }
+  ],
+  "finalizedMsP50": 564,
+  "finalizedMsP90": 628,
+  "verifiedMsP50": 1472,
+  "finalizedToVerifiedMsP50": 913,
+  "ladderBlocks": 286,
+  "ownTx": {
+    "n": 100,
+    "finalizedP50": 1324,
+    "verifiedP50": 2224,
+    "finalizedP90": 1945
+  },
+  "blockIntervalSeconds": 0.3032,
+  "p256": {
+    "validGas": "43256",
+    "solidityFallbackGas": "256353",
+    "accepted": 2,
+    "rejected": 4
+  },
+  "storage": {
+    "packedWriteGas": 81592,
+    "skeletonWriteGas": 133468,
+    "scatteredWriteGas": 256453
+  },
+  "mark": {
+    "psnrMin": 40.6,
+    "zMinAfterTransforms": 12.74,
+    "unmarkedMaxAbsZ": 3.02
+  },
+  "gasOnLimit": {
+    "chargedOnLimit": true,
+    "oneXFee": "4592040000000000",
+    "twoXFee": "9184080000000000"
+  },
+  "bench": null
+}

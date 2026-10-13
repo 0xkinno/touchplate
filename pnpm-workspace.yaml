@@ -7,4 +7,5 @@ packages:
   - "drills"
   - "indexer"
 allowBuilds:
+  '@reown/appkit': true
   esbuild: true
