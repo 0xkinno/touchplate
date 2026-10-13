@@ -9,10 +9,29 @@ export function LedgerPreview() {
   const [rows, setRows] = useState<Row[] | null>(null);
   const [err, setErr] = useState<string | null>(null);
   useEffect(() => {
-    const es = new EventSource("/api/ledger?stream=1");
-    es.onmessage = (e) => { setErr(null); setRows((JSON.parse(e.data) as { rows: Row[] }).rows.slice(0, 8)); };
-    es.onerror = () => setErr("The live feed is reconnecting.");
-    return () => es.close();
+    let alive = true;
+    let misses = 0;
+    const load = async (): Promise<void> => {
+      try {
+        const r = await fetch("/api/ledger", { cache: "no-store" });
+        if (!r.ok) throw new Error(String(r.status));
+        const d = (await r.json()) as { rows: Row[] };
+        if (!alive) return;
+        misses = 0;
+        setErr(null);
+        setRows(d.rows.slice(0, 8));
+      } catch {
+        if (!alive) return;
+        misses += 1;
+        if (misses >= 2) setErr("The ledger could not be read right now.");
+      }
+    };
+    void load();
+    const t = setInterval(load, 5000);
+    return () => {
+      alive = false;
+      clearInterval(t);
+    };
   }, []);
   if (err && !rows) return <ErrorNote message={err} />;
   if (!rows) return <div className="space-y-2">{Array.from({ length: 4 }, (_, i) => <Skeleton key={i} h={34} />)}</div>;

@@ -21,17 +21,30 @@ export default function LedgerPage() {
   const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
-    setErr(null);
-    const es = new EventSource("/api/ledger?stream=1");
-    es.onmessage = (e) => {
-      const d = JSON.parse(e.data) as { rows: Row[]; finalized: string };
-      setRows(d.rows);
-      setFin(d.finalized);
+    let alive = true;
+    let misses = 0;
+    const load = async (): Promise<void> => {
+      try {
+        const r = await fetch("/api/ledger", { cache: "no-store" });
+        if (!r.ok) throw new Error(String(r.status));
+        const d = (await r.json()) as { rows: Row[]; finalized: string };
+        if (!alive) return;
+        misses = 0;
+        setErr(null);
+        setRows(d.rows);
+        setFin(d.finalized);
+      } catch {
+        if (!alive) return;
+        misses += 1;
+        if (misses >= 2) setErr("The ledger could not be read right now.");
+      }
     };
-    es.onerror = () => {
-      setErr("The live feed was interrupted. Retrying.");
+    void load();
+    const t = setInterval(load, 4000);
+    return () => {
+      alive = false;
+      clearInterval(t);
     };
-    return () => es.close();
   }, [attempt]);
 
   return (

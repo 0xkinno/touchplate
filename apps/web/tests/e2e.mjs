@@ -122,8 +122,8 @@ const promptsBefore = prompts.filter((p) => p.method === "eth_sendTransaction").
 await page.getByRole("button", { name: /Touch and register/ }).click();
 await Promise.race([
   page.getByText("Registered. Your passkey is bound").waitFor({ timeout: 120000 }),
-  page.locator('[role="alert"]').first().waitFor({ timeout: 120000 }).then(async () => {
-    throw new Error(`registration failed: ${await page.locator('[role="alert"]').first().innerText()}`);
+  page.locator('[role="alert"]:not(#__next-route-announcer__)').first().waitFor({ timeout: 120000 }).then(async () => {
+    throw new Error(`registration failed: ${await page.locator('[role="alert"]:not(#__next-route-announcer__)').first().innerText()}`);
   }),
 ]);
 check("studio registered through a wallet transaction", prompts.filter((p) => p.method === "eth_sendTransaction").length === promptsBefore + 1);
