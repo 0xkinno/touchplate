@@ -1,5 +1,7 @@
 "use client";
-import { detect, type Certificate, type PdqResult } from "@touchplate/core";
+import type { Certificate } from "@touchplate/core/src/certificate.ts";
+import { detect } from "@touchplate/core/src/mark.ts";
+import type { PdqResult } from "@touchplate/core/src/pdq.ts";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useCallback, useRef, useState } from "react";

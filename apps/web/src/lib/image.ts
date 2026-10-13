@@ -1,4 +1,4 @@
-import { pdqFromRgba, type PdqResult } from "@touchplate/core";
+import { pdqFromRgba, type PdqResult } from "@touchplate/core/src/pdq.ts";
 
 async function bitmapOf(src: Blob): Promise<ImageBitmap> {
   try {
