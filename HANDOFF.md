@@ -24,7 +24,7 @@ intentionally not in git) and `TASK.md`. This repo is owned and authored solely 
    Qwen key, Aurora key are all ignored. If a secret ever lands in git history, stop and tell 0xkinno.
 3. **Never invent.** Facts about APIs, addresses and behaviour come from source or a measured experiment, recorded in
    `docs/DISCOVERY.md` with a command and output or a tx hash.
-4. **No competitor names or sample-repo names** in any committed file (`reference/` is gitignored and absent in cloud).
+4. **No names of other hackathon entries or sample repositories** in any committed file (`reference/` is gitignored and absent in cloud).
 5. **No em dashes** in prose, UI copy or docs. **No hand-typed numbers**: they come from `scripts/generate-numbers.mjs`.
 6. **Real wallet transactions only**: every on-chain action in the UI must open the user's wallet and send a real
    signed transaction. No simulated sends, no server-side signing for users.
