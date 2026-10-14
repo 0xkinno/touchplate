@@ -1,4 +1,5 @@
 "use client";
+import { FileDrop } from "@/components/FileDrop";
 import { useAppKit } from "@reown/appkit/react";
 import {
   buildBatch, commitmentOf, dihedralRootOf, embed, manifestHashOf, markSeedFor, markSeedHash, psnr, signManifest, studioChallenge,
@@ -227,15 +228,16 @@ function StudioInner() {
       </Step>
 
       <Step n={2} title="Passkey" done={!!families}>
-        {!stored && <button disabled={!isConnected || busy !== null} className="btn-ink rounded-[10px] px-4 py-2 mono text-[13px]" onClick={onCreatePasskey}>{busy === "passkey" ? "Waiting for your device…" : "Create passkey"}</button>}
+        {!stored && !isConnected && <p className="mono text-[12px] text-mute">Unlocks after step 1.</p>}
+        {!stored && isConnected && <button disabled={busy !== null} className="btn-ink rounded-[10px] px-4 py-2 mono text-[13px]" onClick={onCreatePasskey}>{busy === "passkey" ? "Waiting for your device…" : "Create passkey"}</button>}
         {stored && !families && <button disabled={busy !== null} className="btn-ink rounded-[10px] px-4 py-2 mono text-[13px]" onClick={onUnlock}>{busy === "unlock" ? "Waiting for your device…" : "Unlock with passkey"}</button>}
         {families && <p className="mono text-[12px] text-ink-2">Unlocked. Keys are held in memory only and cleared after 10 idle minutes or 2 minutes with the tab hidden.</p>}
         <p className="mono text-[11px] text-mute">Works with iCloud Keychain, Google Password Manager and 1Password. A desktop Chrome local profile cannot derive keys.</p>
       </Step>
 
       <Step n={3} title="Register your studio" done={registered}>
-        {registered ? <p className="mono text-[12px]">Registered. Your passkey is bound to this address on chain.</p> : (
-          <button disabled={!families || !isConnected || busy !== null} className="btn-ink rounded-[10px] px-4 py-2 mono text-[13px]" onClick={onRegister}>
+        {registered ? <p className="mono text-[12px]">Registered. Your passkey is bound to this address on chain.</p> : !families || !isConnected ? <p className="mono text-[12px] text-mute">Unlocks after step 2.</p> : (
+          <button disabled={busy !== null} className="btn-ink rounded-[10px] px-4 py-2 mono text-[13px]" onClick={onRegister}>
             {busy === "register" ? "Confirm in wallet…" : "Touch and register"}
           </button>
         )}
@@ -245,7 +247,8 @@ function StudioInner() {
         <label className="mono text-[12px] block">License price (AUSD)
           <input value={price} onChange={(e) => setPrice(e.target.value.replace(/[^0-9.]/g, ""))} className="ml-2 w-24 rounded-lg border border-line bg-paper px-2 py-1" />
         </label>
-        <input type="file" accept="image/*" multiple disabled={!families || !registered || busy !== null} onChange={(e) => void onFiles(e.target.files)} aria-label="Choose images to seal" className="block text-sm" />
+        {!families || !registered ? <p className="mono text-[12px] text-mute">Unlocks after steps 2 and 3.</p> : null}
+        <FileDrop label="Drop a shoot here" hint="Images are watermarked and fingerprinted in this browser." multiple disabled={!families || !registered || busy !== null} names={items.map((i) => i.name)} onFiles={(f) => void onFiles(f)} />
         {busy === "mark" && <p className="mono text-[12px] text-mute" role="status">Watermarking and fingerprinting…</p>}
         <div className="grid sm:grid-cols-2 gap-4">
           {items.map((it) => (
@@ -266,9 +269,9 @@ function StudioInner() {
 
       <Step n={5} title="Touch" done={!!batch?.touchTx}>
         {batch && <p className="mono text-[11px] text-mute break-all">Batch root {batch.root}</p>}
-        <button disabled={!batch || !!batch.touchTx || busy !== null} className="btn-ink rounded-[10px] px-4 py-2 mono text-[13px]" onClick={onTouch}>
+        {!batch ? <p className="mono text-[12px] text-mute">Unlocks after step 4.</p> : <button disabled={!!batch.touchTx || busy !== null} className="btn-ink rounded-[10px] px-4 py-2 mono text-[13px]" onClick={onTouch}>
           {busy === "touch" ? "Touch your passkey, then confirm in wallet…" : `Seal ${items.length || ""} image${items.length === 1 ? "" : "s"} with one touch`}
-        </button>
+        </button>}
         {batch?.touchTx && (
           <div className="space-y-2">
             <Ladder reached={batch.rungs} />
@@ -282,9 +285,9 @@ function StudioInner() {
 
       <Step n={6} title="Reveal" done={items.length > 0 && items.every((i) => i.revealTx)}>
         <p className="text-sm text-ink-2">Reveal is only allowed once the touch block is Finalized, so a copier watching the speculative feed learns nothing in time.</p>
-        <button disabled={!finalized || busy !== null || items.every((i) => i.revealTx)} className="btn-ink rounded-[10px] px-4 py-2 mono text-[13px]" onClick={onReveal}>
+        {!finalized ? <p className="mono text-[12px] text-mute">Unlocks once the touch block is Finalized.</p> : <button disabled={busy !== null || items.every((i) => i.revealTx)} className="btn-ink rounded-[10px] px-4 py-2 mono text-[13px]" onClick={onReveal}>
           {busy === "reveal" ? "Confirm each reveal in wallet…" : "Reveal all"}
-        </button>
+        </button>}
         <ul className="mono text-[12px] space-y-1">
           {items.filter((i) => i.revealTx).map((i) => (
             <li key={i.id}>{i.name}: <a className="text-violet-deep underline" href={txUrl(i.revealTx as string)} target="_blank" rel="noreferrer">{short(i.revealTx as string, 8)}</a> · <a className="underline" href={`/c/${i.commitment}`}>entry page</a></li>
@@ -298,7 +301,7 @@ function StudioInner() {
           <option value="">Choose a sealed entry</option>
           {saved.filter((s) => s.revealTx).map((s) => <option key={s.commitment} value={s.commitment}>{s.name} · {short(s.commitment, 5)}</option>)}
         </select>
-        <input type="file" accept="image/*" disabled={!proveFor || !families || busy !== null} onChange={(e) => e.target.files?.[0] && void onProve(e.target.files[0])} aria-label="Suspect image" className="block text-sm" />
+        <FileDrop label="Drop the suspect image" hint={proveFor ? "Only that one image is revealed." : "Choose a sealed entry first."} disabled={!proveFor || !families || busy !== null} onFiles={(f) => f[0] && void onProve(f[0])} />
         {proveResult && <p className="mono text-[12px] text-violet-deep">{proveResult}</p>}
       </Step>
 

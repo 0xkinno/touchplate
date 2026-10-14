@@ -1,6 +1,7 @@
 "use client";
 import type { Certificate } from "@touchplate/core";
 import { useState } from "react";
+import { FileDrop } from "@/components/FileDrop";
 import { ErrorNote } from "@/components/ui";
 import { fetchImage, fingerprintOf } from "@/lib/image";
 
@@ -16,6 +17,7 @@ export default function InvestigatePage() {
   const [err, setErr] = useState<string | null>(null);
   const [url, setUrl] = useState("");
   const [page, setPage] = useState("");
+  const [fileName, setFileName] = useState<string[]>([]);
 
   const go = async (blob: Blob): Promise<void> => {
     setBusy(true); setErr(null); setEvents([]);
@@ -52,7 +54,7 @@ export default function InvestigatePage() {
         <p className="mt-3 text-ink-2 max-w-xl">A language model plans and calls tools against Monad. Deterministic code owns the verdict; the model only explains it, and any name or number it adds that the engine did not output is rejected.</p>
       </header>
       <div className="rounded-2xl border border-line bg-paper-2/70 p-5 space-y-3">
-        <input type="file" accept="image/*" className="max-w-full text-sm" aria-label="Image to investigate" disabled={busy} onChange={(e) => e.target.files?.[0] && void go(e.target.files[0])} />
+        <FileDrop label="Drop the image to investigate" hint="Only its fingerprint is sent to the investigator." disabled={busy} names={fileName} onFiles={(f) => { setFileName([f[0].name]); void go(f[0]); }} />
         <form className="flex gap-2 flex-wrap" onSubmit={(e) => { e.preventDefault(); if (url) fetchImage(url).then(go).catch((x: unknown) => setErr(x instanceof Error ? x.message : "Could not fetch.")); }}>
           <input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="or an image address" aria-label="Image address" className="mono text-[12px] px-3 py-2 rounded-[10px] border border-line bg-paper w-72 max-w-full" />
           <button className="btn-outline rounded-[10px] px-3 py-2 mono text-[12px]">Investigate</button>
@@ -62,25 +64,49 @@ export default function InvestigatePage() {
       {busy && <p className="mono text-[13px] text-mute" role="status">Investigating…</p>}
       {err && <ErrorNote message={err} />}
       {failed && <ErrorNote message={failed.message} />}
-      <ol className="space-y-2 min-w-0">
-        {events.filter((e) => e.type === "tool" || e.type === "validator").map((e, i) => (
-          <li key={i} className="rounded-xl border border-line bg-paper p-3 mono text-[12px] break-all min-w-0">
-            {e.type === "tool" ? (
-              <>
-                <p className="break-all"><strong>{e.name}</strong> {Object.keys(e.args).length ? JSON.stringify(e.args) : ""}</p>
-                <pre className="whitespace-pre-wrap break-all text-ink-2 mt-1 max-h-40 overflow-auto">{JSON.stringify(e.result, null, 1).slice(0, 900)}</pre>
-              </>
-            ) : <p className="text-ember">{e.note}</p>}
-          </li>
-        ))}
-      </ol>
       {report && (
-        <article className="rounded-2xl border border-line bg-paper-2/80 p-6 space-y-3">
-          <p className="mono text-[12px] text-mute">Engine verdict (not generated): {report.verdict.kind}</p>
+        <article className="rounded-2xl border border-line bg-paper-2/80 p-6 space-y-3" data-no-overlap="report">
+          <p className="inline-block mono text-[12px] rounded-full border border-violet/40 bg-violet/10 text-violet-deep px-3 py-1">Verdict copied from the engine: {report.verdict.kind}</p>
           <p className="text-lg">{report.narrative}</p>
           <p className="mono text-[11px] text-mute">Narrative source: {report.narrativeSource}. certSha256 {report.certificate.certSha256.slice(0, 20)}…</p>
         </article>
       )}
+      <ol className="space-y-3 min-w-0">
+        {events.filter((e) => e.type === "tool" || e.type === "validator").map((e, i) => (
+          <li key={i} className="rounded-xl border border-line bg-paper p-4 min-w-0">
+            {e.type === "tool" ? <ToolCard name={e.name} args={e.args} result={e.result} /> : <p className="mono text-[12px] text-ember">{e.note}</p>}
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+function oneLine(name: string, r: Record<string, unknown>): string {
+  const kind = typeof r.kind === "string" ? r.kind : typeof (r.verdict as { kind?: string } | undefined)?.kind === "string" ? (r.verdict as { kind: string }).kind : null;
+  const parts: string[] = [];
+  if (kind) parts.push(kind);
+  if (typeof r.distance === "number") parts.push(`distance ${r.distance}`);
+  for (const k of ["touchBlock", "blockNumber", "finalizedBlock"]) if (r[k] !== undefined) parts.push(`block ${String(r[k])}`);
+  return parts.length ? parts.join(" · ") : `${name} returned ${Object.keys(r).length} fields`;
+}
+
+function ToolCard({ name, args, result }: { name: string; args: Record<string, string>; result: unknown }) {
+  const r = (result && typeof result === "object" ? result : { value: result }) as Record<string, unknown>;
+  const scalar = Object.entries(r).filter(([, v]) => ["string", "number", "boolean"].includes(typeof v)).slice(0, 8);
+  return (
+    <div className="space-y-2">
+      <p className="mono text-[13px] font-semibold">{name}</p>
+      <p className="text-sm text-ink-2">{oneLine(name, r)}</p>
+      {scalar.length > 0 && (
+        <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 mono text-[12px]">
+          {scalar.map(([k, v]) => (<div key={k} className="contents"><dt className="text-mute">{k}</dt><dd className="break-all">{String(v)}</dd></div>))}
+        </dl>
+      )}
+      <details>
+        <summary className="mono text-[12px] text-violet-deep cursor-pointer">Show raw</summary>
+        <pre className="mono text-[11px] whitespace-pre-wrap break-all text-ink-2 mt-1 max-h-48 overflow-auto">{JSON.stringify({ args, result }, null, 1).slice(0, 2400)}</pre>
+      </details>
     </div>
   );
 }
