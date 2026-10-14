@@ -72,3 +72,16 @@ Every deployment and transaction below is real. Mainnet is chain 143, testnet is
 
 - One real cross-chain licence payment through Aurora (must be sent by 0xkinno from their own wallet).
 - Real-device passkey runs (iCloud Keychain, Google Password Manager).
+
+
+## Demo film
+
+The demo film's seal sequence was captured against the live app on Monad mainnet with a scripted throwaway wallet ("Capture wallet") and a virtual passkey. Every transaction below is a real mainnet transaction. The studio transactions are, in order: registerStudio, touch, then one reveal per image (four).
+
+- fund capture wallet (deployer): [`0x(already funded)`](https://monadscan.com/tx/0x(already funded))
+- studio tx 1: [`0xc2577f2f7fa1ba4221a93ff077e602e5e00f54921f40a470ec6a6fb60e0e0cfd`](https://monadscan.com/tx/0xc2577f2f7fa1ba4221a93ff077e602e5e00f54921f40a470ec6a6fb60e0e0cfd)
+- studio tx 2: [`0xe248f7007bd97b9729113f7932169199bf7a2fa167397a3975d53d1d938521aa`](https://monadscan.com/tx/0xe248f7007bd97b9729113f7932169199bf7a2fa167397a3975d53d1d938521aa)
+- studio tx 3: [`0x99f220c914b395ac4f30a3e7f1e6d2f841df755b668d73954cbc62e4ef77065a`](https://monadscan.com/tx/0x99f220c914b395ac4f30a3e7f1e6d2f841df755b668d73954cbc62e4ef77065a)
+- studio tx 4: [`0xf7714eca2ce72a1f0b079d0361c2e20c1e79e826ab5f9159fa9def07f17cb71c`](https://monadscan.com/tx/0xf7714eca2ce72a1f0b079d0361c2e20c1e79e826ab5f9159fa9def07f17cb71c)
+- studio tx 5: [`0x3e35d914c30648f958483b583c0754d5ca5ed78a8f0db11803e8aa1f508ae25c`](https://monadscan.com/tx/0x3e35d914c30648f958483b583c0754d5ca5ed78a8f0db11803e8aa1f508ae25c)
+- studio tx 6: [`0x289985b7b62c49ce0461dc1c11c93e23e3dfe7c0f02e2b9c028e5752dc03eab6`](https://monadscan.com/tx/0x289985b7b62c49ce0461dc1c11c93e23e3dfe7c0f02e2b9c028e5752dc03eab6)
