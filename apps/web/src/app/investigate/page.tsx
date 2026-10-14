@@ -67,7 +67,8 @@ export default function InvestigatePage() {
       {report && (
         <article className="rounded-2xl border border-line bg-paper-2/80 p-6 space-y-3" data-no-overlap="report">
           <p className="inline-block mono text-[12px] rounded-full border border-violet/40 bg-violet/10 text-violet-deep px-3 py-1">Verdict copied from the engine: {report.verdict.kind}</p>
-          <p className="text-lg">{report.narrative}</p>
+          <p className="text-lg whitespace-pre-line">{report.narrative.replace(/\*\*/g, "").replace(/\s+(Who|What|When|Confidence|Likely transforms|Next):/g, "
+$1:").trim()}</p>
           <p className="mono text-[11px] text-mute">Narrative source: {report.narrativeSource}. certSha256 {report.certificate.certSha256.slice(0, 20)}…</p>
         </article>
       )}
