@@ -1,0 +1,15 @@
+{
+ "command": "touchplate-verify --image sample-repost.jpg --rpc https://rpc.monad.xyz --contract 0x05648FAa32eeF566b97Cc8E0BAB1C15D7fBeeCF1 --from-block 113077560",
+ "lines": [
+  "PASS  contract has code  10809 bytes",
+  "PASS  fingerprint recomputed locally  0x2cc33e1c86947c185a73d0d90fc70778eb073f810156c4d2c77acb53eec9bac5 quality 100",
+  "PASS  registry scanned from logs  570 reveals, 46 touches, blocks 113077560-113181379",
+  "PASS  verdict recomputed  MATCHED",
+  "PASS  touch block is Finalized  finalized head 113181745, touch 113122505",
+  "author   0xF8c19f45BD40A073f6876EF59a00C482D6Ba45ea",
+  "sealed   block 113122505",
+  "distance 0 (threshold 31)",
+  "certSha256 0ee02d026bf1ffd74d9610f37bb36d3a231ad86eeb0f6f3f576c745270fa7f3f",
+  "RESULT: PASS"
+ ]
+}

@@ -14,7 +14,7 @@ const BASE = process.env.BASE_URL ?? "http://localhost:3100";
 const VIEWPORTS = [
   [375, 667], [390, 844], [393, 852], [412, 915], [768, 1024], [1024, 1366], [1280, 800], [1440, 900], [1920, 1080],
 ];
-const ROUTES = ["/", "/lookup", "/studio", "/ledger", "/investigate", "/proof"];
+const ROUTES = ["/", "/lookup", "/studio", "/ledger", "/investigate", "/proof", "/developers"];
 
 const browser = await chromium.launch({ headless: true });
 const results = [];

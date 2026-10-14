@@ -11,6 +11,7 @@ const links = [
   { href: "/ledger", label: "Ledger" },
   { href: "/investigate", label: "Investigate" },
   { href: "/proof", label: "Proof" },
+  { href: "/developers", label: "Build" },
 ];
 
 function Logo() {
