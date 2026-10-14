@@ -15,7 +15,7 @@
 
 ## The brief
 
-Ada Okafor is a photojournalist in Lagos. Within an hour of her flood photographs going up, aggregator pages have reposted them. Every platform stripped the metadata and recompressed the pixels, so a file-hash registry matches nothing and Content Credentials are gone. The agency that wants to license the image calls the aggregator instead of Ada.
+Ada Okafor (an illustrative persona) is a photojournalist in Lagos. Within an hour of her flood photographs going up, aggregator pages have reposted them. Every platform stripped the metadata and recompressed the pixels, so a file-hash registry matches nothing and Content Credentials are gone. The agency that wants to license the image calls the aggregator instead of Ada.
 
 Touchplate changes the question from *"who has the file?"* to *"who sealed this picture first, on a ledger nobody controls?"* Ada touches her passkey once per shoot. The perceptual fingerprint that survives re-encoding is committed under a hidden Merkle root, verified on Monad by the P-256 precompile, and revealed only after that block is **Finalized**. Anyone can later drag a stripped repost into Touchplate and see Ada's seal, the block where priority locked, and a certificate that an offline verifier reproduces byte for byte.
 
@@ -31,7 +31,9 @@ Touchplate changes the question from *"who has the file?"* to *"who sealed this 
 | **Live ledger** | https://touchplate.vercel.app/ledger |
 | **Verify yourself** | [`touchplate-verify`](#verify-without-trusting-us) (offline, no Touchplate server) |
 | **Source** | https://github.com/0xkinno/touchplate |
-| **Demo video (2 min)** | added at submission |
+| **Developer page** | https://touchplate.vercel.app/developers |
+| **Technical demo (3 min)** | VIDEO_DEMO_URL_PLACEHOLDER |
+| **Pitch (2 min)** | VIDEO_PITCH_URL_PLACEHOLDER |
 | **Track and bounties** | [below](#track-and-bounties) |
 
 ## Screens
@@ -164,6 +166,16 @@ stateDiagram-v2
 2. Open the **entry page** from the verdict and follow the touch and reveal links to the explorer.
 3. Run the offline verifier on the same file (command below) and compare `certSha256`.
 4. Open [/proof](https://touchplate.vercel.app/proof) for the generated numbers and the break campaign.
+
+## Build on Touchplate
+
+Touchplate is a provenance primitive. Any app can seal, look up and verify without asking us. The full page, with the contract and event tables, is at [/developers](https://touchplate.vercel.app/developers).
+
+1. **Fingerprint in the browser.** `pdqFromRgba(rgba, width, height)` from `@touchplate/core` returns the 256-bit hash, a quality score and 8 dihedral variants. Only those leave the page.
+2. **Look up by fingerprint.** `POST /api/lookup` with `{ pdq: { hash, quality, dihedral } }` returns `{ certificate, seeds, finalizedBlock, entries }`. Image bytes are never accepted (invariant I9).
+3. **Verify without us.** `touchplate-verify --image suspect.jpg --rpc https://rpc.monad.xyz --contract 0x05648FAa32eeF566b97Cc8E0BAB1C15D7fBeeCF1 --from-block 113077560` recomputes the verdict from chain logs.
+
+`@touchplate/core` is a workspace package, publishing next.
 
 ## The numbers
 
@@ -383,6 +395,22 @@ Working photographers, illustrators and photojournalists who publish online, and
 
 **Revenue.** A capped protocol fee on licences (1% today, 3% ceiling in code), studio plans for agencies, and a newsroom API for bulk lookup and certificate delivery.
 
+## Who adopts this primitive, and why not roll your own
+
+| Adopter | Why they need it | What they call |
+|---|---|---|
+| Image generators and creative AI tools | Seal output at the moment of creation, so provenance survives every repost | `touch` and `reveal` |
+| Newsrooms, wire desks and fact-checkers | Credit the right person on a stripped copy, with a certificate they can re-verify | `/api/lookup`, `touchplate-verify` |
+| Licensing and stock marketplaces | Pay the earliest finalized author, never a derivative | `license` |
+
+Rolling your own means solving Monad's four commit states, commit before reveal against a speculative log feed, on-chain P-256 passkey verification with low-s normalisation, re-encoding-robust fingerprints with dihedral variants, and an offline verifier. Each of those is measured in [docs/DISCOVERY.md](docs/DISCOVERY.md).
+
+## Traction and path forward
+
+What is true today: live on Monad mainnet, 300 images sealed through the real flow, ten drills run on mainnet with transaction links, and the ledger count is read from chain. No outside team has integrated yet, and nothing here claims otherwise.
+
+The plan: publish `@touchplate/core`, ship a browser extension that checks images in place, build a newsroom CMS plugin, and reach out to image generators, newsrooms and licensing marketplaces by name. Any outside developer who calls `/api/lookup` or `touchplate-verify` will be recorded in [EVIDENCE.md](EVIDENCE.md) with their permission.
+
 ## What is new
 
 All code in this repository was written during Monad Metropolis; the first commit is dated 2026-10-13.
@@ -402,6 +430,16 @@ A browser extension that checks images in place, a newsroom CMS plugin, video ke
 | Best Builds with Qwen 3.8 Max | The Investigator: Qwen plans and calls tools, deterministic code owns the verdict, a validator enforces it (D9) |
 | Best Use of Envio | HyperIndex schema and handlers; HyperSync as the verifier fast path |
 | Aurora Intents: Bring Any-Chain Liquidity to Monad | "License from any chain" funds a licence from another chain into USDC on Monad |
+
+### The five track criteria
+
+| Criterion | Proof |
+|---|---|
+| Technical Execution | [Passkey assertions verified on chain by the P-256 precompile](docs/DISCOVERY.md), [ten mainnet drills](docs/drills/) |
+| Design & Craft (developer experience) | [/developers](https://touchplate.vercel.app/developers), [`touchplate-verify`](#verify-without-trusting-us) |
+| Originality & Track Insight | [Commit before reveal, keyed to Monad finality](#the-discovery) |
+| Founder & Market Readiness | [Adopters and the fee model](#who-adopts-this-primitive-and-why-not-roll-your-own) |
+| Traction & Path Forward | [Live ledger](https://touchplate.vercel.app/ledger), [EVIDENCE.md](EVIDENCE.md) |
 
 ## Documentation
 

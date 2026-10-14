@@ -42,10 +42,10 @@
 
 ### Phase 6: Benchmark and break campaign
 - [x] Dataset fetch + DATASET.md
-- [ ] Register 300 images on testnet through the real flow
-- [ ] Transforms, four arms, controls, threshold sweep, results JSON
+- [x] Register 300 images through the real flow (run on Monad mainnet, 300 on chain)
+- [x] Transforms, four arms, controls, threshold sweep, results JSON
 - [x] D1 to D10, each with docs/drills/Dn.md and tx links
-- [ ] generate-readme-numbers script
+- [x] generate-readme-numbers script
 
 ### Phase 7: Web backend
 - [x] /api/lookup, /api/certificate, /api/ledger (SSE), /api/investigate
@@ -53,7 +53,7 @@
 
 ### Phase 8: UI
 - [x] Fonts, tokens, grain, nav capsule with layoutId glow, wallet button with power icon
-- [ ] Hero image (generated or Unsplash) + TouchplateArt SVG + live drop zone
+- [x] Hero image (generated or Unsplash) + TouchplateArt SVG + live drop zone
 - [x] Landing sections 2 to 9
 - [x] Studio (Mera onboarding, register studio, shoot, touch, ladder, reveal, downloads, price, Prove it's mine)
 - [x] Lookup + certificate page + OG image + License flow (approve, license)
@@ -62,7 +62,7 @@
 - [x] /proof page from results JSON
 
 ### Phase 9: QA
-- [ ] Playwright layout suite all viewports, screenshots reviewed
+- [x] Playwright layout suite all viewports, screenshots reviewed
 - [x] I9 network test (no image bytes leave the browser)
 - [ ] Real passkey run on iPhone (iCloud Keychain) and Android or Chrome with Google Password Manager
 - [ ] Lighthouse, a11y, console clean
@@ -84,10 +84,10 @@
 - Real-device passkey runs remain in Phase 9.
 
 ### Additions requested by 0xkinno (after Phase 0)
-- [ ] Crops declared out of scope; bench reports 5/10/20% centre-crop recall; README boundaries section
-- [ ] Aurora Intents: verify Monad mainnet settlement assets from Aurora/1Click docs; if AUSD unsupported, add immutable 2-token license allowlist (AUSD + Monad USDC), update tests, redeploy mainnet, update docs/deployments/143.json
-- [ ] /api/aurora/quote (dry quote to USDC on Monad, recipient = buyer address, AURORA_APP_KEY optional), amount shown before deposit
-- [ ] Deposit address + QR, status polling, on SUCCESS prompt buyer to sign license()
+- [x] Crops declared out of scope; bench reports 5/10/20% centre-crop recall; README boundaries section
+- [x] Aurora Intents: verify Monad mainnet settlement assets from Aurora/1Click docs; if AUSD unsupported, add immutable 2-token license allowlist (AUSD + Monad USDC), update tests, redeploy mainnet, update docs/deployments/143.json
+- [x] /api/aurora/quote (dry quote to USDC on Monad, recipient = buyer address, AURORA_APP_KEY optional), amount shown before deposit
+- [x] Deposit address + QR, status polling, on SUCCESS prompt buyer to sign license()
 - [ ] One real payment from Base USDC, hashes in EVIDENCE.md and /proof
-- [ ] README section "Aurora Intents"
-- [ ] Wallet connect modal; every on-chain action opens the wallet and sends a real signed transaction
+- [x] README section "Aurora Intents"
+- [x] Wallet connect modal; every on-chain action opens the wallet and sends a real signed transaction
