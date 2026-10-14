@@ -19,12 +19,13 @@ chains:
   - id: 143
     start_block: 113077560
     # Plain RPC as the data source: no HyperSync token and no cloud account needed.
+    # Plain RPC through the local shim in rpc-proxy.mjs (the public endpoint caps eth_getLogs at 100 blocks).
+    # No HyperSync token and no cloud account are needed.
     rpc:
-      - url: https://rpc.monad.xyz
+      - url: http://127.0.0.1:8546
         for: sync
-        # the public endpoint caps eth_getLogs at 100 blocks
-        initial_block_interval: 90
-        interval_ceiling: 90
+        initial_block_interval: 2000
+        interval_ceiling: 2000
         acceleration_additive: 0
     contracts:
       - name: Touchplate
