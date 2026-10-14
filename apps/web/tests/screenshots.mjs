@@ -44,10 +44,13 @@ await go("/proof", 3000);
 await page.screenshot({ path: resolve(OUT, "proof.png") });
 
 await go("/investigate");
-await page.setInputFiles('input[aria-label="Image to investigate"]', REPOST);
-await page.getByText(/Engine verdict/).first().waitFor({ timeout: 150000 }).catch(() => undefined);
+await page.setInputFiles('input[aria-label="Drop the image to investigate"]', REPOST);
+await page.getByText(/Verdict copied from the engine/).first().waitFor({ timeout: 150000 }).catch(() => undefined);
 await page.waitForTimeout(1500);
 await page.screenshot({ path: resolve(OUT, "investigate.png"), fullPage: false });
+
+await go("/developers", 2500);
+await page.screenshot({ path: resolve(OUT, "developers.png") });
 
 const phone = await browser.newContext({ ...devices["iPhone 13"] });
 const mp = await phone.newPage();
