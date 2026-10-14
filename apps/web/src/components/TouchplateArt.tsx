@@ -43,8 +43,8 @@ export function TouchplateArt() {
   }, []);
 
   return (
-    <div className="relative w-full" style={{ perspective: "1200px" }} data-no-overlap="art">
-      <div style={{ transform: "rotateX(14deg) rotateY(-18deg)", transformStyle: "preserve-3d" }}>
+    <div className="relative w-full">
+      <div style={{ perspective: "1200px" }} data-no-overlap="art"><div style={{ transform: "rotateX(14deg) rotateY(-18deg)", transformStyle: "preserve-3d" }}>
         <svg viewBox="0 0 600 420" className="w-full h-auto drop-shadow-xl" role="img" aria-label="A pewter plate of struck maker marks">
           <defs>
             <linearGradient id="plate" x1="0" y1="0" x2="1" y2="1">
@@ -82,15 +82,11 @@ export function TouchplateArt() {
             );
           })}
         </svg>
-      </div>
-      <div className="hidden lg:block absolute -left-8 -top-6 w-[17rem] -rotate-3" data-no-overlap="art-card-original">
-        <GlowCard className="!p-3 text-[12px] mono whitespace-nowrap">Original · Ada O. · block {SAMPLE_BLOCK}</GlowCard>
-      </div>
-      <div className="hidden lg:block absolute -right-4 -bottom-10 w-[15rem] rotate-2" data-no-overlap="art-card-repost">
-        <GlowCard className="!p-3 text-[12px] mono whitespace-nowrap">Repost · distance 9 · stripped</GlowCard>
-      </div>
-      <div className="hidden lg:block absolute left-2 -bottom-10 w-[13rem] -rotate-1" data-no-overlap="art-card-licensed">
-        <GlowCard className="!p-3 text-[12px] mono whitespace-nowrap">Licensed · 12 AUSD</GlowCard>
+      </div></div>
+      <div className="hidden lg:flex gap-3 mt-4 flex-wrap">
+        <div data-no-overlap="art-card-original"><GlowCard className="!p-3 text-[12px] mono whitespace-nowrap">Original · Ada O. · block {SAMPLE_BLOCK}</GlowCard></div>
+        <div data-no-overlap="art-card-repost"><GlowCard className="!p-3 text-[12px] mono whitespace-nowrap">Repost · distance 9 · stripped</GlowCard></div>
+        <div data-no-overlap="art-card-licensed"><GlowCard className="!p-3 text-[12px] mono whitespace-nowrap">Licensed · 12 AUSD</GlowCard></div>
       </div>
     </div>
   );
