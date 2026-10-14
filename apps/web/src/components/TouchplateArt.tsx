@@ -1,7 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import snapshot from "@/data/registry-snapshot.json";
 import { GlowCard } from "./ui";
+
+const SAMPLE_BLOCK = Number(
+  (snapshot as { snapshot: { revealed: { blockNumber: { $big: string } }[] } }).snapshot.revealed[0].blockNumber.$big,
+).toLocaleString("en-US");
 
 const COLS = 6;
 const ROWS = 4;
@@ -78,14 +83,14 @@ export function TouchplateArt() {
           })}
         </svg>
       </div>
-      <div className="hidden lg:block absolute -left-6 top-6 w-56 -rotate-3">
-        <GlowCard className="!p-4 text-[12px] mono">Original · Ada O. · block 4,812,309</GlowCard>
+      <div className="hidden lg:block absolute -left-8 -top-6 w-[17rem] -rotate-3" data-no-overlap="art-card-original">
+        <GlowCard className="!p-3 text-[12px] mono whitespace-nowrap">Original · Ada O. · block {SAMPLE_BLOCK}</GlowCard>
       </div>
-      <div className="hidden lg:block absolute right-0 top-40 w-52 rotate-2">
-        <GlowCard className="!p-4 text-[12px] mono">Repost · distance 9 · stripped</GlowCard>
+      <div className="hidden lg:block absolute -right-4 -bottom-10 w-[15rem] rotate-2" data-no-overlap="art-card-repost">
+        <GlowCard className="!p-3 text-[12px] mono whitespace-nowrap">Repost · distance 9 · stripped</GlowCard>
       </div>
-      <div className="hidden lg:block absolute left-10 -bottom-4 w-44 -rotate-1">
-        <GlowCard className="!p-4 text-[12px] mono">Licensed · 12 AUSD</GlowCard>
+      <div className="hidden lg:block absolute left-2 -bottom-10 w-[13rem] -rotate-1" data-no-overlap="art-card-licensed">
+        <GlowCard className="!p-3 text-[12px] mono whitespace-nowrap">Licensed · 12 AUSD</GlowCard>
       </div>
     </div>
   );
