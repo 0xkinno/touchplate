@@ -34,7 +34,7 @@ Touchplate changes the question from *"who has the file?"* to *"who sealed this 
 | **Developer page** | https://touchplate.vercel.app/developers |
 | **Technical demo (3 min)** | VIDEO_DEMO_URL_PLACEHOLDER |
 | **Pitch (2 min)** | VIDEO_PITCH_URL_PLACEHOLDER |
-| **Track and bounties** | [below](#track-and-bounties) |
+| **Track and bounties** | Trust, Identity and AI Infrastructure. [Details below](#track-and-bounties) |
 
 ## Screens
 

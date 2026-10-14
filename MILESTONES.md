@@ -13,4 +13,4 @@ Sequenced by dependency.
 | Web app | All routes, wallet modal, Aurora routes, live deploy | https://touchplate.vercel.app |
 | Break campaign | D1 to D10 on mainnet | `docs/drills/` |
 | Benchmark | 300 registered, 1,000 distractors, 19 transforms | `bench/results/summary.json` |
-| Open | Real-device passkey runs, Envio Cloud deploy, one real cross-chain licence payment, demo video | `TASK.md`, `HANDOFF.md` |
+| Open | Real-device passkey runs, Envio Cloud deploy, one real cross-chain licence payment, demo video | `reference/TASK.md` (local), `HANDOFF.md` |

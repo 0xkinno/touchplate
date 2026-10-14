@@ -22,7 +22,7 @@ Carry into Phase 1 from the measurements:
 
 ## Owner requirements for Phase 8
 - Wallet connect modal on every transacting page; every on-chain action (register studio, touch, reveal, approve, license, faucet, prove mark) opens the wallet and sends a real signed transaction.
-- Aurora Intents "License from any chain" on /lookup and /c/[certId] (see TASK.md additions).
+- Aurora Intents "License from any chain" on /lookup and /c/[certId] (see the local task list).
 - Everything is built inside this folder; `reference/` stays ignored and unnamed.
 
 ## Session 2: build, deploy and campaign

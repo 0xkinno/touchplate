@@ -1,7 +1,7 @@
 # HANDOFF: continue the Touchplate build in the cloud
 
 Read this file completely, then read `AGENTS.md`, then `TOUCHPLATE_BUILD_INSTRUCTION.md` (ask 0xkinno for it: it is
-intentionally not in git) and `TASK.md`. This repo is owned and authored solely by **0xkinno**.
+intentionally not in git) and `reference/TASK.md` (also not in git). This repo is owned and authored solely by **0xkinno**.
 
 ## 0. Non-negotiable rules (read first)
 
